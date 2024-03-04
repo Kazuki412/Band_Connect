@@ -7,9 +7,8 @@ Rails.application.routes.draw do
     sessions: "public/sessions"
   }
 
-  devise_for :admin, controllers: {
-    # 管理者登録後 skip: [:registrations, :passwords]を実装する
-    registrations: "admin/registrations",
+  # 管理者については登録済のため新規登録・パスワード変更のpathを使えないようにしています。
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
   
