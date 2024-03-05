@@ -1,0 +1,66 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: blue; ">
+    <div class="container">
+      <a class="navbar-brand" href="/">Band_Connect</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <div class="mt-3 mr-5" style="color: white;">
+            ようこそ！<%= current_user.name %>さん！
+          </div>
+          <li class="nav-item">
+          <% # link_to customers_my_page_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-user"></i> My Page</button>
+          <% # end %>
+          </li>
+          <li class="nav-item">
+          <% # link_to public_items_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-cake-candles"></i> Posts</button>
+          <% # end %>
+          </li>
+          <li class="nav-item">
+          <% # link_to public_cart_items_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-cart-shopping"></i> Users</button>
+          <% # end %>
+          </li>
+          <li class="nav-item">
+          <% # link_to public_cart_items_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-cart-shopping"></i> Bands</button>
+          <% # end %>
+          </li>
+          <li class="nav-item">
+          <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
+          <% end %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+          <% # link_to public_about_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-link"></i> Posts</button>
+          <% # end %>
+          </li>
+          <li class="nav-item">
+          <% # link_to public_items_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-cake-candles"></i> Bands</button>
+          <% # end %>
+          </li>
+          <li class="nav-item">
+          <%= link_to new_user_registration_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-user-plus"></i> Sign Up</button>
+          <% end %>
+          </li>
+          <li class="nav-item">
+          <%= link_to user_session_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-right-to-bracket"></i> Log In</button>
+          <% end %>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+    <% # render "public/searches/window" %>
+  </nav>
+</header>
