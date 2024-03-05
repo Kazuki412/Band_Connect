@@ -1,0 +1,6 @@
+<h5>モチベーション編集</h5>
+<%= form_with model: @motivation, url: admin_motivation_path(@motivation), method: :patch do |f| %>
+  <h6>モチベーション</h6>
+  <%= f.text_field :name %>
+  <%= f.submit "Save", class: "btn btn-success" %>
+<% end %>

@@ -30,20 +30,9 @@
 
   <h5>Activity</h5>
   <div class="field">
-    <%= f.radio_button :motivation_id, Motivation.names.key(0), checked: true %>
-    <%= f.label :motivation, Motivation.names_i18n[:professional] %>
+    <%= f.collection_select :motivation_id, Motivation.all, :id, :name, include_blank: "--選択してください--" %>
   </div>
-
-  <div class="field">
-    <%= f.radio_button :motivation_id, Motivation.names.key(1) %>
-    <%= f.label :motivation, Motivation.names_i18n[:amateur] %>
-  </div>
-
-  <div class="field">
-    <%= f.radio_button :motivation_id, Motivation.names.key(2) %>
-    <%= f.label :motivation, Motivation.names_i18n[:hobby] %>
-  </div>
-
+  
   <div class="actions">
     <%= f.submit "Sign up", class: "btn btn-primary" %>
   </div>
