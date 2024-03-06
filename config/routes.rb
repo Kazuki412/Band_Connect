@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
   
-  namespace :admin do
-    get 'motivations/index'
-    get 'motivations/edit'
-  end
   root to: "public/homes#top"
   
   devise_for :user, controllers: {
@@ -37,6 +33,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :motivations, only: [:index, :create, :edit, :update]
+    resources :musical_instruments, only: [:index, :create, :edit, :update]
     resources :users, only: [:show, :edit, :update]
     resources :bands, only: [:index, :show, :edit, :update]
     resources :posts, only: [:index, :show, :destroy]

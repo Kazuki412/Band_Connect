@@ -1,0 +1,6 @@
+<h5>楽器編集</h5>
+<%= form_with model: @musical_instrument, url: admin_musical_instrument_path(@musical_instrument), method: :patch do |f| %>
+  <h6>ジャンル名</h6>
+  <%= f.text_field :name %>
+  <%= f.submit "Save", class: "btn btn-success" %>
+<% end %>

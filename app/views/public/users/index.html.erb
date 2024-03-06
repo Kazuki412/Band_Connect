@@ -1,2 +1,19 @@
-<h1>Public::Users#index</h1>
-<p>Find me in app/views/public/users/index.html.erb</p>
+<h5>会員一覧</h5>
+<table class="table">
+  <thead>
+    <tr>
+      <th>User Infomation</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
+      <td><%= user.name %></td>
+      <!--&は後々消します-->
+      <td><%= user.musical_instrument&.name %></td>
+      <td><%= user.introduction %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

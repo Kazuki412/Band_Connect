@@ -12,24 +12,24 @@
             ようこそ！<%= current_user.name %>さん！
           </div>
           <li class="nav-item">
-          <% # link_to customers_my_page_path, class: 'nav-link' do %>
+          <%= link_to public_user_path(current_user.id), class: 'nav-link' do %>
             <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-user"></i> My Page</button>
-          <% # end %>
+          <% end %>
           </li>
           <li class="nav-item">
-          <% # link_to public_items_path, class: 'nav-link' do %>
+          <%= link_to public_posts_path, class: 'nav-link' do %>
             <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-cake-candles"></i> Posts</button>
-          <% # end %>
+          <% end %>
           </li>
           <li class="nav-item">
-          <% # link_to public_cart_items_path, class: 'nav-link' do %>
+          <%= link_to public_users_path, class: 'nav-link' do %>
             <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-cart-shopping"></i> Users</button>
-          <% # end %>
+          <% end %>
           </li>
           <li class="nav-item">
-          <% # link_to public_cart_items_path, class: 'nav-link' do %>
+          <%= link_to public_bands_path, class: 'nav-link' do %>
             <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-cart-shopping"></i> Bands</button>
-          <% # end %>
+          <% end %>
           </li>
           <li class="nav-item">
           <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
@@ -38,14 +38,14 @@
           </li>
         <% else %>
           <li class="nav-item">
-          <% # link_to public_about_path, class: 'nav-link' do %>
+          <%= link_to public_posts_path, class: 'nav-link' do %>
             <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-link"></i> Posts</button>
-          <% # end %>
+          <% end %>
           </li>
           <li class="nav-item">
-          <% # link_to public_items_path, class: 'nav-link' do %>
+          <%= link_to public_bands_path, class: 'nav-link' do %>
             <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-cake-candles"></i> Bands</button>
-          <% # end %>
+          <% end %>
           </li>
           <li class="nav-item">
           <%= link_to new_user_registration_path, class: 'nav-link' do %>

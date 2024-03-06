@@ -2,15 +2,15 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
+  
+  <div class="field">
+    <%= f.label :profile_image, "プロフ画像" %><br />
+    <%= f.file_field :profile_image, accept: "image/*" %>
+  </div>
 
   <div class="field">
     <%= f.label :name, "アカウント名" %><br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :introduction, "自己紹介" %><br />
-    <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction" %>
   </div>
 
   <div class="field">
@@ -27,12 +27,22 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-
-  <h5>Activity</h5>
+  
   <div class="field">
+    <%= f.label :musical_instrument, "担当楽器" %>
+    <%= f.collection_select :musical_instrument_id, Musical_instrument.all, :id, :name, include_blank: "--選択してください--" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :motivation, "活動頻度" %>
     <%= f.collection_select :motivation_id, Motivation.all, :id, :name, include_blank: "--選択してください--" %>
   </div>
   
+  <div class="field">
+    <%= f.label :introduction, "自己紹介" %><br />
+    <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction" %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up", class: "btn btn-primary" %>
   </div>

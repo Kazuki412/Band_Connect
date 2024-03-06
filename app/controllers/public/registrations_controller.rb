@@ -2,17 +2,17 @@
 
 class Public::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, if: :devise_controller?, only: [:create]
-  
+
   private
-  
+
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :introduction, :motivation_id])
-  end 
-  
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:profile_image, :name, :musical_instrument_id, :motivation_id, :introduction])
+  end
+
   def after_sign_up_path_for(resource)
-    root_path
-  end 
-  
+    public_user_path(current_user.id)
+  end
+
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up

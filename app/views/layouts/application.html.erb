@@ -16,7 +16,13 @@
     <% else %>
       <%= render "layouts/public_header" %>
     <% end %>
-    <%= yield %>
+    <main>
+      <div class="container">
+        <div class="row">
+          <%= yield %>
+        </div>
+      </div>
+    </main>
     <%= render "layouts/footer" %>
   </body>
 </html>
