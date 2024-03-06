@@ -12,27 +12,36 @@
     </tr>
     <tr>
       <th>member</th>
-      <!--メンバー数を入れます-->
-      <th></th>
+      <th><%= @band.users.count %></th>
     </tr>
     <tr>
       <th>introduction</th>
       <th><%= @band.introduction %></th>
     </tr>
+    <tr>
+      <th>status</th>
+      <!--後ほど、バンドステータスを入れます-->
+      <th></th>
+    </tr>
   </table>
+  <div><%= link_to "Edit", edit_public_band_path(@band), class: "btn btn-success" %></div>
 </div>
 <div class="col-md-8 offset-md-1">
-  <h5>Band_Member's Posts</h5>
-  <table>
+  <h5>Band_Member's</h5>
+  <table class="table">
     <thead>
       <tr>
         <th>image</th>
         <th>name</th>
-        <th>post</th>
       </tr>
     </thead>
     <tbody>
-      <!--バンドメンバーの投稿一覧を入れます-->
+      <% @band.users.each do |user| %>
+      <tr>
+        <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
+        <td><%= user.name %></td>
+      </tr>
+      <% end %>
     </tbody>
   </table>
 </div>

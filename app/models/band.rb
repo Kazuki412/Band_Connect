@@ -4,7 +4,7 @@ class Band < ApplicationRecord
   belongs_to :genre
   has_many :band_members, dependent: :destroy
   has_many :users, through: :band_members
-  
+
   has_one_attached :band_image
   
   def is_owned_by?(user)

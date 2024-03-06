@@ -9,8 +9,11 @@
   </tr>
   <tr>
     <th>Belongs to band</th>
-    <!--所属しているバンドを表示、所属していない時は「未所属」と表示-->
-    <th></th>
+  <% if @user.bands.blank? %>
+    <th>未加入</th>
+  <% else %>
+    <th><%= @user.bands.pluck(:name).join("　") %></th>
+  <% end %>
   </tr>
   <tr>
     <th>musical instrument in charge</th>
