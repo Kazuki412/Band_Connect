@@ -1,2 +1,11 @@
-<h1>Public::Posts#new</h1>
-<p>Find me in app/views/public/posts/new.html.erb</p>
+<h5>New Post</h5>
+<%= form_with model: @post, url: public_posts_path, method: :post do |f| %>
+  <div class="form-group">
+    <%= f.label :body, "投稿文" %>
+    <%= f.text_field :body, class: "form-control" %>
+  </div>
+  <!--後ほどタグ付できるように-->
+  <div class="form-group">
+    <%= f.submit "投稿", class: "btn btn-primary" %>
+  </div>
+<% end %>

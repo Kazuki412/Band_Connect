@@ -1,2 +1,10 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<h5>Post Details</h5>
+<table class="table">
+  <tr>
+    <th><%= image_tag @post.user.get_profile_image, size: "50x50" %></th>
+    <th><%= @post.user.name %></th>
+    <th><%= @post.body %></th>
+    <th><%= link_to "To Edit", edit_public_post_path(@post.id), class: "btn btn-success" %></th>
+    <th><%= link_to "Destroy", public_post_path(@post.id), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-danger" %></th>
+  </tr>
+</table>

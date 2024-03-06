@@ -1,2 +1,38 @@
-<h1>Public::Bands#show</h1>
-<p>Find me in app/views/public/bands/show.html.erb</p>
+<div class="col-md-3">
+  <h5>Group Detail</h5>
+  <table class="table">
+    <tr><%= image_tag @band.get_band_image, size: "100x100" %></tr>
+    <tr>
+      <th>name</th>
+      <th><%= @band.name %></th>
+    </tr>
+    <tr>
+      <th>genre</th>
+      <th><%= @band.genre.name %></th>
+    </tr>
+    <tr>
+      <th>member</th>
+      <!--メンバー数を入れます-->
+      <th></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= @band.introduction %></th>
+    </tr>
+  </table>
+</div>
+<div class="col-md-8 offset-md-1">
+  <h5>Band_Member's Posts</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>image</th>
+        <th>name</th>
+        <th>post</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--バンドメンバーの投稿一覧を入れます-->
+    </tbody>
+  </table>
+</div>
