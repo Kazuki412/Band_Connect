@@ -1,0 +1,11 @@
+<% if post.favorited_by?(current_user) %>
+  <%= link_to public_post_favorite_path(post), method: :delete, remote: true do %>
+    <div style="color: red;">♥<%= post.favorites.count %></div>
+  <% end %>
+<% else %>
+  <%= link_to public_post_favorite_path(post), method: :post, remote: true do %>
+    <div style="color: sky-blue;">♥<%= post.favorites.count %></div>
+  <% end %>
+<% end %>
+<!--後ほどハートアイコンをブックマークのアイコンに変更します。-->
+<!--非同期実装するときに使います。→, remote: true-->
