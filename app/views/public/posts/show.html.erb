@@ -1,13 +1,23 @@
 <h5>Post Detail</h5>
 <table class="table">
   <tr>
-    <th><%= image_tag @post.user.get_profile_image, size: "50x50" %></th>
-    <th><%= @post.user.name %></th>
-    <th><%= @post.body %></th>
-    <th id="favorite_btn_<%= post.id %>">
+    <td><%= image_tag @post.user.get_profile_image, size: "50x50" %></td>
+    <td><%= @post.user.name %></td>
+    <td><%= @post.body %></td>
+    <td>コメント数：<%= @post.post_comments.count %></td>
+    <td id="favorite_btn_<%= @post.id %>">
       <%= render "public/favorites/favorite_btn", post: @post %>
-    </th>
-    <th><%= link_to "To Edit", edit_public_post_path(@post.id), class: "btn btn-success" %></th>
-    <th><%= link_to "Destroy", public_post_path(@post.id), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-danger" %></th>
+    </td>
+    <td><%= link_to "To Edit", edit_public_post_path(@post.id), class: "btn btn-success" %></td>
+    <td><%= link_to "Destroy", public_post_path(@post.id), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-danger" %></td>
   </tr>
 </table>
+<h5>コメント投稿</h5>
+<%= form_with model: [@post, @post_comment], url: public_post_post_comments_path(@post), method: :post do |f| %>
+  <div class="form-group">
+    <%= f.text_area :comment, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Send", class: "btn btn-primary" %>
+  </div>
+<% end %>

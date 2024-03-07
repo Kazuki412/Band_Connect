@@ -12,6 +12,7 @@
       <td><%= image_tag post.user.get_profile_image, size: "50x50" %></td>
       <td><%= post.user.name %></td>
       <td><%= post.body %></td>
+      <td>コメント数：<%= post.post_comments.count %></td>
       <td id="favorite_btn_<%= post.id %>">
         <%= render "public/favorites/favorite_btn", post: post %>
       </td>
@@ -21,3 +22,4 @@
     <% end %>
   </tbody>
 </table>
+<!--コメント数は吹き出しアイコンを使います-->
