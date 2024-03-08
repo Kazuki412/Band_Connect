@@ -1,3 +1,36 @@
-<h5>仮で作成</h5>
-<!--管理者のTOPページは会員一覧画面にします。-->
-<%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+<h5>会員一覧</h5>
+<table class="table">
+  <thead>
+    <tr>
+      <th>会員ID</th>
+      <th>画像</th>
+      <th>アカウント名</th>
+      <th>所属バンド</th>
+      <th>担当楽器</th>
+      <th>モチベーション</th>
+      <th>会員ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
+      <td><%= link_to user.name, admin_user_path(user.id) %></td>
+    <% if user.bands.blank? %>
+      <td>未加入</td>
+    <% else %>
+      <td><%= user.bands.pluck(:name).join("　") %></td>
+    <% end %>
+      <!--&は後々消します。-->
+      <td><%= user.musical_instrument&.name %></td>
+      <td><%= user.motivation&.name %></td>
+    <% if user.is_active == true %>
+      <td>有効</td>
+    <% else %>
+      <td>退会済</td>
+    <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

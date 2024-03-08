@@ -1,2 +1,33 @@
-<h1>Admin::Bands#index</h1>
-<p>Find me in app/views/admin/bands/index.html.erb</p>
+<h5>バンド一覧</h5>
+<table class="table">
+  <thead>
+    <tr>
+      <th>バンドID</th>
+      <th>画像</th>
+      <th>バンド名</th>
+      <th>メンバー数</th>
+      <th>募集の有無</th>
+      <th>評判</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bands.each do |band| %>
+    <tr>
+      <td><%= band.id %></td>
+      <td><%= image_tag band.get_band_image, size: "50x50" %></td>
+      <td><%= link_to band.name, admin_band_path(band.id) %></td>
+      <td><%= band.users.count %></td>
+    <% if band.band_status == true %>
+      <td>募集中</td>
+    <% else %>
+      <td>締切</td>
+    <% end %>
+    <% if band.band_status2 == true %>
+      <td>正常</td>
+    <% else %>
+      <td>問題あり</td>
+    <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

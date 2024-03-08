@@ -1,6 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :bookmark_user, only: [:bookmarks]
-
+  
   def index
     @users = User.includes(:musical_instrument).all
   end
@@ -20,6 +19,7 @@ class Public::UsersController < ApplicationController
   end
   
   def bookmarks
+    @user = User.find(params[:id])
     bookmarks = Favorite.where(user_id: @user).pluck(:post_id)
     @bookmark_posts = Post.find(bookmarks)
   end 
@@ -30,8 +30,4 @@ class Public::UsersController < ApplicationController
     params.require(:user).permit(:profile_image, :name, :musical_instrument_id, :motivation_id, :introduction)
   end
   
-  def bookmark_user
-    @user = User.find(params[:id])
-  end 
-
 end

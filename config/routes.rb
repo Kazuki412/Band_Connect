@@ -23,8 +23,8 @@ Rails.application.routes.draw do
       resource :favorite, only: [:create, :destroy]
     end
     resources :users, only: [:index, :show, :edit, :update] do
-      member do
-        get :bookmarks
+      member do #user.idが必要なためmemberを使用しています。
+        get :bookmarks #ブックマーク登録した投稿を一覧で表示するアクションです
       end
     end
     get "search" => "public/searches#search"

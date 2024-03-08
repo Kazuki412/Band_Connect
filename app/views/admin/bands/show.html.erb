@@ -1,2 +1,47 @@
-<h1>Admin::Bands#show</h1>
-<p>Find me in app/views/admin/bands/show.html.erb</p>
+<div class="col-md-3">
+  <h5>Group Detail</h5>
+  <table class="table">
+    <tr><%= image_tag @band.get_band_image, size: "100x100" %></tr>
+    <tr>
+      <th>name</th>
+      <th><%= @band.name %></th>
+    </tr>
+    <tr>
+      <th>genre</th>
+      <th><%= @band.genre.name %></th>
+    </tr>
+    <tr>
+      <th>member</th>
+      <th><%= @band.users.count %></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= @band.introduction %></th>
+    </tr>
+    <tr>
+      <th>status</th>
+      <!--後ほど、バンドステータスを入れます-->
+      <th></th>
+    </tr>
+  </table>
+  <div><%= link_to "Edit", edit_public_band_path(@band), class: "btn btn-success" %></div>
+</div>
+<div class="col-md-8 offset-md-1">
+  <h5>Band_Member's</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>image</th>
+        <th>name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @band.users.each do |user| %>
+      <tr>
+        <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
+        <td><%= user.name %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
