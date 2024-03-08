@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  
+
   root to: "public/homes#top"
-  
+
   devise_for :user, controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions"
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
-  
+
   namespace :public do
     resources :bands, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resource :band_members, only: [:create, :destroy]
@@ -22,7 +22,11 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
     end
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update] do
+      member do
+        get :bookmarks
+      end
+    end
     get "search" => "public/searches#search"
     get "tagsearches/search" => "public/tagsearches#search"
     get "users/unsubscribe" => "users#unsubscribe"
