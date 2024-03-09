@@ -6,6 +6,10 @@
   </div>
   <!--後ほどタグ付できるように-->
   <div class="form-group">
+    <%= f.label :tag, "タグ" %>
+    <%= f.select :category, [["バンドメンバー募集！", "バンドメンバー募集！"],["おすすめアーティスト", "おすすめアーティスト"],["イベント情報","イベント情報"]], include_blank: "選択してください。", class: "form-control " %>
+  </div>
+  <div class="form-group">
     <%= f.submit "投稿", class: "btn btn-primary" %>
   </div>
 <% end %>

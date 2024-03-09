@@ -27,8 +27,8 @@ Rails.application.routes.draw do
         get :bookmarks #ブックマーク登録した投稿を一覧で表示するアクションです
       end
     end
-    get "search" => "public/searches#search"
-    get "tagsearches/search" => "public/tagsearches#search"
+    get "search" => "searches#search"
+    get "tagsearches/search" => "tagsearches#tagsearch"
     get "users/unsubscribe" => "users#unsubscribe"
     patch "users/withdraw" => "users#withdraw"
   end

@@ -1,6 +1,8 @@
 class Public::TagsearchesController < ApplicationController
   
-  def search
+  def tagsearch
+    @word = params[:word]
+    @posts = Post.where("category LIKE?", "%#{@word}%")
   end 
 
 end
