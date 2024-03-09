@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
-  
+  before_action :ensure_guest_user, only: %i[update destroy]
+
   def index
     @users = User.includes(:musical_instrument).all
   end
@@ -29,5 +30,11 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:profile_image, :name, :musical_instrument_id, :motivation_id, :introduction)
   end
+  
+  def ensure_guest_user
+    if current_user.email == "guest@guest"
+      redirect_to root_path, alert: "ゲストユーザーの更新・編集はロックしています"
+    end 
+  end 
   
 end

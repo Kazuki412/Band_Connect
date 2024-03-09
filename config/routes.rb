@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root to: "public/homes#top"
+  post "homes/guest_sign_in", to: "public/homes#guest_sign_in"
 
   devise_for :user, controllers: {
     registrations: "public/registrations",

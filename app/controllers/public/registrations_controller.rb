@@ -2,7 +2,7 @@
 
 class Public::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, if: :devise_controller?, only: [:create]
-
+  
   private
 
   def configure_sign_up_params
