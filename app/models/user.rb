@@ -21,6 +21,16 @@ class User < ApplicationRecord
     (profile_image.attached?) ? profile_image: "no_image.jpg"
   end
   
+  def self.guest
+    find_or_create_by!(email: "guest@guest") do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guest"
+      user.musical_instrument = MusicalInstrument.find_by(name: "Vocal")
+      user.motivation = Motivation.find_by(name: "Professional")
+      user.introduction = "ゲストです"
+    end 
+  end
+  
   def self.looks(search, word)
     if search == "partial_match"
       @user = User.where("name LIKE?", "%#{word}%")

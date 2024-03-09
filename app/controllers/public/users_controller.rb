@@ -16,6 +16,7 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
+    flash[:notice] = "変更を保存しました"
     redirect_to public_user_path(@user)
   end
   
@@ -33,7 +34,7 @@ class Public::UsersController < ApplicationController
   
   def ensure_guest_user
     if current_user.email == "guest@guest"
-      redirect_to root_path, alert: "ゲストユーザーの更新・編集はロックしています"
+      redirect_to root_path, alert: "ゲストユーザーの更新・退会はロックしています"
     end 
   end 
   

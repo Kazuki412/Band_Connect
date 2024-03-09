@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
   root to: "public/homes#top"
-  post "homes/guest_sign_in", to: "public/homes#guest_sign_in"
 
   devise_for :user, controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
+  devise_scope :user do
+    post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
+  end
 
   # 管理者については登録済のため[新規登録・パスワード変更]のpathを使えないようにしています。
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
