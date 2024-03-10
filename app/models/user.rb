@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :band_members, dependent: :destroy
+  has_many :band_permits, dependent: :destroy
   has_many :bands, through: :band_members
   has_many :entries, dependent: :destroy
   has_many :messages, dependent: :destroy

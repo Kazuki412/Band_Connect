@@ -17,8 +17,10 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :bands, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+      resource :band_permits, only: [:create, :destroy]
       resource :band_members, only: [:create, :destroy]
     end
+    get "groups/:id/permits" => "groups#permits", as: :permit
     resources :rooms, only: [:create, :show]
     resources :messages, only: [:create]
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do

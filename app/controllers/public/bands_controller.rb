@@ -1,4 +1,6 @@
 class Public::BandsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy, :band_permits]
   
   def new
     @band = Band.new
@@ -39,10 +41,22 @@ class Public::BandsController < ApplicationController
     redirect_to public_bands_path
   end
   
+  def band_permits
+    @group = Group.find(params[:id])
+    @band_permits = @group.band_permits.page(params[:page])
+  end
+  
   private
   
   def band_params
     params.require(:band).permit(:band_image, :name, :introduction, :genre_id)
   end
   
+  def ensure_correct_user
+    @group = Group.find(params[:id])
+    unless @group.owner_id == current_user.id
+      redirect_to public_bands_path, alert: "グループオーナーのみ編集が可能です"
+    end 
+  end 
+
 end
