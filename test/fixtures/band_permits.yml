@@ -2,8 +2,8 @@
 
 one:
   user: one
-  group: one
+  band: one
 
 two:
   user: two
-  group: two
+  band: two

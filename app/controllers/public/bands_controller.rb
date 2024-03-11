@@ -42,8 +42,8 @@ class Public::BandsController < ApplicationController
   end
   
   def band_permits
-    @group = Group.find(params[:id])
-    @band_permits = @group.band_permits.page(params[:page])
+    @band = Band.find(params[:id])
+    @band_permits = @band.band_permits.page(params[:page])
   end
   
   private
@@ -53,8 +53,8 @@ class Public::BandsController < ApplicationController
   end
   
   def ensure_correct_user
-    @group = Group.find(params[:id])
-    unless @group.owner_id == current_user.id
+    @band = Band.find(params[:id])
+    unless @band.owner_id == current_user.id
       redirect_to public_bands_path, alert: "グループオーナーのみ編集が可能です"
     end 
   end 

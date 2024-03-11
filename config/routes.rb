@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       resource :band_permits, only: [:create, :destroy]
       resource :band_members, only: [:create, :destroy]
     end
-    get "groups/:id/permits" => "groups#permits", as: :permit
+    get "bands/:id/band_permits" => "bands#band_permits", as: :band_permit
     resources :rooms, only: [:create, :show]
     resources :messages, only: [:create]
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do

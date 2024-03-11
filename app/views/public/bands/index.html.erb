@@ -12,7 +12,7 @@
     <% @bands.each do |band| %>
     <tr>
       <td><%= image_tag band.get_band_image, size: "50x50" %></td>
-      <td><%= band.name %></td>
+      <td><%= link_to band.name, public_band_path(band) %></td>
       <td><%= band.introduction %></td>
       <td><%= band.genre.name %></td>
     </tr>

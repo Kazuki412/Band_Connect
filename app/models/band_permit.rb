@@ -1,6 +1,6 @@
 class BandPermit < ApplicationRecord
   
   belongs_to :user
-  belongs_to :group
+  belongs_to :band
   
 end
