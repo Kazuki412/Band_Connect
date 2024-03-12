@@ -1,0 +1,13 @@
+<% if messages.present? %>
+  <% messages.each do |message| %>
+    <% if message.user_id == current_user.id %>
+      <div id="chat-fukidashi" style="text-align: right;">
+        <%= message.content %>
+      </div>
+    <% else %>
+      <div id="chat-fukidashi" style="text-align: left;">
+        <%= message.content %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

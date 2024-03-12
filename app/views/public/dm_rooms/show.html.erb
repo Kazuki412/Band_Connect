@@ -1,22 +1,11 @@
 <div class="container">
   <%= link_to "ユーザー一覧に戻る", public_users_path %>
-  
-  <% if @messages.present? %>
-    <% @messages.each do |message| %>
-      <% if message.user_id == current_user.id %>
-        <div id="chat-fukidashi" style="text-align: right;">
-          <%= message.content %>
-        </div>
-      <% else %>
-        <div id="chat-fukidashi" style="text-align: lift;">
-          <%= message.content %>
-        </div>
-      <% end %>
-    <% end %>
-  <% end %>
+  <div id="messages">
+    <%= render "public/messages/message", messages: @messages %>
+  </div>
   <div class="posts">
-  <%= form_with model: @message, url: public_messages_path, method: :post do |f| %>
-    <%= f.text_field :content %>
+  <%= form_with model: @message, url: public_messages_path, method: :post, local: false do |f| %>
+    <%= f.text_field :content, id: "message_field" %>
     <%= f.hidden_field :dm_room_id, value: @dm_room.id %>
     <%= f.submit "送信（アイコンにしてもいいかも）" %>
   <% end %>
