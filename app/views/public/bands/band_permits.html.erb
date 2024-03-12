@@ -26,6 +26,7 @@
       <td><%= band_permit.user.introduction %></td>
     <% if @band.owner_id == current_user.id %>
       <td><%= link_to "ようこそ！", public_band_band_members_path(@band, band_permit_id: band_permit.id), method: :post, class: "btn btn-success" %></td>
+      <!--↓まだ動作しません-->
       <td><%= link_to "ごめんなさい…", public_band_band_permits_path(@band), method: :delete, class: "btn btn-danger", data: { confirm: "参加を断ります" } %></td>
     <% end %>
     </tr>

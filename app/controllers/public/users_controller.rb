@@ -7,6 +7,22 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @current_entry = Entry.where(user_id: current_user.id)
+    @another_entry = Entry.where(user_id: @user.id)
+    unless @user.id == current_user.id
+      @current_entry.each do |current|
+        @another_entry.each do |another|
+          if current.dm_room_id == another.dm_room_id
+            @is_room = true
+            @dm_room_id = current.dm_room_id
+          end 
+        end 
+      end 
+      unless @is_room
+        @dm_room = DmRoom.new
+        @entry = Entry.new
+      end 
+    end
   end
 
   def edit

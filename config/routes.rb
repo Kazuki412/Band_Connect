@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
+  # ゲストログイン用です
   devise_scope :user do
     post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
   end
@@ -20,9 +21,11 @@ Rails.application.routes.draw do
       resource :band_permits, only: [:create, :destroy]
       resource :band_members, only: [:create, :destroy]
     end
+    # バンドに参加申請をしているユーザー一覧を表示するため
     get "bands/:id/band_permits" => "bands#band_permits", as: :band_permit
-    resources :rooms, only: [:create, :show]
+
     resources :messages, only: [:create]
+    resources :dm_rooms, only: [:create, :index, :show]
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resources :post_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]

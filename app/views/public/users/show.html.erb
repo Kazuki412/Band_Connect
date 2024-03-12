@@ -29,4 +29,17 @@
     <th><%= @user.introduction %></th>
   </tr>
 </table>
-<%= link_to "プロフ編集(いずれアイコンにします)", edit_public_user_path(@user), class: "btn btn-success" %>
+<% if @user == current_user %>
+  <%= link_to "プロフ編集(いずれアイコンにします)", edit_public_user_path(@user), class: "btn btn-success" %>
+<% else %>
+  <% if @is_room == true %>
+    <%= link_to "DM(のちにメールアイコンへ)", public_dm_room_path(@dm_room_id) %>
+  <% else %>
+    <%= form_for [:public, @dm_room] do |f| %>
+      <%= fields_for @entry do |e| %>
+        <%= e.hidden_field :user_id, value: @user %>
+      <% end %>
+      <%= f.submit "DM(のちにメールアイコンへ)" %>
+    <% end %>
+  <% end %>
+<% end %>
