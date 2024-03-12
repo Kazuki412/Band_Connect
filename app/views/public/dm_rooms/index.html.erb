@@ -1,0 +1,13 @@
+<h3>トーク一覧</h3>
+<% current_user.entries.each do |entry| %>
+  <a href="/dm_rooms/<%= entry.dm_room_id %>">
+    <%= DmRoom.find(entry.dm_room_id).name %>
+    <% DmRoom.find(entry.dm_room_id).entries.each do |user| %>
+      <!--自分の名前は表示しないように-->
+      <% unless user.user_id == current_user.id %>
+        <%= User.find(user.user_id).name %>
+      <% end %>
+    <% end %>
+  <br>
+  </a>
+<% end %>

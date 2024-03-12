@@ -1,9 +1,10 @@
 <div class="container">
   <%= link_to "ユーザー一覧に戻る", public_users_path %>
+  <%= link_to "ユーザーを追加する", public_new_dm_room_path(@dm_room.id) %>
   <div id="messages">
     <%= render "public/messages/message", messages: @messages %>
   </div>
-  <div class="posts">
+  <div>
   <%= form_with model: @message, url: public_messages_path, method: :post, local: false do |f| %>
     <%= f.text_field :content, id: "message_field" %>
     <%= f.hidden_field :dm_room_id, value: @dm_room.id %>

@@ -31,6 +31,7 @@
 </table>
 <% if @user == current_user %>
   <%= link_to "プロフ編集(いずれアイコンにします)", edit_public_user_path(@user), class: "btn btn-success" %>
+  <%= link_to "トーク一覧", public_dm_rooms_path %>
 <% else %>
   <% if @is_room == true %>
     <%= link_to "DM(のちにメールアイコンへ)", public_dm_room_path(@dm_room_id) %>

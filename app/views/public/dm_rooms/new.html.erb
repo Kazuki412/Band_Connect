@@ -1,0 +1,12 @@
+<h3>未参加ユーザー一覧</h3>
+<% @users.each do |user| %>
+  <% if @current_dm_room.entries.pluck(:user_id).exclude?(user.id) %>
+    <p><%= user.name %></p>
+    <%= form_for(@entry, :url => {:controller => :dm_rooms, :action => :room_add_user}) do |f| %>
+      <%= f.hidden_field :user_id, :value => user.id %>
+      <%= f.hidden_field :dm_room_id, :value => @current_dm_room.id %>
+      <%= f.submit "追加する" %>
+    <% end %>
+    <hr>
+  <% end %>
+<% end %>

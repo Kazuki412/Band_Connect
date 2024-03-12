@@ -3,10 +3,14 @@
     <% if message.user_id == current_user.id %>
       <div id="chat-fukidashi" style="text-align: right;">
         <%= message.content %>
+        <!--送信時間を入れる-->
       </div>
     <% else %>
       <div id="chat-fukidashi" style="text-align: left;">
-        <%= message.content %>
+        <%= image_tag message.user.get_profile_image, size: "50x50" %><br>
+        <%= link_to message.user.name, public_user_path(message.user.id) %>
+        <%= message.content %><br>
+        <!--送信時間を入れる-->
       </div>
     <% end %>
   <% end %>
