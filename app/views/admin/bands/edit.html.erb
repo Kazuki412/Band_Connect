@@ -1,2 +1,28 @@
-<h1>Admin::Bands#edit</h1>
-<p>Find me in app/views/admin/bands/edit.html.erb</p>
+<h3>Band Edit</h3>
+  <table class="table">
+    <tr>
+      <td><%= image_tag @band.get_band_image, size: "50x50" %></td>
+    </tr>
+    <tr>
+      <th>band_name</th>
+      <td><%= @band.name %></td>
+    </tr>
+    <tr>
+      <th>band_genre</th>
+      <td><%= @band.genre.name %></td>
+    </tr>
+    <tr>
+      <th>band_introduction</th>
+      <td><%= @band.introduction %></td>
+    </tr>
+  </table>
+<%= form_with model: @band, url: admin_band_path(@band), method: :patch do |f| %>
+  <div class="form-group">
+    <%= f.label :status, "バンドステータス" %>
+    <%= f.radio_button :band_status2, "true" %>正常
+    <%= f.radio_button :band_status2, "false" %>問題アリ
+  </div>
+  <div class="form-group">
+    <%= f.submit "Save", class: "btn btn-success" %>
+  </div>
+<% end %>

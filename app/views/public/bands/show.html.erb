@@ -20,11 +20,16 @@
     </tr>
     <tr>
       <th>status</th>
-      <!--後ほど、バンドステータスを入れます-->
-      <th></th>
+    <% if @band.band_status == true %>
+      <th>募集中</th>
+    <% else %>
+      <th>締切</th>
+    <% end %>
     </tr>
   </table>
+<% if current_user.id == @band.owner_id %>
   <div><%= link_to "Edit", edit_public_band_path(@band), class: "btn btn-success" %></div>
+<% end %>
 </div>
 <div class="col-md-8 offset-md-1">
 <% if @band.owner_id == current_user.id %>
@@ -34,8 +39,12 @@
   <%= link_to "バンド脱退", public_band_band_members_path(@band), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを脱退します" } %>
 <% elsif @band.band_permits.exists?(user_id: current_user.id) %>
   <%= link_to "申請取消", public_band_band_permits_path(@band), method: :delete, class: "btn btn-danger", data: { confirm: "申請を取り消します" } %>
-<% else %>
+<% elsif @band.band_status == true %>
   <%= link_to "加入申請", public_band_band_permits_path(@band), method: :post, class: "btn btn-primary" %>
+<% else %>
+<% end %>
+<% if @band.band_status2 == false %>
+  <p><i class="fa-solid fa-triangle-exclamation"></i>問題アリ<i class="fa-solid fa-triangle-exclamation"></i></p>
 <% end %>
   <h5>Band_Member's</h5>
   <table class="table">
@@ -43,13 +52,14 @@
       <tr>
         <th>image</th>
         <th>name</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <% @band.users.each do |user| %>
       <tr>
         <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
-        <td><%= user.name %></td>
+        <td><%= link_to user.name, public_user_path(user.id) %></td>
       <% if @band.owner_id == user.id %>
         <td>Owner</td>
       <% else %>

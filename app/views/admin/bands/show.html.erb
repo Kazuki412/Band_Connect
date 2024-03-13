@@ -20,13 +20,19 @@
     </tr>
     <tr>
       <th>status</th>
-      <!--後ほど、バンドステータスを入れます-->
-      <th></th>
+    <% if @band.band_status == true %>
+      <th>募集中</th>
+    <% else %>
+      <th>締切</th>
+    <% end %>
     </tr>
   </table>
-  <div><%= link_to "Edit", edit_public_band_path(@band), class: "btn btn-success" %></div>
+  <div><%= link_to "Edit", edit_admin_band_path(@band), class: "btn btn-success" %></div>
 </div>
 <div class="col-md-8 offset-md-1">
+<% if @band.band_status2 == false %>
+  <p><i class="fa-solid fa-triangle-exclamation"></i>問題アリ<i class="fa-solid fa-triangle-exclamation"></i></p>
+<% end %>
   <h5>Band_Member's</h5>
   <table class="table">
     <thead>

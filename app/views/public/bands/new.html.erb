@@ -1,4 +1,4 @@
-<h3>Create Group</h3>
+<h3>Create Band</h3>
 <%= form_with model: @band, url: public_bands_path, method: :post do |f| %>
   <div class="form-group">
     <%= f.label :group_image, "バンド画像" %>
@@ -17,6 +17,6 @@
     <%= f.text_area :introduction, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.submit "Create Group", class: "btn btn-primary" %>
+    <%= f.submit "Create Band", class: "btn btn-primary" %>
   </div>
 <% end %>

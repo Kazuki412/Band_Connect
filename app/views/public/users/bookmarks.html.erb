@@ -6,9 +6,6 @@
     <td><%= link_to post.user.name, public_user_path(post.user.id) %></td>
     <td><%= post.body %></td>
     <td>コメント数：<%= post.post_comments.count %></td>
-    <td id="favorite_btn_<%= post.id %>">
-      <%= render "public/favorites/favorite_btn", post: post %>
-    </td>
     <td><%= link_to "詳細ページへ（後にアイコンへ）", public_post_path(post) %></td>
   </tr>
   <% end %>

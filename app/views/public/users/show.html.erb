@@ -1,6 +1,8 @@
 <h5><%= @user.name %>'s page</h5>
-<div><%= link_to "New Post", new_public_post_path, class: "btn btn-primary" %></div>
-<div><%= link_to "New Band", new_public_band_path, class: "btn btn-primary" %></div>
+<% if current_user.id == @user.id %>
+  <div><%= link_to "New Post", new_public_post_path, class: "btn btn-primary" %></div>
+  <div><%= link_to "New Band", new_public_band_path, class: "btn btn-primary" %></div>
+<% end %>
 <div><%= link_to "Favorite Posts", bookmarks_public_user_path(@user),  class: "btn btn-primary" %></div>
 <table class="table">
   <tr><%= image_tag @user.get_profile_image, size: "100x100" %></tr>

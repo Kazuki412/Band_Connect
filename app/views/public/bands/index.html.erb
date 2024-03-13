@@ -1,4 +1,5 @@
 <h5>バンド一覧</h5>
+<div><%= link_to "New Band", new_public_band_path, class: "btn btn-primary" %></div>
 <table class="table">
   <thead>
     <tr>
@@ -6,6 +7,7 @@
       <th>band_name</th>
       <th>band_introduction</th>
       <th>band_genre</th>
+      <th>band_status</th>
     </tr>
   </thead>
   <tbody>
@@ -15,6 +17,11 @@
       <td><%= link_to band.name, public_band_path(band) %></td>
       <td><%= band.introduction %></td>
       <td><%= band.genre.name %></td>
+    <% if band.band_status == true %>
+      <td>募集中</td>
+    <% else %>
+      <td>締切</td>
+    <% end %>
     </tr>
     <% end %>
   </tbody>
