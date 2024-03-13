@@ -27,15 +27,15 @@
   <div><%= link_to "Edit", edit_public_band_path(@band), class: "btn btn-success" %></div>
 </div>
 <div class="col-md-8 offset-md-1">
-<% if @band.band_members.exists?(user_id: current_user.id) %>
+<% if @band.owner_id == current_user.id %>
+  <%= link_to "バンド解散", public_bands_path(@band), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを解散します" } %>
+  <%= link_to "承認待ち一覧", public_band_band_permits_path(@band), class: "btn btn-primary" %>
+<% elsif @band.band_members.exists?(user_id: current_user.id) %>
   <%= link_to "バンド脱退", public_band_band_members_path(@band), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを脱退します" } %>
 <% elsif @band.band_permits.exists?(user_id: current_user.id) %>
   <%= link_to "申請取消", public_band_band_permits_path(@band), method: :delete, class: "btn btn-danger", data: { confirm: "申請を取り消します" } %>
 <% else %>
   <%= link_to "加入申請", public_band_band_permits_path(@band), method: :post, class: "btn btn-primary" %>
-<% end %>
-<% if @band.owner_id == current_user.id %>
-  <%= link_to "承認待ち一覧", public_band_band_permits_path(@band), class: "btn btn-primary" %>
 <% end %>
   <h5>Band_Member's</h5>
   <table class="table">
@@ -50,6 +50,11 @@
       <tr>
         <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
         <td><%= user.name %></td>
+      <% if @band.owner_id == user.id %>
+        <td>Owner</td>
+      <% else %>
+        <td></td>
+      <% end %>
       </tr>
       <% end %>
     </tbody>

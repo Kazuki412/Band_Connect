@@ -1,6 +1,7 @@
 class Public::DmRoomsController < ApplicationController
   before_action :authenticate_user!
-
+  # before_action :ensure_band_member
+  
   def create
     @dm_room = DmRoom.create
     @current_entry = Entry.create(dm_room_id: @dm_room.id, user_id: current_user.id)
@@ -44,5 +45,14 @@ class Public::DmRoomsController < ApplicationController
   def entry_params
     params.require(:entry).permit(:user_id, :dm_room_id)
   end
+  
+  # def ensure_band_member
+  #   if current_user.bands.exists?
+      
+  #     (band_id: @user.bands.pluck(:band_id))
+      
+  #     redirect_to public_bands_path, alert: "バンドメンバーでなければDMできません"
+  #   end 
+  # end
 
 end
