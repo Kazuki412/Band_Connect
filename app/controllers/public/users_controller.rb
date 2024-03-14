@@ -23,6 +23,7 @@ class Public::UsersController < ApplicationController
         @entry = Entry.new
       end 
     end
+    @is_same_band_member = current_user.bands.pluck(:band_id).any? {|band_id| @user.bands.pluck(:band_id).include?(band_id)}
   end
 
   def edit

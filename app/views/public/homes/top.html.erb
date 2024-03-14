@@ -1,8 +1,22 @@
-<div>
-  <%= link_to "ゲストログイン(閲覧用)", users_guest_sign_in_path, method: :post %>
+<!--<style>-->
+<!--  .bg-img {-->
+<!--  background-image: url("no_image.jpg");-->
+<!--  background-repeat: no-repeat;-->
+<!--  background-size: cover;-->
+<!--  background-position: center center;-->
+  <!--background-color: rgba(0, 0, 0, 0.5);  /* 透過度を指定する場合は、最後の数値を変更してください（0が完全透明、1が完全不透明） */-->
+  <!--padding: 20px;  /* 必要に応じて余白を追加してください */-->
+<!--}-->
+<!--</style>-->
+<div class="row">
+  <div class="my-2">
+    <%= link_to "ゲストログイン(閲覧用)", users_guest_sign_in_path, method: :post %>
+  </div>
 </div>
-<div class="text-center">
-  Band_Connectはバンドメンバー募集に加え<br>
-  バンド内でのコミュニケーションツールとしてもご利用いただけます♪<br>
-  皆様のバンドライフのお力添えになればと運営一同、思っております。<br>
+<div class="row">
+  <div class="bg-img">
+    Band_Connectはバンドメンバー募集に加え<br>
+    バンド内でのコミュニケーションツールとしてもご利用いただけます♪<br>
+    皆様のバンドライフのお力添えになればと運営一同、思っております。<br>
+  </div>
 </div>

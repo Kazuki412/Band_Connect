@@ -23,12 +23,10 @@
     <% end %>
     <main>
       <div class="container">
-        <div class="row">
         <% flash.each do |message_type, message| %>
           <div class="flash_message <%= message_type %>"><%= message %></div>
         <% end %>
         <%= yield %>
-        </div>
       </div>
     </main>
     <%= render "layouts/footer" %>

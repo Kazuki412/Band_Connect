@@ -1,6 +1,6 @@
 class Public::DmRoomsController < ApplicationController
   before_action :authenticate_user!
-  # before_action :ensure_band_member
+  before_action :ensure_band_member
   
   def create
     @dm_room = DmRoom.create
@@ -46,15 +46,19 @@ class Public::DmRoomsController < ApplicationController
     params.require(:entry).permit(:user_id, :dm_room_id)
   end
   
-  # def ensure_band_member
-  #   dm_room = DmRoom.find(params[:id])
-  #   user = dm_room.entries.where.not(user_id: current_user.id).first.user
-  #   if current_user.bands.exists?
-  #     unless current_user.bands.pluck(:band_id) == user.bands.pluck(:band_id)
-  #       redirect_to public_bands_path, alert: "バンドメンバーでなければDMできません"
-  #     end 
-  #   else
-  #     redirect_to public_bands_path, alert: "バンドに参加していなければDMできません"
-  #   end 
-  # end
+  def ensure_band_member
+    dm_room = DmRoom.find_by(params[:id])
+    entries = dm_room.entries.where.not(user_id: current_user.id)
+    entry_users = entries.map{|entry| entry.user}
+    results = entry_users.map do |user|
+      current_user.bands.pluck(:band_id).any? {|band_id| user.bands.pluck(:band_id).include?(band_id)} 
+    end
+    if current_user.bands.exists?
+      unless results.all?{|result| result == true}
+        redirect_to public_bands_path, alert: "バンドメンバーでなければDMできません"
+      end 
+    else
+      redirect_to public_bands_path, alert: "バンドに参加していなければDMできません"
+    end 
+  end
 end

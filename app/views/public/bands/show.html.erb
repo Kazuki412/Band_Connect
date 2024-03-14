@@ -1,71 +1,73 @@
-<div class="col-md-3">
-  <h5>Group Detail</h5>
-  <table class="table">
-    <tr><%= image_tag @band.get_band_image, size: "100x100" %></tr>
-    <tr>
-      <th>name</th>
-      <th><%= @band.name %></th>
-    </tr>
-    <tr>
-      <th>genre</th>
-      <th><%= @band.genre.name %></th>
-    </tr>
-    <tr>
-      <th>member</th>
-      <th><%= @band.users.count %></th>
-    </tr>
-    <tr>
-      <th>introduction</th>
-      <th><%= @band.introduction %></th>
-    </tr>
-    <tr>
-      <th>status</th>
-    <% if @band.band_status == true %>
-      <th>募集中</th>
-    <% else %>
-      <th>締切</th>
-    <% end %>
-    </tr>
-  </table>
-<% if current_user.id == @band.owner_id %>
-  <div><%= link_to "Edit", edit_public_band_path(@band), class: "btn btn-success" %></div>
-<% end %>
-</div>
-<div class="col-md-8 offset-md-1">
-<% if @band.owner_id == current_user.id %>
-  <%= link_to "バンド解散", public_band_path(@band.id), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを解散します" } %>
-  <%= link_to "承認待ち一覧", public_band_band_permits_path(@band), class: "btn btn-primary" %>
-<% elsif @band.band_members.exists?(user_id: current_user.id) %>
-  <%= link_to "バンド脱退", public_band_band_members_path(@band), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを脱退します" } %>
-<% elsif @band.band_permits.exists?(user_id: current_user.id) %>
-  <%= link_to "申請取消", public_band_band_permits_path(@band), method: :delete, class: "btn btn-danger", data: { confirm: "申請を取り消します" } %>
-<% elsif @band.band_status == true %>
-  <%= link_to "加入申請", public_band_band_permits_path(@band), method: :post, class: "btn btn-primary" %>
-<% else %>
-<% end %>
-<% if @band.band_status2 == false %>
-  <p><i class="fa-solid fa-triangle-exclamation"></i>問題アリ<i class="fa-solid fa-triangle-exclamation"></i></p>
-<% end %>
-  <h5>Band_Member's</h5>
-  <table class="table">
-    <thead>
+<div class="row">
+  <div class="col-md-3">
+    <h5>Group Detail</h5>
+    <table class="table">
+      <tr><%= image_tag @band.get_band_image, size: "100x100" %></tr>
       <tr>
-        <th>image</th>
         <th>name</th>
-        <th></th>
+        <th><%= @band.name %></th>
       </tr>
-    </thead>
-    <tbody>
-      <% @band.users.each do |user| %>
       <tr>
-        <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
-        <td><%= link_to user.name, public_user_path(user.id) %></td>
-      <% if @band.owner_id == user.id %>
-        <td>Owner</td>
+        <th>genre</th>
+        <th><%= @band.genre.name %></th>
+      </tr>
+      <tr>
+        <th>member</th>
+        <th><%= @band.users.count %></th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th><%= @band.introduction %></th>
+      </tr>
+      <tr>
+        <th>status</th>
+      <% if @band.band_status == true %>
+        <th>募集中</th>
       <% else %>
+        <th>締切</th>
       <% end %>
       </tr>
-      <% end %>
-    </tbody>
-  </table>
+    </table>
+  <% if current_user.id == @band.owner_id %>
+    <div><%= link_to "Edit", edit_public_band_path(@band), class: "btn btn-success" %></div>
+  <% end %>
+  </div>
+  <div class="col-md-8 offset-md-1">
+  <% if @band.owner_id == current_user.id %>
+    <%= link_to "バンド解散", public_band_path(@band.id), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを解散します" } %>
+    <%= link_to "承認待ち一覧", public_band_band_permits_path(@band), class: "btn btn-primary" %>
+  <% elsif @band.band_members.exists?(user_id: current_user.id) %>
+    <%= link_to "バンド脱退", public_band_band_members_path(@band), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを脱退します" } %>
+  <% elsif @band.band_permits.exists?(user_id: current_user.id) %>
+    <%= link_to "申請取消", public_band_band_permits_path(@band), method: :delete, class: "btn btn-danger", data: { confirm: "申請を取り消します" } %>
+  <% elsif @band.band_status == true %>
+    <%= link_to "加入申請", public_band_band_permits_path(@band), method: :post, class: "btn btn-primary" %>
+  <% else %>
+  <% end %>
+  <% if @band.band_status2 == false %>
+    <p><i class="fa-solid fa-triangle-exclamation"></i>問題アリ<i class="fa-solid fa-triangle-exclamation"></i></p>
+  <% end %>
+    <h5>Band_Member's</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>image</th>
+          <th>name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @band.users.each do |user| %>
+        <tr>
+          <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
+          <td><%= link_to user.name, public_user_path(user.id) %></td>
+        <% if @band.owner_id == user.id %>
+          <td>Owner</td>
+        <% else %>
+        <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

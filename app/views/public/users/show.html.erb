@@ -38,11 +38,13 @@
   <% if @is_room == true %>
     <%= link_to "DM(のちにメールアイコンへ)", public_dm_room_path(@dm_room_id) %>
   <% else %>
-    <%= form_for [:public, @dm_room] do |f| %>
-      <%= fields_for @entry do |e| %>
-        <%= e.hidden_field :user_id, value: @user.id %>
+    <% if @is_same_band_member %>
+      <%= form_for [:public, @dm_room] do |f| %>
+        <%= fields_for @entry do |e| %>
+          <%= e.hidden_field :user_id, value: @user.id %>
+        <% end %>
+        <%= f.submit "New DM(のちにメールアイコンへ)" %>
       <% end %>
-      <%= f.submit "New DM(のちにメールアイコンへ)" %>
     <% end %>
   <% end %>
 <% end %>

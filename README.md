@@ -31,5 +31,5 @@
 ​
 ## 使用素材
 - フリー画像素材として以下を使用します。
-- フリー素材ぱくたそ「https://www.pakutaso.com」
-- pixabay「https://pixabay.com/ja/」
+- フリー素材ぱくたそ・https://www.pakutaso.com
+- pixabay・https://pixabay.com/ja/
