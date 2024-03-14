@@ -47,12 +47,14 @@ class Public::DmRoomsController < ApplicationController
   end
   
   # def ensure_band_member
+  #   dm_room = DmRoom.find(params[:id])
+  #   user = dm_room.entries.where.not(user_id: current_user.id).first.user
   #   if current_user.bands.exists?
-      
-  #     (band_id: @user.bands.pluck(:band_id))
-      
-  #     redirect_to public_bands_path, alert: "バンドメンバーでなければDMできません"
+  #     unless current_user.bands.pluck(:band_id) == user.bands.pluck(:band_id)
+  #       redirect_to public_bands_path, alert: "バンドメンバーでなければDMできません"
+  #     end 
+  #   else
+  #     redirect_to public_bands_path, alert: "バンドに参加していなければDMできません"
   #   end 
   # end
-
 end

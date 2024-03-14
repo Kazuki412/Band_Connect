@@ -6,6 +6,7 @@ class Public::MessagesController < ApplicationController
     @message.user_id = current_user.id
     if @message.save
     else
+      flash[:alert] = "メッセージの送信に失敗しました"
       redirect_to request.referer
     end
     # 非同期で送信した内容追加し、トークの全体を表示する

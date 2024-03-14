@@ -13,7 +13,7 @@ class Public::BandMembersController < ApplicationController
   def destroy
     band_member = current_user.band_members.find_by(band_id: params[:band_id])
     band_member.destroy
-    flash[:alert] = "バンドを脱退しました"
+    flash[:alert] = "バンドから脱退しました"
     redirect_to request.referer
   end
   

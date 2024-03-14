@@ -1,14 +1,22 @@
 <div class="container">
-  <%= link_to "トーク一覧に戻る", public_dm_rooms_path %>
-  <%= link_to "ユーザーを追加する", public_new_dm_room_path(@dm_room.id) %>
+  <div style="display: flex; justify-content: space-between;" class="my-3">
+    <%= link_to public_dm_rooms_path do %>
+      <i class="fa-solid fa-arrow-left" style="font-size: 30px;"></i>
+    <% end %>
+    <%= link_to public_new_dm_room_path(@dm_room.id) do %>
+      <i class="fa-solid fa-user-plus" style="font-size: 30px;"></i>
+    <% end %>
+  </div>
   <div id="messages">
     <%= render "public/messages/message", messages: @messages %>
   </div>
-  <div>
+  <div class="fixed-bottom" style="text-align: center; margin-bottom: 60px">
   <%= form_with model: @message, url: public_messages_path, method: :post, local: false do |f| %>
-    <%= f.text_field :content, id: "message_field" %>
+    <%= f.text_field :content, id: "message_field", class: "form-group w-75" %>
     <%= f.hidden_field :dm_room_id, value: @dm_room.id %>
-    <%= f.submit "送信（アイコンにしてもいいかも）" %>
+    <%= f.button :submit, class: "btn btn-primary" do %>
+      <i class="fa-solid fa-paper-plane"></i>
+    <% end %>
   <% end %>
   </div>
 </div>

@@ -33,7 +33,7 @@
 </div>
 <div class="col-md-8 offset-md-1">
 <% if @band.owner_id == current_user.id %>
-  <%= link_to "バンド解散", public_bands_path(@band), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを解散します" } %>
+  <%= link_to "バンド解散", public_band_path(@band.id), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを解散します" } %>
   <%= link_to "承認待ち一覧", public_band_band_permits_path(@band), class: "btn btn-primary" %>
 <% elsif @band.band_members.exists?(user_id: current_user.id) %>
   <%= link_to "バンド脱退", public_band_band_members_path(@band), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを脱退します" } %>
@@ -63,7 +63,6 @@
       <% if @band.owner_id == user.id %>
         <td>Owner</td>
       <% else %>
-        <td></td>
       <% end %>
       </tr>
       <% end %>

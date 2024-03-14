@@ -1,16 +1,38 @@
+<style>
+  .current-bg-color {
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    background-color: #007bff;
+    color: #ffffff;
+  }
+  .another-bg-color {
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    background-color: #343a40;
+    color: #ffffff;
+  }
+</style>
 <% if messages.present? %>
   <% messages.each do |message| %>
     <% if message.user_id == current_user.id %>
-      <div id="chat-fukidashi" style="text-align: right;">
-        <%= message.content %>
-        <!--送信時間を入れる-->
+      <div id="chat-fukidashi" class="mb-3" style="text-align: right;">
+        <%= message.created_at.strftime("%H:%M") %>
+        <div class="current-bg-color">
+          <%= message.content %>
+        </div>
       </div>
     <% else %>
-      <div id="chat-fukidashi" style="text-align: left;">
-        <%= image_tag message.user.get_profile_image, size: "50x50" %><br>
-        <%= link_to message.user.name, public_user_path(message.user.id) %>
-        <%= message.content %><br>
-        <!--送信時間を入れる-->
+      <div id="chat-fukidashi" class="mb-3" style="text-align: left;">
+        <%= link_to public_user_path(message.user.id) do %>
+          <%= image_tag message.user.get_profile_image, size: "50x50" %>
+        <% end %>
+        <div class="another-bg-color">
+          <%= message.content %>
+        </div>
+        <%= message.created_at.strftime("%H:%M") %><br>
+        <%= message.user.name %>
       </div>
     <% end %>
   <% end %>

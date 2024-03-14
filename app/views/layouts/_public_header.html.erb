@@ -61,6 +61,8 @@
         </ul>
       </div>
     </div>
+  <% if user_signed_in? %>
     <%= render "public/searches/window" %>
+  <% end %>
   </nav>
 </header>
