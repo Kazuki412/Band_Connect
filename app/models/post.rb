@@ -10,7 +10,7 @@ class Post < ApplicationRecord
   
   def self.looks(search, word)
     if search == "partial_match"
-      @post = Post.where("name LIKE?", "%#{word}%")
+      @post = Post.where("body LIKE?", "%#{word}%")
     else
       @post = Post.all
     end

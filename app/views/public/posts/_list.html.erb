@@ -1,0 +1,33 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Posts</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>タグ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% posts.each do |post| %>
+    <tr>
+      <td><%= image_tag post.user.get_profile_image, size: "50x50" %><br><%= link_to post.user.name, public_user_path(post.user.id) %></td>
+      <td><%= post.body %></td>
+      <td id="favorite_btn_<%= post.id %>">
+        <%= render "public/favorites/favorite_btn", post: post %>
+      </td>
+      <td>
+        <%= link_to public_post_path(post) do %>
+          <i class="fa-regular fa-comment-dots"></i>：<%= post.post_comments.count %>
+        <% end %>
+      </td>
+    <% if post.category.present? %>
+      <td><%= link_to post.category, public_tagsearches_search_path(word: post.category) %></td>
+    <% else %>
+      <td>未設定</td>
+    <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<!--ページネーション入れます-->

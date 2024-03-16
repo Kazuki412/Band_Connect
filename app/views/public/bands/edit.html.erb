@@ -1,4 +1,4 @@
-<h1>Band Edit</h1>
+<h3 class="my-3">Band Edit</h3>
 <%= form_with model: @band, url: public_band_path(@band), method: :patch do |f| %>
   <div class="form-group">
     <%= f.label :band_image, "バンド画像" %>
@@ -9,7 +9,7 @@
     <%= f.text_field :name, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :genre, "バンドジャンル" %>
+    <%= f.label :genre, "バンドジャンル" %><br>
     <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択してください--" %>
   </div>
   <div class="form-group">
@@ -17,11 +17,11 @@
     <%= f.text_area :introduction, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :status, "バンドステータス" %>
-    <%= f.radio_button :band_status, "true" %>募集中
-    <%= f.radio_button :band_status, "false" %>締切
+    <%= f.label :status, "バンドステータス" %><br>
+    <%= f.radio_button :band_status, "true" %> 募集中　
+    <%= f.radio_button :band_status, "false" %> 締切
   </div>
   <div class="form-group">
-    <%= f.submit "Save", class: "btn btn-success" %>
+    <%= f.submit "Save", class: "btn btn-success btn-block" %>
   </div>
 <% end %>

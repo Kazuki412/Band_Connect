@@ -1,4 +1,4 @@
-<h3>未参加ユーザー一覧</h3>
+<h3 class="my-3">未参加ユーザー一覧</h3>
 <% @users.each do |user| %>
   <% if @current_dm_room.entries.pluck(:user_id).exclude?(user.id) %>
     <p><%= user.name %></p>

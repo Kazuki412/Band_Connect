@@ -20,11 +20,9 @@ class Band < ApplicationRecord
     (band_image.attached?) ? band_image: 'no_image.jpg'
   end
 
-  def self.looks(model, search, word)
+  def self.looks(search, word)
     if search == "partial_match"
       @band = Band.where("name LIKE?", "%#{word}%")
-    elsif model == "Genre" && search == "partial_match"
-      @band = Band.joins(:genre).where("genre.name LIKE?", "%#{word}%")
     else
       Band.all
     end

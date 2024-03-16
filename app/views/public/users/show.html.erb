@@ -5,17 +5,23 @@
       <%= link_to edit_public_user_path(@user), class: "btn btn-success btn-block" do %>
         <i class="fa-solid fa-user-gear"></i>
       <% end %>
-      <%= link_to "DM一覧", public_dm_rooms_path, class: "btn btn-secondary btn-block my-3" %>
+      <%= link_to public_dm_rooms_path, class: "btn btn-secondary btn-block my-3" do %>
+        <i class="fa-solid fa-envelope"></i> 一覧
+      <% end %>
     <% else %>
       <% if @is_room == true %>
-        <%= link_to "DM(のちにメールアイコンへ)", public_dm_room_path(@dm_room_id) %>
+        <%= link_to public_dm_room_path(@dm_room_id), class: "btn btn-secondary btn-block my-3" do %>
+          <i class="fa-solid fa-envelope"></i>
+        <% end %>
       <% else %>
         <% if @is_same_band_member %>
           <%= form_for [:public, @dm_room] do |f| %>
             <%= fields_for @entry do |e| %>
               <%= e.hidden_field :user_id, value: @user.id %>
             <% end %>
-            <%= f.submit "New DM(のちにメールアイコンへ)" %>
+            <%= f.button :submit, class: "btn btn-secondary btn-block my-3" do %>
+              New <i class="fa-solid fa-envelope"></i>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>

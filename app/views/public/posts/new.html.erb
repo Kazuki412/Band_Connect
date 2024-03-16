@@ -1,15 +1,14 @@
-<h5>New Post</h5>
+<h3 class="my-3">New Post</h3>
 <%= form_with model: @post, url: public_posts_path, method: :post do |f| %>
   <div class="form-group">
-    <%= f.label :body, "投稿文" %>
-    <%= f.text_field :body, class: "form-control" %>
-  </div>
-  <!--後ほどタグ付できるように-->
-  <div class="form-group">
-    <%= f.label :tag, "タグ" %>
-    <%= f.select :category, [["バンドメンバー募集！", "バンドメンバー募集！"],["おすすめアーティスト", "おすすめアーティスト"],["イベント情報","イベント情報"]], include_blank: "選択してください。", class: "form-control " %>
+    <%= f.label :tag, "タグ" %><br>
+    <%= f.select :category, [["バンドメンバー募集！", "バンドメンバー募集！"],["おすすめアーティスト", "おすすめアーティスト"],["イベント情報","イベント情報"]], include_blank: "選択してください。", class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.submit "投稿", class: "btn btn-primary" %>
+    <%= f.label :body, "投稿文" %><br>
+    <%= f.text_field :body, class: "form-group w-75" %>
+    <%= f.button :submit, class: "btn btn-primary" do %>
+      <i class="fa-solid fa-paper-plane"></i>
+    <% end %>
   </div>
 <% end %>

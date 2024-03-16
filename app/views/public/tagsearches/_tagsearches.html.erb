@@ -1,17 +1,8 @@
-<%= form_with url: public_tagsearches_search_path, method: :get do |f| %>
-  <%= f.select :word, [["バンドメンバー募集！", "バンドメンバー募集！"],["おすすめアーティスト", "おすすめアーティスト"],["イベント情報","イベント情報"]], include_blank: "投稿をタグで検索できます" %>
-  <%= f.submit "タグ検索" %>
-<% end %>
-<script>
-  const form = document.querySelector("form"); // フォームを取得
-  const select = document.querySelector("select"); // 選択肢を取得
-  const submitBtn = document.querySelector("input[type='submit']"); // タグ検索ボタンを取得
-
-  form.addEventListener("submit", (e) => {
-    if (select.value === "") { // 選択肢が空白の場合
-      e.preventDefault(); // イベントのデフォルトの動作をキャンセル（フォームの送信を無効化）
-      alert("タグを選択してください。"); // ユーザーに注意を促すメッセージを表示する（任意）
-      return false; // フォームの送信をキャンセル（念のため追加）
-    }
-  });
-</script>
+<div class="search_form">
+  <%= form_with url: public_tagsearches_search_path, method: :get, class: "d-flex" do |f| %>
+    <%= f.select :word, [["バンドメンバー募集！", "バンドメンバー募集！"],["おすすめアーティスト", "おすすめアーティスト"],["イベント情報","イベント情報"]], include_blank: "投稿をタグで検索できます", class: "form-control" %>
+    <%= f.button :submit do %>
+      <i class="fa-solid fa-tag"></i>検索
+    <% end %>
+  <% end %>
+</div>

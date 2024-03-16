@@ -1,9 +1,14 @@
-<h5>Post Edit</h5>
+<h3 class="my-3">Post Edit</h3>
+
+<div class="my-5">
+  <h5 class="my-3">編集前内容</h5>
+  <span style="padding: 10px; border: black 1px solid; border-radius: 3px"><%= @post.body %></span>
+</div>
 <%= form_with model: @post, url: public_post_path(@post), method: :patch do |f| %>
-  <div class="form-group">
-    <%= f.text_field :body, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.submit "Save", class: "btn btn-success" %>
+  <div>
+    <%= f.text_field :body, class: "form-group w-75" %>
+    <%= f.button :submit, class: "btn btn-success" do %>
+      <i class="fa-solid fa-pen-to-square"></i>
+    <% end %>
   </div>
 <% end %>

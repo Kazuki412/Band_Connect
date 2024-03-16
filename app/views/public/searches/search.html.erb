@@ -1,66 +1,11 @@
 <!--後ほど部分テンプレートにします。-->
 <% if @model == "User" %>
-  <h3>Users search for "<%= @word %>"</h3>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>User Infomation</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
-        <td><%= user.name %></td>
-        <!--&は後々消します-->
-        <td><%= user.musical_instrument&.name %></td>
-        <td><%= user.introduction %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+  <h3 class="my-3">Users search for "<%= @word %>"</h3>
+  <%= render "public/users/list", users: @users %>
 <% elsif @model == "Band" %>
-<h5>バンド一覧</h5>
-<table class="table">
-  <thead>
-    <tr>
-      <th>image</th>
-      <th>band_name</th>
-      <th>band_introduction</th>
-      <th>band_genre</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @bands.each do |band| %>
-    <tr>
-      <td><%= image_tag band.get_band_image, size: "50x50" %></td>
-      <td><%= band.name %></td>
-      <td><%= band.introduction %></td>
-      <td><%= band.genre.name %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<% elsif @model == "Genre" %>
-<h5>バンド一覧</h5>
-<table class="table">
-  <thead>
-    <tr>
-      <th>image</th>
-      <th>band_name</th>
-      <th>band_introduction</th>
-      <th>band_genre</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @bands.each do |band| %>
-    <tr>
-      <td><%= image_tag band.get_band_image, size: "50x50" %></td>
-      <td><%= band.name %></td>
-      <td><%= band.introduction %></td>
-      <td><%= band.genre.name %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+  <h3 class="my-3">Bands search for "<%= @word %>"</h3>
+  <%= render "public/bands/list", bands: @bands %>
+<% elsif @model == "Post" %>
+  <h3 class="my-3">Posts search for "<%= @word %>"</h3>
+  <%= render "public/posts/list", posts: @posts %>
 <% end %>

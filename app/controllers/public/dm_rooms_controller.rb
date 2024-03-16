@@ -1,6 +1,6 @@
 class Public::DmRoomsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_band_member
+  before_action :ensure_band_member, except: [:index, :show]
   
   def create
     @dm_room = DmRoom.create

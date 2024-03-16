@@ -1,7 +1,7 @@
 <div class="m-3">
   <% if band.owner_id == current_user.id %>
   <div class="d-flex align-items-center justify-content-between">
-    <%= link_to public_band_band_permits_path(band), class: "btn btn-primary" do%>
+    <%= link_to public_band_band_permits_path(band), class: "btn btn-primary" do %>
       <i class="fa-solid fa-handshake"></i> 参加申請者一覧 <i class="fa-solid fa-handshake"></i>
     <% end %>
     <%= link_to public_band_path(band.id), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを解散します" } do %>

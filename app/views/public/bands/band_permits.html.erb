@@ -1,21 +1,21 @@
-<h3><%= @band.name %>の申請者一覧</h3>
+<h3 class="my-3"><%= @band.name %>の参加申請者一覧</h3>
 <% if @band_permits.present? %>
 <table class="table">
   <thead>
     <tr>
       <th>画像</th>
-      <th>名前</th>
       <th>担当楽器</th>
       <th>モチベ</th>
       <th>所属バンド</th>
       <th>自己紹介</th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @band_permits.each do |band_permit| %>
     <tr>
-      <td><%= image_tag band_permit.user.get_profile_image, size: "50x50" %></td>
-      <td><%= link_to band_permit.user.name, public_user_path(band_permit.user.id) %></td>
+      <td><%= image_tag band_permit.user.get_profile_image, size: "50x50" %><br><%= link_to band_permit.user.name, public_user_path(band_permit.user.id) %></td>
       <td><%= band_permit.user.musical_instrument.name %></td>
       <td><%= band_permit.user.motivation.name %></td>
     <% if band_permit.user.bands.blank? %>
@@ -26,8 +26,7 @@
       <td><%= band_permit.user.introduction %></td>
     <% if @band.owner_id == current_user.id %>
       <td><%= link_to "ようこそ！", public_band_band_members_path(@band, band_permit_id: band_permit.id), method: :post, class: "btn btn-success" %></td>
-      <!--↓まだ動作しません-->
-      <td><%= link_to "ごめんなさい…", public_band_band_permits_path(@band), method: :delete, class: "btn btn-danger", data: { confirm: "参加を断ります" } %></td>
+      <td><%= link_to "ごめんなさい…", public_band_band_permits_path(@band), method: :delete, class: "btn btn-danger", data: { confirm: "参加を断ります" } %><br><%= band_permit.created_at.strftime("%m/%d %H:%M") %></td>
     <% end %>
     </tr>
     <% end %>

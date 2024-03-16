@@ -1,20 +1,10 @@
-<%= form_with url: public_search_path, method: :get do |f| %>
-  <%= f.text_field :word, id: "word_text_field" %>
-  <%= f.select :model, options_for_select(["Band","Post","User"]) %>
-  <%= f.hidden_field :search, value: "partial_match" %>
-  <%= f.submit "検索", id: "search_button" %>
-<% end %>
-<script>
-  const textField = document.getElementById("word_text_field");
-
-  function checkInput() {
-    const searchButton = document.getElementById("search_button");
-    if (textField.value === "") {
-      searchButton.disabled = true;
-    } else {
-      searchButton.disabled = false;
-    }
-  }
-
-  textField.addEventListener("input", checkInput);
-</script>
+<div class="search_form">
+  <%= form_with url: public_search_path, method: :get, class: "d-flex" do |f| %>
+    <%= f.text_field :word, class: "form-control" %>
+    <%= f.select :model, options_for_select(["Band","Post","User"]) %>
+    <%= f.hidden_field :search, value: "partial_match" %>
+    <%= f.button :submit do %>
+      <i class="fa-solid fa-magnifying-glass"></i>
+    <% end %>
+  <% end %>
+</div>

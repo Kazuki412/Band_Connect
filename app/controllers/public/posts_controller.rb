@@ -30,7 +30,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.update(post_params)
     flash[:notice] = "投稿内容を編集しました"
-    redirect_to public_posts_path
+    redirect_to public_post_path(@post.id)
   end
 
   def destroy

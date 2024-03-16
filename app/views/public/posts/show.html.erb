@@ -3,7 +3,7 @@
     <%= render "public/users/info", user: @user %>
   </div>
   <div class="col-md-8 offset-1">
-    <h3>Post Detail</h3>
+    <h3 class="my-3">Post Detail</h3>
     <table class="table">
       <tr>
         <td><%= image_tag @post.user.get_profile_image, size: "50x50" %><br><%= link_to @post.user.name, public_user_path(@post.user.id) %></td>
@@ -13,8 +13,8 @@
         </td>
         <td><i class="fa-regular fa-comment-dots"></i>：<%= @post.post_comments.count %></td>
       <% if @user == current_user %>
-        <td><%= link_to "To Edit", edit_public_post_path(@post), class: "btn btn-success" %></td>
-        <td><%= link_to "Destroy", public_post_path(@post), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-danger" %><br><%= @post.created_at.strftime("%m/%d %H:%M") %></td>
+        <td><%= link_to "編集", edit_public_post_path(@post), class: "btn btn-success" %></td>
+        <td><%= link_to "削除", public_post_path(@post), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-danger" %><br><%= @post.created_at.strftime("%m/%d %H:%M") %></td>
       <% else %>
         <td><%= @post.created_at.strftime("%m/%d %H:%M") %></td>
       <% end %>
@@ -35,7 +35,7 @@
         <td><%= image_tag post_comment.user.get_profile_image, size: "50x50" %><br><%= link_to post_comment.user.name, public_user_path(post_comment.user.id) %></td>
         <td><%= post_comment.comment %></td>
       <% if post_comment.user == current_user %>
-        <td><%= link_to "Destroy", public_post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-danger" %><br><%= post_comment.created_at.strftime("%m/%d %H:%M") %></td>
+        <td><%= link_to "削除", public_post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-danger" %><br><%= post_comment.created_at.strftime("%m/%d %H:%M") %></td>
       <% else %>
         <td><%= post_comment.created_at.strftime("%m/%d %H:%M") %></td>
       <% end %>
