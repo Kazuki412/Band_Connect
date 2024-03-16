@@ -1,22 +1,46 @@
-<!--<style>-->
-<!--  .bg-img {-->
-<!--  background-image: url("no_image.jpg");-->
-<!--  background-repeat: no-repeat;-->
-<!--  background-size: cover;-->
-<!--  background-position: center center;-->
-  <!--background-color: rgba(0, 0, 0, 0.5);  /* 透過度を指定する場合は、最後の数値を変更してください（0が完全透明、1が完全不透明） */-->
-  <!--padding: 20px;  /* 必要に応じて余白を追加してください */-->
-<!--}-->
-<!--</style>-->
+<style>
+  .text-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 35px;
+  color: white;
+}
+.overlay {
+  position: relative;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+</style>
 <div class="row">
-  <div class="my-2">
-    <%= link_to "ゲストログイン(閲覧用)", users_guest_sign_in_path, method: :post %>
+  <button class="my-3">
+    <%= link_to users_guest_sign_in_path, method: :post do %>
+      <i class="fa-solid fa-user-check"></i>Guest Login!
+    <% end %>
+  </button>
+</div>
+<div class="row">
+  <div class="overlay">
+    <%= image_tag "live.jpg", width: 1200, height: 600 %>
+    <div class="text-overlay">
+      Band_Connectはバンドメンバー募集に加え<br>
+      バンド内でのコミュニケーションツールとしてもご利用いただけます♪<br>
+      皆様のバンドライフのお力添えになればと運営一同、思っております。<br>
+    </div>
   </div>
 </div>
 <div class="row">
-  <div class="bg-img">
-    Band_Connectはバンドメンバー募集に加え<br>
-    バンド内でのコミュニケーションツールとしてもご利用いただけます♪<br>
-    皆様のバンドライフのお力添えになればと運営一同、思っております。<br>
-  </div>
+  <h3 class="my-3">New Topic!!</h3>
+  <table class="table">
+    <tbody>
+    <% @posts.first(10).each do |post| %>
+      <tr>
+        <td><%= image_tag post.user.get_profile_image, size: "50x50" %></td>
+        <td><%= post.user.name %></td>
+        <td><%= post.body %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 </div>

@@ -1,50 +1,52 @@
-<h5><%= @user.name %>'s page</h5>
-<% if current_user.id == @user.id %>
-  <div><%= link_to "New Post", new_public_post_path, class: "btn btn-primary" %></div>
-  <div><%= link_to "New Band", new_public_band_path, class: "btn btn-primary" %></div>
-<% end %>
-<div><%= link_to "Favorite Posts", bookmarks_public_user_path(@user),  class: "btn btn-primary" %></div>
-<table class="table">
-  <tr><%= image_tag @user.get_profile_image, size: "100x100" %></tr>
-  <tr>
-    <th>name</th>
-    <th><%= @user.name %></th>
-  </tr>
-  <tr>
-    <th>Belongs to band</th>
-  <% if @user.bands.blank? %>
-    <th>未加入</th>
-  <% else %>
-    <th><%= @user.bands.pluck(:name).join("　") %></th>
-  <% end %>
-  </tr>
-  <tr>
-    <th>musical instrument in charge</th>
-    <th><%= @user.musical_instrument.name %></th>
-  </tr>
-  <tr>
-    <th>motivation</th>
-    <th><%= @user.motivation.name %></th>
-  </tr>
-  <tr>
-    <th>introduction</th>
-    <th><%= @user.introduction %></th>
-  </tr>
-</table>
-<% if @user == current_user %>
-  <%= link_to "プロフ編集(いずれアイコンにします)", edit_public_user_path(@user), class: "btn btn-success" %>
-  <%= link_to "トーク一覧", public_dm_rooms_path %>
-<% else %>
-  <% if @is_room == true %>
-    <%= link_to "DM(のちにメールアイコンへ)", public_dm_room_path(@dm_room_id) %>
-  <% else %>
-    <% if @is_same_band_member %>
-      <%= form_for [:public, @dm_room] do |f| %>
-        <%= fields_for @entry do |e| %>
-          <%= e.hidden_field :user_id, value: @user.id %>
+<div class="row">
+  <div class="col-md-3">
+    <%= render "info", user: @user %>
+    <% if @user == current_user %>
+      <%= link_to edit_public_user_path(@user), class: "btn btn-success btn-block" do %>
+        <i class="fa-solid fa-user-gear"></i>
+      <% end %>
+      <%= link_to "DM一覧", public_dm_rooms_path, class: "btn btn-secondary btn-block my-3" %>
+    <% else %>
+      <% if @is_room == true %>
+        <%= link_to "DM(のちにメールアイコンへ)", public_dm_room_path(@dm_room_id) %>
+      <% else %>
+        <% if @is_same_band_member %>
+          <%= form_for [:public, @dm_room] do |f| %>
+            <%= fields_for @entry do |e| %>
+              <%= e.hidden_field :user_id, value: @user.id %>
+            <% end %>
+            <%= f.submit "New DM(のちにメールアイコンへ)" %>
+          <% end %>
         <% end %>
-        <%= f.submit "New DM(のちにメールアイコンへ)" %>
       <% end %>
     <% end %>
-  <% end %>
-<% end %>
+  </div>
+  <div class="col-md-8 offset-1">
+    <div class="row d-flex">
+      <% if current_user.id == @user.id %>
+        <div class="m-3"><%= link_to "New Post", new_public_post_path, class: "btn btn-primary" %></div>
+        <div class="m-3"><%= link_to "Create Band", new_public_band_path, class: "btn btn-primary" %></div>
+      <% end %>
+      <div class="m-3"><%= link_to "Favorite Posts", bookmarks_public_user_path(@user),  class: "btn btn-primary" %></div>
+    </div>
+    <div class="row">
+      <h5><%= @user.name %>'s Posts</h5>
+      <table class="table">
+        <tbody>
+        <% @posts.first(10).each do |post| %>
+          <tr>
+            <td><%= image_tag post.user.get_profile_image, size: "50x50" %></td>
+            <td><%= post.user.name %></td>
+            <td><%= post.body %></td>
+            <td>
+              <%= link_to public_post_path(post) do %>
+                <i class="fa-solid fa-magnifying-glass-plus"></i>詳しく
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,30 +1,36 @@
-<h5>投稿一覧</h5>
+<h3>投稿一覧</h3>
 <div><%= link_to "New Post", new_public_post_path, class: "btn btn-primary" %></div>
 <div><%= render "public/tagsearches/tagsearches" %></div>
 <table class="table">
   <thead>
     <tr>
       <th>Posts</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>タグ</th>
     </tr>
   </thead>
   <tbody>
     <% @posts.each do |post| %>
     <tr>
-      <td><%= image_tag post.user.get_profile_image, size: "50x50" %></td>
-      <td><%= link_to post.user.name, public_user_path(post.user.id) %></td>
+      <td><%= image_tag post.user.get_profile_image, size: "50x50" %><br><%= link_to post.user.name, public_user_path(post.user.id) %></td>
       <td><%= post.body %></td>
+      <td id="favorite_btn_<%= post.id %>">
+        <%= render "public/favorites/favorite_btn", post: post %>
+      </td>
+      <td>
+        <%= link_to public_post_path(post) do %>
+          <i class="fa-regular fa-comment-dots"></i>：<%= post.post_comments.count %>
+        <% end %>
+      </td>
     <% if post.category.present? %>
       <td><%= link_to post.category, public_tagsearches_search_path(word: post.category) %></td>
     <% else %>
       <td>未設定</td>
     <% end %>
-      <td>コメント数：<%= post.post_comments.count %></td>
-      <td id="favorite_btn_<%= post.id %>">
-        <%= render "public/favorites/favorite_btn", post: post %>
-      </td>
-      <td><%= link_to "詳細ページへ（後にアイコンへ）", public_post_path(post) %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
-<!--コメント数は吹き出しアイコンを使います-->
+<!--ページネーション入れます-->

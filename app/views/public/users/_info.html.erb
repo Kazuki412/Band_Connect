@@ -1,0 +1,28 @@
+<h3><%= user.name %>'s page</h3>
+<table class="table">
+  <tr><%= image_tag user.get_profile_image, size: "100x100", style: "display: block; margin: 15px auto;" %></tr>
+  <tr>
+    <th>name</th>
+    <th><%= user.name %></th>
+  </tr>
+  <tr>
+    <th>band</th>
+  <% if user.bands.blank? %>
+    <th>未加入</th>
+  <% else %>
+    <th><%= user.bands.pluck(:name).join("　") %></th>
+  <% end %>
+  </tr>
+  <tr>
+    <th>part</th>
+    <th><%= user.musical_instrument.name %></th>
+  </tr>
+  <tr>
+    <th>motivation</th>
+    <th><%= user.motivation.name %></th>
+  </tr>
+  <tr>
+    <th>introduction</th>
+    <th><%= user.introduction %></th>
+  </tr>
+</table>

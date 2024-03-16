@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-md-3">
-    <h5>Group Detail</h5>
+    <h3 style="text-align: center; margin: 10px auto;"><%= @band.name %></h3>
     <table class="table">
-      <tr><%= image_tag @band.get_band_image, size: "100x100" %></tr>
+      <tr><%= image_tag @band.get_band_image, size: "100x100", style: "display: block; margin: 15px auto;" %></tr>
       <tr>
         <th>name</th>
         <th><%= @band.name %></th>
@@ -29,30 +29,22 @@
       </tr>
     </table>
   <% if current_user.id == @band.owner_id %>
-    <div><%= link_to "Edit", edit_public_band_path(@band), class: "btn btn-success" %></div>
+    <div>
+      <%= link_to edit_public_band_path(@band), class: "btn btn-success btn-block" do %>
+        <i class="fa-solid fa-gears"></i> 編集 <i class="fa-solid fa-gears"></i>
+      <% end %>
+    </div>
   <% end %>
   </div>
   <div class="col-md-8 offset-md-1">
-  <% if @band.owner_id == current_user.id %>
-    <%= link_to "バンド解散", public_band_path(@band.id), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを解散します" } %>
-    <%= link_to "承認待ち一覧", public_band_band_permits_path(@band), class: "btn btn-primary" %>
-  <% elsif @band.band_members.exists?(user_id: current_user.id) %>
-    <%= link_to "バンド脱退", public_band_band_members_path(@band), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを脱退します" } %>
-  <% elsif @band.band_permits.exists?(user_id: current_user.id) %>
-    <%= link_to "申請取消", public_band_band_permits_path(@band), method: :delete, class: "btn btn-danger", data: { confirm: "申請を取り消します" } %>
-  <% elsif @band.band_status == true %>
-    <%= link_to "加入申請", public_band_band_permits_path(@band), method: :post, class: "btn btn-primary" %>
-  <% else %>
-  <% end %>
-  <% if @band.band_status2 == false %>
-    <p><i class="fa-solid fa-triangle-exclamation"></i>問題アリ<i class="fa-solid fa-triangle-exclamation"></i></p>
-  <% end %>
+    <%= render "button", band: @band %>
     <h5>Band_Member's</h5>
     <table class="table">
       <thead>
         <tr>
           <th>image</th>
           <th>name</th>
+          <th>part</th>
           <th></th>
         </tr>
       </thead>
@@ -61,9 +53,11 @@
         <tr>
           <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
           <td><%= link_to user.name, public_user_path(user.id) %></td>
+          <td><%= user.musical_instrument.name %></td>
         <% if @band.owner_id == user.id %>
-          <td>Owner</td>
+          <td><i class="fa-solid fa-people-group"></i> Leader <i class="fa-solid fa-people-group"></i></td>
         <% else %>
+          <td></td>
         <% end %>
         </tr>
         <% end %>
