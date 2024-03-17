@@ -1,7 +1,7 @@
 class Public::DmRoomsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_band_member, except: [:index, :create]
-  
+  before_action :ensure_band_member, except: [:index, :create, :room_add_user]
+
   def create
     @dm_room = DmRoom.create
     @current_entry = Entry.create(dm_room_id: @dm_room.id, user_id: current_user.id)
@@ -16,12 +16,11 @@ class Public::DmRoomsController < ApplicationController
   end
 
   def index
-    current_entries = current_user.entries
     my_dm_room_id = []
-    current_entries.each do |entry|
+    current_user.entries.each do |entry|
       my_dm_room_id << entry.dm_room.id
     end
-    @another_entries = Entry.where(dm_room_id: my_dm_room_id).where.not(user_id: current_user.id)
+    @my_dm_rooms = DmRoom.where(id: my_dm_room_id)
   end
 
   def show
@@ -30,17 +29,17 @@ class Public::DmRoomsController < ApplicationController
     @message = Message.new
     @entries = @dm_room.entries
   end
-  
+
   def edit
     @dm_room = DmRoom.find(params[:id])
-  end 
-  
+  end
+
   def update
     @dm_room = DmRoom.find(params[:id])
     @dm_room.update(dm_room_params)
     flash[:notice] = "ルーム名を設定しました"
     redirect_to public_dm_room_path(@dm_room.id)
-  end 
+  end
 
   def room_add_user
     entry = Entry.new(entry_params)
@@ -56,24 +55,24 @@ class Public::DmRoomsController < ApplicationController
   def entry_params
     params.require(:entry).permit(:user_id, :dm_room_id)
   end
-  
+
   def dm_room_params
     params.require(:dm_room).permit(:name)
-  end 
-  
+  end
+
   def ensure_band_member
     dm_room = DmRoom.find(params[:id])
     entries = dm_room.entries.where.not(user_id: current_user.id)
     entry_users = entries.map{|entry| entry.user}
     results = entry_users.map do |user|
-      current_user.bands.pluck(:band_id).any? {|band_id| user.bands.pluck(:band_id).include?(band_id)} 
+      current_user.bands.pluck(:band_id).any? {|band_id| user.bands.pluck(:band_id).include?(band_id)}
     end
     if current_user.bands.exists?
       unless results.all?{|result| result == true}
         redirect_to public_dm_rooms_path, alert: "バンドメンバーでなければDMできません"
-      end 
+      end
     else
       redirect_to request.referer, alert: "バンドに参加していなければDMできません"
-    end 
+    end
   end
 end

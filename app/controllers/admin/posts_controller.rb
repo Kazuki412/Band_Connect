@@ -4,9 +4,9 @@ class Admin::PostsController < ApplicationController
     @posts = Post.all
   end
 
-  def show
-  end
-
   def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to request.referer
   end
 end

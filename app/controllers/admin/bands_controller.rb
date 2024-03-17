@@ -8,10 +8,6 @@ class Admin::BandsController < ApplicationController
     @band = Band.find(params[:id])
   end
 
-  def edit
-    @band = Band.find(params[:id])
-  end
-
   def update
     @band = Band.find(params[:id])
     @band.update(band_params)

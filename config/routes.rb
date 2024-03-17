@@ -49,7 +49,7 @@ Rails.application.routes.draw do
     resources :motivations, only: [:index, :create, :edit, :update]
     resources :musical_instruments, only: [:index, :create, :edit, :update]
     resources :users, only: [:show, :edit, :update]
-    resources :bands, only: [:index, :show, :edit, :update]
+    resources :bands, only: [:index, :show, :update]
     resources :posts, only: [:index, :show, :destroy]
     resources :post_comments, only: [:index, :destroy]
     get "search" => "admin/searches#search"

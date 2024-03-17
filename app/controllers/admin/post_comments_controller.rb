@@ -2,7 +2,6 @@ class Admin::PostCommentsController < ApplicationController
   
   def index
     @post_comments = PostComment.all
-    @users = User.all
   end
   
   def destroy

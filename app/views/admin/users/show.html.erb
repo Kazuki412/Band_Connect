@@ -1,1 +1,31 @@
-<h5><%= @user.name %>'s page</h5>
+<div class="row">
+  <div class="col-md-3">
+    <%= render "public/users/info", user: @user %>
+  </div>
+  <div class="col-md-8 offset-1">
+    <div class="row my-3">
+      <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f| %>
+        <div class="form-group">
+          <%= f.label :status, "会員ステータス" %>
+          <%= f.radio_button :is_active, "true" %> 有効
+          <%= f.radio_button :is_active, "false" %> 退会させる
+          <%= f.submit "Save", class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="row">
+      <h5><%= @user.name %>'s Posts</h5>
+      <table class="table">
+        <tbody>
+        <% @posts.first(10).each do |post| %>
+          <tr>
+            <td><%= image_tag post.user.get_profile_image, size: "50x50" %></td>
+            <td><%= post.user.name %></td>
+            <td><%= post.body %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

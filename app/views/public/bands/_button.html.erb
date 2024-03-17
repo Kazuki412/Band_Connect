@@ -1,13 +1,12 @@
 <div class="m-3">
-  <% if band.owner_id == current_user.id %>
   <div class="d-flex align-items-center justify-content-between">
+  <% if band.owner_id == current_user.id %>
     <%= link_to public_band_band_permits_path(band), class: "btn btn-primary" do %>
       <i class="fa-solid fa-handshake"></i> 参加申請者一覧 <i class="fa-solid fa-handshake"></i>
     <% end %>
     <%= link_to public_band_path(band.id), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを解散します" } do %>
       <i class="fa-solid fa-users-slash"></i> バンド解散 <i class="fa-solid fa-users-slash"></i>
     <% end %>
-  </div>
   <% elsif band.band_members.exists?(user_id: current_user.id) %>
     <%= link_to "バンド脱退", public_band_band_members_path(band), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを脱退します" } %>
   <% elsif band.band_permits.exists?(user_id: current_user.id) %>
@@ -17,6 +16,7 @@
   <% else %>
   <% end %>
   <% if band.band_status2 == false %>
-    <p><i class="fa-solid fa-triangle-exclamation"></i>問題アリ<i class="fa-solid fa-triangle-exclamation"></i></p>
+    <div class="text-danger"><i class="fa-solid fa-triangle-exclamation"></i> 問題アリ <i class="fa-solid fa-triangle-exclamation"></i></div>
   <% end %>
+  </div>
 </div>

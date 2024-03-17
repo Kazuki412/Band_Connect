@@ -1,10 +1,11 @@
-<h3>コメント一覧</h3>
+<h3 class="my-3">コメント一覧</h3>
 <table class="table">
   <thead>
     <tr>
       <th>画像</th>
       <th>名前</th>
       <th>コメント</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -13,7 +14,7 @@
       <td><%= image_tag post_comment.user.get_profile_image, size: "50x50" %></td>
       <td><%= post_comment.user.name %></td>
       <td><%= post_comment.comment %></td>
-      <td><%= link_to "Destroy", admin_post_comment_path(post_comment), method: :delete, data: {confirm: "コメントを削除します"}, class: "btn btn-danger" %></td>
+      <td><%= link_to "削除", admin_post_comment_path(post_comment), method: :delete, data: {confirm: "コメントを削除します"}, class: "btn btn-danger" %></td>
     </tr>
     <% end %>
   </tbody>

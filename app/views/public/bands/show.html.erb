@@ -1,40 +1,13 @@
 <div class="row">
   <div class="col-md-3">
-    <h3 style="text-align: center; margin: 10px auto;"><%= @band.name %></h3>
-    <table class="table">
-      <tr><%= image_tag @band.get_band_image, size: "100x100", style: "display: block; margin: 15px auto;" %></tr>
-      <tr>
-        <th>name</th>
-        <th><%= @band.name %></th>
-      </tr>
-      <tr>
-        <th>genre</th>
-        <th><%= @band.genre.name %></th>
-      </tr>
-      <tr>
-        <th>member</th>
-        <th><%= @band.users.count %></th>
-      </tr>
-      <tr>
-        <th>introduction</th>
-        <th><%= @band.introduction %></th>
-      </tr>
-      <tr>
-        <th>status</th>
-      <% if @band.band_status == true %>
-        <th>募集中</th>
-      <% else %>
-        <th>締切</th>
-      <% end %>
-      </tr>
-    </table>
-  <% if current_user.id == @band.owner_id %>
+    <%= render "info", band: @band %>
+    <% if current_user.id == @band.owner_id %>
     <div>
       <%= link_to edit_public_band_path(@band), class: "btn btn-success btn-block" do %>
         <i class="fa-solid fa-gears"></i> 編集 <i class="fa-solid fa-gears"></i>
       <% end %>
     </div>
-  <% end %>
+    <% end %>
   </div>
   <div class="col-md-8 offset-md-1">
     <%= render "button", band: @band %>

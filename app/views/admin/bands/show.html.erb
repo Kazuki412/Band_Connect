@@ -1,53 +1,37 @@
-<div class="col-md-3">
-  <h5>Group Detail</h5>
-  <table class="table">
-    <tr><%= image_tag @band.get_band_image, size: "100x100" %></tr>
-    <tr>
-      <th>name</th>
-      <th><%= @band.name %></th>
-    </tr>
-    <tr>
-      <th>genre</th>
-      <th><%= @band.genre.name %></th>
-    </tr>
-    <tr>
-      <th>member</th>
-      <th><%= @band.users.count %></th>
-    </tr>
-    <tr>
-      <th>introduction</th>
-      <th><%= @band.introduction %></th>
-    </tr>
-    <tr>
-      <th>status</th>
-    <% if @band.band_status == true %>
-      <th>募集中</th>
-    <% else %>
-      <th>締切</th>
-    <% end %>
-    </tr>
-  </table>
-  <div><%= link_to "Edit", edit_admin_band_path(@band), class: "btn btn-success" %></div>
-</div>
-<div class="col-md-8 offset-md-1">
-<% if @band.band_status2 == false %>
-  <p><i class="fa-solid fa-triangle-exclamation"></i>問題アリ<i class="fa-solid fa-triangle-exclamation"></i></p>
-<% end %>
-  <h5>Band_Member's</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>image</th>
-        <th>name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @band.users.each do |user| %>
-      <tr>
-        <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
-        <td><%= user.name %></td>
-      </tr>
+<div class="row">
+  <div class="col-md-3">
+    <%= render "public/bands/info", band: @band %>
+  </div>
+  <div class="col-md-8 offset-md-1">
+    <div class="row my-3" style="display: flex; align-items: center;">
+      <%= form_with model: @band, url: admin_band_path(@band), method: :patch do |f| %>
+        <div class="form-group">
+          <%= f.label :status, "バンドステータス" %>
+          <%= f.radio_button :band_status2, "true" %> 正常
+          <%= f.radio_button :band_status2, "false" %> 問題アリ
+          <%= f.submit "Save", class: "btn btn-success" %>
+        </div>
       <% end %>
-    </tbody>
-  </table>
+      <% if @band.band_status2 == false %>
+        <p class="text-danger ml-auto"><i class="fa-solid fa-triangle-exclamation"></i>問題アリ<i class="fa-solid fa-triangle-exclamation"></i></p>
+      <% end %>
+    </div>
+    <h5>Band_Member's</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>image</th>
+          <th>name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @band.users.each do |user| %>
+        <tr>
+          <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
+          <td><%= link_to user.name, admin_user_path(user.id) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

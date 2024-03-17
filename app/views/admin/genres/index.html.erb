@@ -1,10 +1,10 @@
-<h5>ジャンル一覧・追加</h5>
+<h3 class="my-3">ジャンル一覧・追加</h3>
 <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
   <h6>ジャンル名</h6>
   <%= f.text_field :name %>
   <%= f.submit "Create New", class: "btn btn-primary" %>
 <% end %>
-<table class="table">
+<table class="table my-3">
   <thead>
     <tr>
       <th>ジャンル</th>

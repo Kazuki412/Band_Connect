@@ -1,8 +1,7 @@
-<h5>バンド一覧</h5>
+<h3 class="my-3">バンド一覧</h3>
 <table class="table">
   <thead>
     <tr>
-      <th>バンドID</th>
       <th>画像</th>
       <th>バンド名</th>
       <th>メンバー数</th>
@@ -13,7 +12,6 @@
   <tbody>
     <% @bands.each do |band| %>
     <tr>
-      <td><%= band.id %></td>
       <td><%= image_tag band.get_band_image, size: "50x50" %></td>
       <td><%= link_to band.name, admin_band_path(band.id) %></td>
       <td><%= band.users.count %></td>

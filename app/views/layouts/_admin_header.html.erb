@@ -1,74 +1,76 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: blue; ">
-    <a class="navbar-brand" href="/admin">Band_Connect</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <% if admin_signed_in? %>
-      <p>Logged in as administrator</p>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-        <%= link_to admin_posts_path, class: 'nav-link' do %>
-          <button type="button" class="btn btn-outline-light"><i class="fa-regular fa-comment-dots"></i><br>Posts</button>
+    <div class="container">
+      <a class="navbar-brand" href="/admin">Band_Connect</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+        <% if admin_signed_in? %>
+          <p class="text-light ml-3 mt-3">Logged in administrator</p>
+          <li class="nav-item">
+          <%= link_to admin_posts_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-regular fa-comment-dots"></i><br>Posts</button>
+          <% end %>
+          </li>
+          <li class="nav-item">
+          <%= link_to admin_post_comments_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-cake-candles"></i><br>Comments</button>
+          <% end %>
+          </li>
+          <li class="nav-item">
+          <%= link_to admin_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-users"></i><br> Users</button>
+          <% end %>
+          </li>
+          <li class="nav-item">
+          <%= link_to admin_bands_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-receipt"></i><br> Bands</button>
+          <% end %>
+          </li>
+          <li class="nav-item">
+          <%= link_to admin_genres_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-list-ul"></i><br> Genres</button>
+          <% end %>
+          <li class="nav-item">
+          <%= link_to admin_motivations_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-list-ul"></i><br> Motivations</button>
+          <% end %>
+          <li class="nav-item">
+          <%= link_to admin_musical_instruments_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-list-ul"></i><br> Musical Instruments</button>
+          <% end %>
+          </li>
+          <li class="nav-item">
+          <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-right-from-bracket"></i><br> Log Out</button>
+          <% end %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+          <%= link_to public_posts_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-link"></i> Posts</button>
+          <% end %>
+          </li>
+          <li class="nav-item">
+          <%= link_to public_bands_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-cake-candles"></i> Bands</button>
+          <% end %>
+          </li>
+          <li class="nav-item">
+          <%= link_to new_user_registration_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-user-plus"></i> Sign Up</button>
+          <% end %>
+          </li>
+          <li class="nav-item">
+          <%= link_to user_session_path, class: 'nav-link' do %>
+            <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-right-to-bracket"></i> Log In</button>
+          <% end %>
+          </li>
         <% end %>
-        </li>
-        <li class="nav-item">
-        <%= link_to admin_post_comments_path, class: 'nav-link' do %>
-          <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-cake-candles"></i><br>Comments</button>
-        <% end %>
-        </li>
-        <li class="nav-item">
-        <%= link_to admin_path, class: 'nav-link' do %>
-          <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-users"></i><br> Users</button>
-        <% end %>
-        </li>
-        <li class="nav-item">
-        <%= link_to admin_bands_path, class: 'nav-link' do %>
-          <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-receipt"></i><br> Bands</button>
-        <% end %>
-        </li>
-        <li class="nav-item">
-        <%= link_to admin_genres_path, class: 'nav-link' do %>
-          <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-list-ul"></i><br> Genres</button>
-        <% end %>
-        <li class="nav-item">
-        <%= link_to admin_motivations_path, class: 'nav-link' do %>
-          <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-list-ul"></i><br> Motivations</button>
-        <% end %>
-        <li class="nav-item">
-        <%= link_to admin_musical_instruments_path, class: 'nav-link' do %>
-          <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-list-ul"></i><br> Musical Instruments</button>
-        <% end %>
-        </li>
-        <li class="nav-item">
-        <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link' do %>
-          <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-right-from-bracket"></i><br> Log Out</button>
-        <% end %>
-        </li>
-      <% else %>
-        <li class="nav-item">
-        <%= link_to public_posts_path, class: 'nav-link' do %>
-          <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-link"></i> Posts</button>
-        <% end %>
-        </li>
-        <li class="nav-item">
-        <%= link_to public_bands_path, class: 'nav-link' do %>
-          <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-cake-candles"></i> Bands</button>
-        <% end %>
-        </li>
-        <li class="nav-item">
-        <%= link_to new_user_registration_path, class: 'nav-link' do %>
-          <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-user-plus"></i> Sign Up</button>
-        <% end %>
-        </li>
-        <li class="nav-item">
-        <%= link_to user_session_path, class: 'nav-link' do %>
-          <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-right-to-bracket"></i> Log In</button>
-        <% end %>
-        </li>
-      <% end %>
-      </ul>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>
