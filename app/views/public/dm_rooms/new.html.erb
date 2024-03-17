@@ -1,12 +1,13 @@
 <h3 class="my-3">未参加ユーザー一覧</h3>
 <% @users.each do |user| %>
   <% if @current_dm_room.entries.pluck(:user_id).exclude?(user.id) %>
-    <p><%= user.name %></p>
-    <%= form_for(@entry, :url => {:controller => :dm_rooms, :action => :room_add_user}) do |f| %>
-      <%= f.hidden_field :user_id, :value => user.id %>
-      <%= f.hidden_field :dm_room_id, :value => @current_dm_room.id %>
-      <%= f.submit "追加する" %>
+    <% if current_user.bands.pluck(:band_id).any? {|band_id| user.bands.pluck(:band_id).include?(band_id)} %>
+      <p><%= user.name %></p>
+      <%= form_for(@entry, :url => {:controller => :dm_rooms, :action => :room_add_user}) do |f| %>
+        <%= f.hidden_field :user_id, :value => user.id %>
+        <%= f.hidden_field :dm_room_id, :value => @current_dm_room.id %>
+        <%= f.submit "追加する" %>
+      <% end %>
     <% end %>
-    <hr>
   <% end %>
 <% end %>

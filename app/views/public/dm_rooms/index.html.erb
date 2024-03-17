@@ -1,14 +1,27 @@
 <h3 class="my-3">トーク一覧</h3>
-<% current_user.entries.each do |entry| %>
-  <a href="/public/dm_rooms/<%= entry.dm_room_id %>">
-    <%= DmRoom.find(entry.dm_room_id).name %>
-    <% DmRoom.find(entry.dm_room_id).entries.each do |user| %>
-      <!--自分の名前は表示しないように-->
-      <% unless user.user_id == current_user.id %>
-        <%= User.find(user.user_id).name %>
-      <% end %>
-    <% end %>
-  <br>
-  </a>
+<% @another_entries.each do |entry| %>
+  <div class="card">
+    <div class="card-body">
+      <div style="display: flex; justify-content: space-between;">
+        <div class="chat-band">
+          <div class="mx-5">
+          <% if entry.dm_room.name.blank? %>
+            <%= link_to "未設定", public_dm_room_path(entry.dm_room.id) %>
+          <% else %>
+            <%= link_to entry.dm_room.name, public_dm_room_path(entry.dm_room.id) %>
+          <% end %>
+          </div>
+        </div>
+        <div class="chat-text">
+          <%= link_to public_dm_room_path(entry.dm_room.id) do %>
+            <%= Message.find_by(id: entry.dm_room.message_ids.last)&.user&.name %><br>
+            <%= Message.find_by(id: entry.dm_room.message_ids.last)&.content %>
+          <% end %>
+        </div>
+        <div class="mr-3">
+          <%= Message.find_by(id: entry.dm_room.message_ids.last)&.created_at&.strftime("%m/%d %H:%M") %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
-<!--バンド名で表示したい-->

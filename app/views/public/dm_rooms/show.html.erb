@@ -3,6 +3,11 @@
     <%= link_to public_dm_rooms_path do %>
       <i class="fa-solid fa-arrow-left" style="font-size: 30px;"></i>
     <% end %>
+    <% if @dm_room.name.blank? %>
+      <%= link_to "ルーム名を設定してください", edit_public_dm_room_path(@dm_room.id) %>
+    <% else %>
+      <%= link_to @dm_room.name, edit_public_dm_room_path(@dm_room.id) %>
+    <% end %>
     <%= link_to public_new_dm_room_path(@dm_room.id) do %>
       <i class="fa-solid fa-user-plus" style="font-size: 30px;"></i>
     <% end %>

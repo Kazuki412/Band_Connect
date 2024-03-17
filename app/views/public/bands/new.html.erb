@@ -1,8 +1,8 @@
 <h3 class="my-3">Create Band</h3>
 <%= form_with model: @band, url: public_bands_path, method: :post do |f| %>
   <div class="form-group">
-    <%= f.label :group_image, "バンド画像" %>
-    <%= f.file_field :group_image, class: "form-control" %>
+    <%= f.label :band_image, "バンド画像" %>
+    <%= f.file_field :band_image, class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :name, "バンド名" %>

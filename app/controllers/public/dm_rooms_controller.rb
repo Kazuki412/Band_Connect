@@ -1,6 +1,6 @@
 class Public::DmRoomsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_band_member, except: [:index, :show]
+  before_action :ensure_band_member, except: [:index, :create]
   
   def create
     @dm_room = DmRoom.create
@@ -30,6 +30,17 @@ class Public::DmRoomsController < ApplicationController
     @message = Message.new
     @entries = @dm_room.entries
   end
+  
+  def edit
+    @dm_room = DmRoom.find(params[:id])
+  end 
+  
+  def update
+    @dm_room = DmRoom.find(params[:id])
+    @dm_room.update(dm_room_params)
+    flash[:notice] = "ルーム名を設定しました"
+    redirect_to public_dm_room_path(@dm_room.id)
+  end 
 
   def room_add_user
     entry = Entry.new(entry_params)
@@ -46,8 +57,12 @@ class Public::DmRoomsController < ApplicationController
     params.require(:entry).permit(:user_id, :dm_room_id)
   end
   
+  def dm_room_params
+    params.require(:dm_room).permit(:name)
+  end 
+  
   def ensure_band_member
-    dm_room = DmRoom.find_by(params[:id])
+    dm_room = DmRoom.find(params[:id])
     entries = dm_room.entries.where.not(user_id: current_user.id)
     entry_users = entries.map{|entry| entry.user}
     results = entry_users.map do |user|
@@ -55,10 +70,10 @@ class Public::DmRoomsController < ApplicationController
     end
     if current_user.bands.exists?
       unless results.all?{|result| result == true}
-        redirect_to public_bands_path, alert: "バンドメンバーでなければDMできません"
+        redirect_to public_dm_rooms_path, alert: "バンドメンバーでなければDMできません"
       end 
     else
-      redirect_to public_bands_path, alert: "バンドに参加していなければDMできません"
+      redirect_to request.referer, alert: "バンドに参加していなければDMできません"
     end 
   end
 end

@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     get "bands/:id/band_permits" => "bands#band_permits", as: :band_permit
 
     resources :messages, only: [:create]
-    resources :dm_rooms, only: [:create, :index, :show]
+    resources :dm_rooms, only: [:create, :index, :show, :edit, :update]
     get "dm_rooms/new/:id" => "dm_rooms#new", as: "new_dm_room"
     post "entry" => "dm_rooms#room_add_user"
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
