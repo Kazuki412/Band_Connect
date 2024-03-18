@@ -3,7 +3,7 @@
     <%= render "public/users/info", user: @user %>
   </div>
   <div class="col-md-8 offset-1">
-    <h3 class="my-3">Post Detail</h3>
+    <h3 class="my-3 p-2" style="background-color: #474343; color: white;">Post Detail</h3>
     <table class="table">
       <tr>
         <td><%= image_tag @post.user.get_profile_image, size: "50x50" %><br><%= link_to @post.user.name, public_user_path(@post.user.id) %></td>
@@ -20,15 +20,7 @@
       <% end %>
       </tr>
     </table>
-    <h5>コメント投稿</h5>
-    <%= form_with model: [@post, @post_comment], url: public_post_post_comments_path(@post), method: :post do |f| %>
-      <div>
-        <%= f.text_field :comment, class: "form-group w-75" %>
-        <%= f.button :submit, class: "btn btn-primary" do %>
-          <i class="fa-solid fa-paper-plane"></i>
-        <% end %>
-      </div>
-    <% end %>
+    <h5 class="p-1" style="background-color: #474343; color: white;">コメント投稿</h5>
     <table class="table">
       <% @post.post_comments.each do |post_comment| %>
       <tr>
@@ -42,6 +34,14 @@
       </tr>
       <% end %>
     </table>
+    <%= form_with model: [@post, @post_comment], url: public_post_post_comments_path(@post), method: :post do |f| %>
+      <div>
+        <%= f.text_field :comment, class: "form-group w-75" %>
+        <%= f.button :submit, class: "btn btn-primary" do %>
+          <i class="fa-solid fa-paper-plane"></i>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
 

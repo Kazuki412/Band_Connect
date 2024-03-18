@@ -1,4 +1,4 @@
-<h3 class="my-3"><%= user.name %>'s page</h3>
+<h3 style="text-align: center; margin: 10px auto;"><%= user.name %>'s page</h3>
 <table class="table">
   <tr><%= image_tag user.get_profile_image, size: "100x100", style: "display: block; margin: 15px auto;" %></tr>
   <tr>
@@ -10,7 +10,11 @@
   <% if user.bands.blank? %>
     <th>未加入</th>
   <% else %>
-    <th><%= user.bands.pluck(:name).join("　") %></th>
+    <th>
+      <% user.bands.each do |band| %>
+        <%= link_to band.name, public_band_path(band.id) %>
+      <% end %>
+    </th>
   <% end %>
   </tr>
   <tr>

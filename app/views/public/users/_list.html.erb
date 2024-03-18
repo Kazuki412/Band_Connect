@@ -1,5 +1,5 @@
 <table class="table">
-  <thead>
+  <thead style="background-color: #474343; color: white;">
     <tr>
       <th>User Infomation</th>
       <th></th>
@@ -11,7 +11,6 @@
   <% @users.each do |user| %>
     <tr>
       <td><%= image_tag user.get_profile_image, size: "50x50" %><br><%= link_to user.name, public_user_path(user) %></td>
-      <!--&は後々消します-->
       <td><%= user.musical_instrument&.name %></td>
       <td><%= user.motivation&.name %></td>
       <td><%= user.introduction %></td>

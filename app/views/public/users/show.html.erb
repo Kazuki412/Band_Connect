@@ -28,7 +28,7 @@
     <% end %>
   </div>
   <div class="col-md-8 offset-1">
-    <div class="row d-flex">
+    <div class="row d-flex justify-content-between">
       <% if current_user.id == @user.id %>
         <div class="m-3"><%= link_to "New Post", new_public_post_path, class: "btn btn-primary" %></div>
         <div class="m-3"><%= link_to "Create Band", new_public_band_path, class: "btn btn-primary" %></div>
@@ -36,8 +36,13 @@
       <div class="m-3"><%= link_to "Favorite Posts", bookmarks_public_user_path(@user),  class: "btn btn-primary" %></div>
     </div>
     <div class="row">
-      <h5><%= @user.name %>'s Posts</h5>
       <table class="table">
+        <thead style="background-color: #474343; color: white;">
+          <th><%= @user.name %>'s Posts</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </thead>
         <tbody>
         <% @posts.first(10).each do |post| %>
           <tr>
