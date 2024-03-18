@@ -14,7 +14,7 @@
         <td><i class="fa-regular fa-comment-dots"></i>：<%= @post.post_comments.count %></td>
       <% if @user == current_user %>
         <td><%= link_to "編集", edit_public_post_path(@post), class: "btn btn-success" %></td>
-        <td><%= link_to "削除", public_post_path(@post), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-danger" %><br><%= @post.created_at.strftime("%m/%d %H:%M") %></td>
+        <td><%= link_to "削除", public_post_path(@post), method: :delete, data: { confirm: "投稿を削除します" }, class: "btn btn-danger" %><br><%= @post.created_at.strftime("%m/%d %H:%M") %></td>
       <% else %>
         <td><%= @post.created_at.strftime("%m/%d %H:%M") %></td>
       <% end %>

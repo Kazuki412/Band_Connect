@@ -11,19 +11,25 @@
     <th>未加入</th>
   <% else %>
     <th>
-      <% user.bands.each do |band| %>
-        <%= link_to band.name, public_band_path(band.id) %>
+      <% if admin_signed_in? %>
+        <% user.bands.each do |band| %>
+          <%= link_to band.name, admin_band_path(band.id) %>
+        <% end %>
+      <% else %>
+        <% user.bands.each do |band| %>
+          <%= link_to band.name, public_band_path(band.id) %>
+        <% end %>
       <% end %>
     </th>
   <% end %>
   </tr>
   <tr>
     <th>part</th>
-    <th><%= user.musical_instrument.name %></th>
+    <th><%= user.musical_instrument&.name %></th>
   </tr>
   <tr>
     <th>motivation</th>
-    <th><%= user.motivation.name %></th>
+    <th><%= user.motivation&.name %></th>
   </tr>
   <tr>
     <th>introduction</th>

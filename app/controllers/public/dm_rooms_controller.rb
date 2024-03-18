@@ -1,6 +1,6 @@
 class Public::DmRoomsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_band_member, except: [:index, :create, :room_add_user]
+  before_action :ensure_band_member, except: [:index, :create, :destroy, :room_add_user]
 
   def create
     @dm_room = DmRoom.create
@@ -39,6 +39,13 @@ class Public::DmRoomsController < ApplicationController
     @dm_room.update(dm_room_params)
     flash[:notice] = "ルーム名を設定しました"
     redirect_to public_dm_room_path(@dm_room.id)
+  end
+
+  def destroy
+    @dm_room = DmRoom.find(params[:id])
+    @dm_room.destroy
+    flash[:alert] = "トークルームを削除しました"
+    redirect_to request.referer
   end
 
   def room_add_user

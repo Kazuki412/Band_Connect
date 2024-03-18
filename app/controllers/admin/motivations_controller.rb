@@ -1,4 +1,5 @@
 class Admin::MotivationsController < ApplicationController
+  before_action :authenticate_admin!
 
   def create
     @motivation = Motivation.new(motivation_params)

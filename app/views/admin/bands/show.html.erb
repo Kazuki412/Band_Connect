@@ -5,7 +5,7 @@
   <div class="col-md-8 offset-md-1">
     <div class="row my-3" style="display: flex; align-items: center;">
       <%= form_with model: @band, url: admin_band_path(@band), method: :patch do |f| %>
-        <div class="form-group">
+        <div class="form-group p-2" style="background-color: #474343; color: white;">
           <%= f.label :status, "バンドステータス" %>
           <%= f.radio_button :band_status2, "true" %> 正常
           <%= f.radio_button :band_status2, "false" %> 問題アリ
@@ -18,7 +18,7 @@
     </div>
     <h5>Band_Member's</h5>
     <table class="table">
-      <thead>
+      <thead style="background-color: #474343; color: white;"
         <tr>
           <th>image</th>
           <th>name</th>

@@ -27,5 +27,7 @@ class Band < ApplicationRecord
       Band.all
     end
   end
+  
+  paginates_per 10
 
 end

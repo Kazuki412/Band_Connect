@@ -13,9 +13,13 @@
     <tr>
       <td><%= image_tag post.user.get_profile_image, size: "50x50" %><br><%= link_to post.user.name, public_user_path(post.user.id) %></td>
       <td><%= post.body %></td>
+    <% if user_signed_in? %>
       <td id="favorite_btn_<%= post.id %>">
         <%= render "public/favorites/favorite_btn", post: post %>
       </td>
+    <% else %>
+      <td></td>
+    <% end %>
       <td>
         <%= link_to public_post_path(post) do %>
           <i class="fa-regular fa-comment-dots"></i>：<%= post.post_comments.count %>
@@ -30,4 +34,44 @@
     <% end %>
   </tbody>
 </table>
-<!--ページネーション入れます-->
+<div class="item_paginate">
+  <%= paginate posts %>
+</div>
+<style>
+  .item_paginate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .pagination {
+    text-align: center;
+    width: 50px;
+    font-size: 20px;
+  }
+  .pagination span {
+    text-align: center;
+    width: 50px;
+    font-size: 20px;
+  }
+  .pagination a {
+    color: #818181;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+  }
+  .pagination a:hover{
+    width: 50px;
+    height: 50px;
+    background-color: #474343;
+    color: #FFF;
+    border-radius: 100%;
+    padding: 10px;
+  }
+  .current{
+    font-weight: bold;
+    color: #474343;
+    padding: 10px;
+  }
+</style>

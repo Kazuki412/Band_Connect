@@ -19,7 +19,8 @@
           <% end %>
         </div>
         <div class="mr-3">
-          <%= Message.find_by(id: dm_room.message_ids.last)&.created_at&.strftime("%m/%d %H:%M") %>
+          <%= Message.find_by(id: dm_room.message_ids.last)&.created_at&.strftime("%m/%d %H:%M") %><br>
+          <%= link_to "トークを削除", public_dm_room_path(dm_room.id), method: :delete, data: {confirm: "トークを削除します" }, class: "btn btn-danger" %>
         </div>
       </div>
     </div>

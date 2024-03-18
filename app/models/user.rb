@@ -39,5 +39,7 @@ class User < ApplicationRecord
       @user = User.all
     end
   end
+  
+  paginates_per 10
 
 end

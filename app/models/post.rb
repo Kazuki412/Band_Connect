@@ -15,6 +15,8 @@ class Post < ApplicationRecord
       @post = Post.all
     end
   end
+  
+  paginates_per 10
 
 
 end

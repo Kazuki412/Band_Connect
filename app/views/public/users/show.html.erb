@@ -44,7 +44,7 @@
           <th></th>
         </thead>
         <tbody>
-        <% @posts.first(10).each do |post| %>
+        <% @posts.first(5).each do |post| %>
           <tr>
             <td><%= image_tag post.user.get_profile_image, size: "50x50" %></td>
             <td><%= post.user.name %></td>

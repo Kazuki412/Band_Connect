@@ -1,4 +1,5 @@
 class Public::BandsController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy, :band_permits]
 
   def new
@@ -15,7 +16,7 @@ class Public::BandsController < ApplicationController
   end
 
   def index
-    @bands = Band.all
+    @bands = Band.page(params[:page]).per(10)
   end
 
   def show
