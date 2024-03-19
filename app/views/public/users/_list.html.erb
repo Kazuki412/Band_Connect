@@ -10,7 +10,7 @@
   <tbody>
   <% @users.each do |user| %>
     <% if user.is_active == true %>
-      <tr>
+      <tr class="list">
         <td><%= image_tag user.get_profile_image, size: "50x50" %><br><%= link_to user.name, public_user_path(user) %></td>
         <td><%= user.musical_instrument&.name %></td>
         <td><%= user.motivation&.name %></td>
@@ -24,6 +24,10 @@
   <%= paginate users %>
 </div>
 <style>
+  .list:hover {
+    background-color: #FFEFC9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
   .item_paginate {
     display: flex;
     justify-content: center;

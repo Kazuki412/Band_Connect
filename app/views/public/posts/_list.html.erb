@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <% posts.each do |post| %>
-    <tr>
+    <tr class="list">
       <td><%= image_tag post.user.get_profile_image, size: "50x50" %><br><%= link_to post.user.name, public_user_path(post.user.id) %></td>
       <td><%= post.body %></td>
     <% if user_signed_in? %>
@@ -38,6 +38,10 @@
   <%= paginate posts %>
 </div>
 <style>
+  .list:hover {
+    background-color: #FFEFC9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
   .item_paginate {
     display: flex;
     justify-content: center;

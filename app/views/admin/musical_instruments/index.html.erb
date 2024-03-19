@@ -1,22 +1,30 @@
-<h3 class="my-3">楽器一覧・追加</h3>
-<%= form_with model: @musical_instrument, url: admin_musical_instruments_path, method: :post do |f| %>
-  <h6>楽器名</h6>
-  <%= f.text_field :name %>
-  <%= f.submit "Create New", class: "btn btn-primary" %>
-<% end %>
-<table class="table my-3">
-  <thead>
-    <tr>
-      <th>musical_instrument</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @musical_instruments.each do |musical_instrument| %>
-    <tr>
-      <td><%= musical_instrument.name %></td>
-      <td><%= link_to "To Edit", edit_admin_musical_instrument_path(musical_instrument.id), class: "btn btn-success" %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="col-6">
+  <h3 class="my-3">楽器一覧・追加</h3>
+  <%= form_with model: @musical_instrument, url: admin_musical_instruments_path, method: :post do |f| %>
+    <h6>楽器名</h6>
+    <%= f.text_field :name %>
+    <%= f.submit "Create New", class: "btn btn-primary" %>
+  <% end %>
+  <table class="table my-3">
+    <thead style="background-color: #474343; color: white;">
+      <tr>
+        <th>musical_instrument</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @musical_instruments.each do |musical_instrument| %>
+      <tr class="list">
+        <td><%= musical_instrument.name %></td>
+        <td><%= link_to "To Edit", edit_admin_musical_instrument_path(musical_instrument.id), class: "btn btn-success" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<style>
+  .list:hover {
+    background-color: #FFEFC9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+</style>

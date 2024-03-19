@@ -41,23 +41,66 @@
           <th><%= @user.name %>'s Posts</th>
           <th></th>
           <th></th>
-          <th></th>
         </thead>
         <tbody>
-        <% @posts.first(5).each do |post| %>
-          <tr>
-            <td><%= image_tag post.user.get_profile_image, size: "50x50" %></td>
+        <% @posts.each do |post| %>
+          <tr class="list">
             <td><%= post.user.name %></td>
             <td><%= post.body %></td>
             <td>
               <%= link_to public_post_path(post) do %>
-                <i class="fa-solid fa-magnifying-glass-plus"></i>詳しく
+                <i class="fa-regular fa-comment-dots"></i>：<%= post.post_comments.count %>
               <% end %>
             </td>
           </tr>
         <% end %>
         </tbody>
       </table>
+      <div class="item_paginate">
+        <%= paginate @posts %>
+      </div>
     </div>
   </div>
 </div>
+<style>
+  .list:hover {
+    background-color: #FFEFC9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+  .item_paginate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .pagination {
+    text-align: center;
+    width: 50px;
+    font-size: 20px;
+  }
+  .pagination span {
+    text-align: center;
+    width: 50px;
+    font-size: 20px;
+  }
+  .pagination a {
+    color: #818181;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+  }
+  .pagination a:hover{
+    width: 50px;
+    height: 50px;
+    background-color: #474343;
+    color: #FFF;
+    border-radius: 100%;
+    padding: 10px;
+  }
+  .current{
+    font-weight: bold;
+    color: #474343;
+    padding: 10px;
+  }
+</style>

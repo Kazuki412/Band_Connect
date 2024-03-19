@@ -1,22 +1,30 @@
-<h3 class="my-3">モチベーション一覧・追加</h3>
-<%= form_with model: @motivation, url: admin_motivations_path, method: :post do |f| %>
-  <h6>ジャンル名</h6>
-  <%= f.text_field :name %>
-  <%= f.submit "Create New", class: "btn btn-primary" %>
-<% end %>
-<table class="table my-3">
-  <thead>
-    <tr>
-      <th>モチベーション</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @motivations.each do |motivation| %>
-    <tr>
-      <td><%= motivation.name %></td>
-      <td><%= link_to "To Edit", edit_admin_motivation_path(motivation.id), class: "btn btn-success" %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="col-6">
+  <h3 class="my-3">モチベーション一覧・追加</h3>
+  <%= form_with model: @motivation, url: admin_motivations_path, method: :post do |f| %>
+    <h6>ジャンル名</h6>
+    <%= f.text_field :name %>
+    <%= f.submit "Create New", class: "btn btn-primary" %>
+  <% end %>
+  <table class="table my-3">
+    <thead style="background-color: #474343; color: white;">
+      <tr>
+        <th>モチベーション</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @motivations.each do |motivation| %>
+      <tr class="list">
+        <td><%= motivation.name %></td>
+        <td><%= link_to "To Edit", edit_admin_motivation_path(motivation.id), class: "btn btn-success" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<style>
+  .list:hover {
+    background-color: #FFEFC9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+</style>

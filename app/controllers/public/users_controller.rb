@@ -1,9 +1,9 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_guest_user, only: %i[update destroy]
+  before_action :ensure_guest_user, only: %i[edit update destroy]
 
   def index
-    @users = User.includes(:musical_instrument).page(params[:page]).per(10)
+    @users = User.includes(:musical_instrument).page(params[:page]).per(5)
   end
 
   def show
@@ -25,7 +25,7 @@ class Public::UsersController < ApplicationController
       end
     end
     @is_same_band_member = current_user.bands.pluck(:band_id).any? {|band_id| @user.bands.pluck(:band_id).include?(band_id)}
-    @posts = @user.posts.order("id DESC").limit(10)
+    @posts = @user.posts.order("id DESC").page(params[:page]).per(8)
   end
 
   def edit

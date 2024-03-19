@@ -3,11 +3,15 @@
     <h3>投稿一覧</h3>
   </div>
   <div class="col-4 d-flex justify-content-center">
-    <%= render "public/tagsearches/tagsearches" %>
+    <% if user_signed_in? %>
+      <%= render "public/tagsearches/tagsearches" %>
+    <% end %>
   </div>
   <div class="col-4 d-flex align-items-center justify-content-end">
-    <%= link_to new_public_post_path, class: "btn btn-primary rounded-circle" do %>
-      <i class="fa-solid fa-plus"></i>
+    <% if user_signed_in? %>
+      <%= link_to new_public_post_path, class: "btn btn-primary rounded-circle" do %>
+        <i class="fa-solid fa-plus"></i>
+      <% end %>
     <% end %>
   </div>
 </div>

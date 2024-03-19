@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <% @users.each do |user| %>
-    <tr>
+    <tr class="list">
       <% if @current_dm_room.entries.pluck(:user_id).exclude?(user.id) %>
         <% if current_user.bands.pluck(:band_id).any? {|band_id| user.bands.pluck(:band_id).include?(band_id)} %>
           <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
@@ -29,3 +29,9 @@
     </tr>
   </tbody>
 </table>
+<style>
+  .list:hover {
+    background-color: #FFEFC9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+</style>

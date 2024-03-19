@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <% @users.each do |user| %>
-    <tr>
+    <tr class="list">
       <td><%= user.id %></td>
       <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
       <td><%= link_to user.name, admin_user_path(user.id) %></td>
@@ -26,11 +26,56 @@
       <td><%= user.musical_instrument&.name %></td>
       <td><%= user.motivation&.name %></td>
     <% if user.is_active == true %>
-      <td>有効</td>
+      <td class="text-success font-weight-bold">有効</td>
     <% else %>
-      <td>退会済</td>
+      <td class="text-danger font-weight-bold">ブロック中</td>
     <% end %>
     </tr>
     <% end %>
   </tbody>
 </table>
+<div class="item_paginate">
+  <%= paginate @users %>
+</div>
+<style>
+  .list:hover {
+    background-color: #FFEFC9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+  .item_paginate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .pagination {
+    text-align: center;
+    width: 50px;
+    font-size: 20px;
+  }
+  .pagination span {
+    text-align: center;
+    width: 50px;
+    font-size: 20px;
+  }
+  .pagination a {
+    color: #818181;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+  }
+  .pagination a:hover{
+    width: 50px;
+    height: 50px;
+    background-color: #474343;
+    color: #FFF;
+    border-radius: 100%;
+    padding: 10px;
+  }
+  .current{
+    font-weight: bold;
+    color: #474343;
+    padding: 10px;
+  }
+</style>

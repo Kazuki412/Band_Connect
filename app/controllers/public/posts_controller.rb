@@ -14,13 +14,14 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page]).per(10)
+    @posts = Post.order("id DESC").page(params[:page]).per(5)
   end
 
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
     @user = @post.user
+    @post_comments = @post.post_comments.order("id DESC").page(params[:page]).per(4)
   end
 
   def edit

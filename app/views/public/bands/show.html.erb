@@ -23,7 +23,7 @@
       </thead>
       <tbody>
         <% @band.users.each do |user| %>
-        <tr>
+        <tr class="list">
           <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
           <td><%= link_to user.name, public_user_path(user.id) %></td>
           <td><%= user.musical_instrument.name %></td>
@@ -38,3 +38,9 @@
     </table>
   </div>
 </div>
+<style>
+  .list:hover {
+    background-color: #FFEFC9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+</style>

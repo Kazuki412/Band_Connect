@@ -35,12 +35,25 @@
   <table class="table">
     <tbody>
     <% @posts.first(10).each do |post| %>
-      <tr>
+      <tr class="list">
         <td><%= image_tag post.user.get_profile_image, size: "50x50" %></td>
         <td><%= post.user.name %></td>
         <td><%= post.body %></td>
+      <% if user_signed_in? %>
+        <td>
+          <%= link_to public_post_path(post) do %>
+            <i class="fa-regular fa-comment-dots"></i>：<%= post.post_comments.count %>
+          <% end %>
+        </td>
+      <% end %>
       </tr>
     <% end %>
     </tbody>
   </table>
 </div>
+<style>
+  .list:hover {
+  background-color: #FFEFC9;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+</style>

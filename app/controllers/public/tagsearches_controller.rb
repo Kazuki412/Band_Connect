@@ -3,7 +3,7 @@ class Public::TagsearchesController < ApplicationController
   
   def tagsearch
     @word = params[:word]
-    @posts = Post.where("category LIKE?", "%#{@word}%")
+    @posts = Post.where("category LIKE?", "%#{@word}%").page(params[:page]).per(10)
   end 
 
 end

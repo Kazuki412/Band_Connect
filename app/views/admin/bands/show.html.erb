@@ -18,7 +18,7 @@
     </div>
     <h5>Band_Member's</h5>
     <table class="table">
-      <thead style="background-color: #474343; color: white;"
+      <thead style="background-color: #474343; color: white;">
         <tr>
           <th>image</th>
           <th>name</th>
@@ -26,7 +26,7 @@
       </thead>
       <tbody>
         <% @band.users.each do |user| %>
-        <tr>
+        <tr class="list">
           <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
           <td><%= link_to user.name, admin_user_path(user.id) %></td>
         </tr>
@@ -35,3 +35,9 @@
     </table>
   </div>
 </div>
+<style>
+  .list:hover {
+    background-color: #FFEFC9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+</style>

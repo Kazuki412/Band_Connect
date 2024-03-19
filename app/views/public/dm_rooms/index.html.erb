@@ -1,7 +1,7 @@
 <h3 class="p-3" style="background-color: #474343; color: white;">トーク一覧</h3>
 <% @my_dm_rooms.each do |dm_room| %>
   <div class="card" style="background-color: #F7F1E1;">
-    <div class="card-body">
+    <div class="card-body list">
       <div style="display: flex; justify-content: space-between;">
         <div class="chat-band">
           <div class="mx-5">
@@ -26,3 +26,9 @@
     </div>
   </div>
 <% end %>
+<style>
+  .list:hover {
+    background-color: #FFEFC9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+</style>
