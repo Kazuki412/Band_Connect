@@ -34,7 +34,7 @@
   <h3 class="my-3 p-2" style="background-color: #474343; color: white;">New Topic!!</h3>
   <table class="table">
     <tbody>
-    <% @posts.first(10).each do |post| %>
+    <% @posts.each do |post| %>
       <tr class="list">
         <td><%= image_tag post.user.get_profile_image, size: "50x50" %></td>
         <td><%= post.user.name %></td>

@@ -1,7 +1,7 @@
-<h3 class="my-3 p-2" style="background-color: #474343; color: white;"><%= @user.name %>'s Favorite Posts</h3>
+<h3 class="mt-3 p-2" style="background-color: #474343; color: white;"><%= @user.name %>'s Favorite Posts</h3>
 <table class="table">
   <% @bookmark_posts.each do |post| %>
-  <tr>
+  <tr class="list">
     <td><%= image_tag post.user.get_profile_image, size: "50x50" %><br><%= link_to post.user.name, public_user_path(post.user.id) %></td>
     <td><%= post.body %></td>
     <td><i class="fa-regular fa-comment-dots"></i>：<%= post.post_comments.count %></td>
@@ -13,3 +13,9 @@
   </tr>
   <% end %>
 </table>
+<style>
+  .list:hover {
+    background-color: #FFEFC9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+</style>
