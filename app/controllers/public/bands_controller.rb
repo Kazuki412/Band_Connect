@@ -10,13 +10,17 @@ class Public::BandsController < ApplicationController
     @band = Band.new(band_params)
     @band.owner_id = current_user.id
     @band.users << current_user
-    @band.save
-    flash[:notice] = "新しくバンドを作りました"
-    redirect_to public_band_path(@band.id)
+    if @band.save
+      flash[:notice] = "新しくバンドを作りました"
+      redirect_to public_band_path(@band.id)
+    else 
+      flash.now[:alert] = "バンドの作成に失敗しました"
+      render "new"
+    end
   end
 
   def index
-    @bands = Band.page(params[:page]).per(10)
+    @bands = Band.page(params[:page]).per(5)
   end
 
   def show
@@ -29,9 +33,13 @@ class Public::BandsController < ApplicationController
 
   def update
     @band = Band.find(params[:id])
-    @band.update(band_params)
-    flash[:notice] = "バンドの情報を更新しました"
-    redirect_to public_band_path(@band.id)
+    if @band.update(band_params)
+      flash[:notice] = "バンドの情報を更新しました"
+      redirect_to public_band_path(@band.id)
+    else 
+      flash.now[:alert] = "更新に失敗しました"
+      render "edit"
+    end
   end
 
   def destroy

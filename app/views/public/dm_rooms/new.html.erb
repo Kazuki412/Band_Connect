@@ -1,4 +1,4 @@
-<h3 class="my-3">未参加ユーザー一覧</h3>
+<h3 class="my-3"><i class="fa-solid fa-comments"></i> 未参加ユーザー一覧</h3>
 <table class="table">
   <thead style="background-color: #474343; color: white;">
     <tr>
@@ -16,7 +16,7 @@
           <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
           <td><%= user.name %></td>
           <td><%= user.bands.pluck(:name).join("　") %></td>
-          <td>
+          <td style="text-align: right;">
             <%= form_for(@entry, :url => {:controller => :dm_rooms, :action => :room_add_user}) do |f| %>
               <%= f.hidden_field :user_id, :value => user.id %>
               <%= f.hidden_field :dm_room_id, :value => @current_dm_room.id %>

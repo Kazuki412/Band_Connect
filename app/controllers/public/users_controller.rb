@@ -34,9 +34,13 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    flash[:notice] = "変更を保存しました"
-    redirect_to public_user_path(@user)
+    if @user.update(user_params)
+      flash[:notice] = "変更を保存しました"
+      redirect_to public_user_path(@user)
+    else 
+      flash.now[:alert] = "変更の保存に失敗しました"
+      render "edit"
+    end
   end
 
   def bookmarks

@@ -1,10 +1,10 @@
 <% if @model == "User" %>
-  <h3 class="my-3">Users search for "<%= @word %>"</h3>
+  <h3 class="my-3"><i class="fa-solid fa-magnifying-glass"></i> Users search for "<%= @word %>"</h3>
   <%= render "public/users/list", users: @users %>
 <% elsif @model == "Band" %>
-  <h3 class="my-3">Bands search for "<%= @word %>"</h3>
+  <h3 class="my-3"><i class="fa-solid fa-magnifying-glass"></i> Bands search for "<%= @word %>"</h3>
   <%= render "public/bands/list", bands: @bands %>
 <% elsif @model == "Post" %>
-  <h3 class="my-3">Posts search for "<%= @word %>"</h3>
+  <h3 class="my-3"><i class="fa-solid fa-magnifying-glass"></i> Posts search for "<%= @word %>"</h3>
   <%= render "public/posts/list", posts: @posts %>
 <% end %>

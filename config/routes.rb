@@ -48,10 +48,8 @@ Rails.application.routes.draw do
     resources :musical_instruments, only: [:index, :create, :edit, :update]
     resources :users, only: [:show, :update]
     resources :bands, only: [:index, :show, :update]
-    resources :posts, only: [:index, :show, :destroy]
+    resources :posts, only: [:index, :destroy]
     resources :post_comments, only: [:index, :destroy]
-    get "search" => "admin/searches#search"
-    get "tagsearches/search" => "admin/tagsearches#search"
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

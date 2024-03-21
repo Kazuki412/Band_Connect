@@ -1,9 +1,5 @@
-<h3 class="my-3">Post Edit</h3>
+<h3 class="my-3"><i class="fa-solid fa-pen"></i> 投稿内容編集</h3>
 
-<div class="my-5">
-  <h5 class="my-3">編集前内容</h5>
-  <span style="padding: 10px; border: black 1px solid; border-radius: 3px"><%= @post.body %></span>
-</div>
 <%= form_with model: @post, url: public_post_path(@post), method: :patch do |f| %>
   <div>
     <%= f.text_field :body, class: "form-group w-75" %>

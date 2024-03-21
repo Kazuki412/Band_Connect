@@ -14,7 +14,7 @@
       <td><%= image_tag post.user.get_profile_image, size: "50x50" %></td>
       <td><%= link_to post.user.name, admin_user_path(post.user.id) %></td>
       <td><%= post.body %></td>
-      <td><%= link_to "削除", admin_post_path(post.id), method: :delete, data: {confirm: "ポストを削除します"}, class: "btn btn-danger" %></td>
+      <td style="text-align: right;"><%= link_to "削除", admin_post_path(post.id), method: :delete, data: {confirm: "ポストを削除します"}, class: "btn btn-danger" %></td>
     </tr>
     <% end %>
   </tbody>

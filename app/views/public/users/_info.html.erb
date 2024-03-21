@@ -17,7 +17,7 @@
         <% end %>
       <% else %>
         <% user.bands.each do |band| %>
-          <%= link_to band.name, public_band_path(band.id) %>
+          <%= link_to band.name, public_band_path(band.id) %><br>
         <% end %>
       <% end %>
     </th>

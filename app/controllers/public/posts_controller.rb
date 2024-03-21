@@ -8,9 +8,13 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    flash[:notice] = "投稿を送信しました"
-    redirect_to public_posts_path
+    if @post.save
+      flash[:notice] = "投稿を送信しました"
+      redirect_to public_posts_path
+    else
+      flash.now[:alert] = "投稿に失敗しました"
+      render "new"
+    end
   end
 
   def index
@@ -30,9 +34,13 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    flash[:notice] = "投稿内容を編集しました"
-    redirect_to public_post_path(@post.id)
+    if @post.update(post_params)
+      flash[:notice] = "投稿内容を更新しました"
+      redirect_to public_post_path(@post.id)
+    else
+      flash.now[:alert] = "投稿内容の更新に失敗しました"
+      render "edit"
+    end
   end
 
   def destroy

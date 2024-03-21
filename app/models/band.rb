@@ -7,6 +7,8 @@ class Band < ApplicationRecord
   has_many :users, through: :band_members
 
   has_one_attached :band_image
+  
+  validates :name, presence: true
 
   def is_owned_by?(user)
     owner.id == user.id

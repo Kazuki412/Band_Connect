@@ -16,7 +16,7 @@
       <% @genres.each do |genre| %>
       <tr class="list">
         <td><%= genre.name %></td>
-        <td><%= link_to "To Edit", edit_admin_genre_path(genre.id), class: "btn btn-success" %></td>
+        <td style="text-align: right;"><%= link_to "To Edit", edit_admin_genre_path(genre.id), class: "btn btn-success" %></td>
       </tr>
       <% end %>
     </tbody>

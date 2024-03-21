@@ -17,6 +17,8 @@ class User < ApplicationRecord
   has_many :dm_rooms, through: :entries
 
   has_one_attached :profile_image
+  
+  validates :name, presence: true
 
   def get_profile_image
     (profile_image.attached?) ? profile_image: "no_image.jpg"
