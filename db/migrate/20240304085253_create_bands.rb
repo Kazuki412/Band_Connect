@@ -5,7 +5,7 @@ class CreateBands < ActiveRecord::Migration[6.1]
       t.text :introduction
       t.boolean :band_status, default: true, null: false
       t.boolean :band_status2, default: true, null: false
-      t.integer :owner_id, default: "", null: false
+      t.integer :owner_id, null: false
 
       t.timestamps
     end
