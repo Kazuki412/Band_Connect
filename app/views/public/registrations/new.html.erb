@@ -3,50 +3,50 @@
 <div style="text-align: center;">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "public/shared/error_messages", resource: resource %>
-  
+
     <div class="form-group">
       <i class="fa-solid fa-paperclip"></i> <%= f.label :profile_image, "アカウント画像" %> <i class="fa-solid fa-paperclip"></i><br />
-      <%= f.file_field :profile_image, accept: "image/*", class: "form-control" %>
+      <%= f.file_field :profile_image, accept: "image/*" %>
     </div>
-  
+
     <div class="form-group">
       <i class="fa-solid fa-user"></i> <%= f.label :name, "アカウント名" %> <i class="fa-solid fa-user"></i><br />
       <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
     </div>
-  
+
     <div class="form-group">
       <i class="fa-solid fa-envelope"></i> <%= f.label :email, "メールアドレス" %> <i class="fa-solid fa-envelope"></i><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
     </div>
-  
+
     <div class="form-group">
       <i class="fa-solid fa-key"></i> <%= f.label :password, "パスワード（６文字以上）" %> <i class="fa-solid fa-key"></i><br>
       <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
     </div>
-  
+
     <div class="form-group">
       <i class="fa-solid fa-key"></i> <%= f.label :password_confirmation %> <i class="fa-solid fa-key"></i><br />
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
     </div>
-  
+
     <div class="form-group">
       <i class="fa-solid fa-music"></i> <%= f.label :musical_instrument, "担当楽器" %> <i class="fa-solid fa-music"></i><br>
-      <%= f.collection_select :musical_instrument_id, MusicalInstrument.all, :id, :name, include_blank: "--選択してください--" %>
+      <%= f.collection_select :musical_instrument, MusicalInstrument.all, :id, :name, include_blank: "--選択してください--" %>
     </div>
-  
+
     <div class="form-group">
       <i class="fa-solid fa-lightbulb"></i> <%= f.label :motivation, "活動頻度" %> <i class="fa-solid fa-lightbulb"></i><br>
-      <%= f.collection_select :motivation_id, Motivation.all, :id, :name, include_blank: "--選択してください--" %>
+      <%= f.collection_select :motivation, Motivation.all, :id, :name, include_blank: "--選択してください--" %>
     </div>
-  
+
     <div class="form-group">
       <i class="fa-solid fa-circle-info"></i> <%= f.label :introduction, "自己紹介" %> <i class="fa-solid fa-circle-info"></i><br />
       <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", class: "form-control" %>
     </div>
-  
+
     <div class="form-group">
       <%= f.submit "Sign up", class: "btn btn-primary btn-block" %>
     </div>
   <% end %>
-  
+
 </div>
