@@ -6,7 +6,6 @@
     <h3 class="my-3 p-2" style="background-color: #474343; color: white;">Post Detail</h3>
     <table class="table">
       <tr>
-        <td><%= image_tag @post.user.get_profile_image, size: "50x50" %><br><%= link_to @post.user.name, public_user_path(@post.user.id) %></td>
         <td><%= @post.body %></td>
         <td id="favorite_btn_<%= @post.id %>">
           <%= render "public/favorites/favorite_btn", post: @post %>
@@ -27,7 +26,7 @@
         <td><%= image_tag post_comment.user.get_profile_image, size: "50x50" %><br><%= link_to post_comment.user.name, public_user_path(post_comment.user.id) %></td>
         <td><%= post_comment.comment %></td>
       <% if post_comment.user == current_user %>
-        <td><%= link_to "削除", public_post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-danger" %><br><%= post_comment.created_at.strftime("%m/%d %H:%M") %></td>
+        <td><%= link_to "削除", public_post_post_comment_path(post_comment.post, post_comment), method: :delete, data: { confirm: "コメントを削除します" }, class: "btn btn-danger" %><br><%= post_comment.created_at.strftime("%m/%d %H:%M") %></td>
       <% else %>
         <td><%= post_comment.created_at.strftime("%m/%d %H:%M") %></td>
       <% end %>

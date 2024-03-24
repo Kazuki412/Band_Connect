@@ -3,8 +3,8 @@
   <%= form_with model: @user, url: public_user_path(@user), method: :patch do |f| %>
   <!--画像-->
     <div class="form-group">
-      <i class="fa-solid fa-paperclip"></i> <%= f.label :profile_image, "アカウント画像" %> <i class="fa-solid fa-paperclip"></i>
-      <%= f.file_field :profile_image, class: "form-control", accept: "image/*" %>
+      <i class="fa-solid fa-paperclip"></i> <%= f.label :profile_image, "アカウント画像" %> <i class="fa-solid fa-paperclip"></i><br>
+      <%= f.file_field :profile_image, accept: "image/*" %>
     </div>
   <!--名前-->
     <div class="form-group">
@@ -13,13 +13,13 @@
     </div>
   <!--担当楽器-->
     <div class="form-group">
-      <i class="fa-solid fa-music"></i> <%= f.label :musical_instrument, "担当楽器" %> <i class="fa-solid fa-music"></i><br>
-      <%= f.collection_select :musical_instrument, MusicalInstrument.all, :id, :name, include_blank: "--選択してください--" %>
+      <i class="fa-solid fa-music"></i> <%= f.label :musical_instrument_id, "担当楽器" %> <i class="fa-solid fa-music"></i><br>
+      <%= f.collection_select :musical_instrument_id, MusicalInstrument.all, :id, :name, include_blank: "--選択してください--" %>
     </div>
   <!--モチベ-->
     <div class="form-group">
-      <i class="fa-solid fa-lightbulb"></i> <%= f.label :motivation, "活動頻度" %> <i class="fa-solid fa-lightbulb"></i><br>
-      <%= f.collection_select :motivation, Motivation.all, :id, :name, include_blank: "--選択してください--" %>
+      <i class="fa-solid fa-lightbulb"></i> <%= f.label :motivation_id, "活動頻度" %> <i class="fa-solid fa-lightbulb"></i><br>
+      <%= f.collection_select :motivation_id, Motivation.all, :id, :name, include_blank: "--選択してください--" %>
     </div>
   <!--自己紹介-->
     <div class="form-group">

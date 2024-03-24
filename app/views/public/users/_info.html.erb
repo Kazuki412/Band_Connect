@@ -13,7 +13,7 @@
     <th>
       <% if admin_signed_in? %>
         <% user.bands.each do |band| %>
-          <%= link_to band.name, admin_band_path(band.id) %>
+          <%= link_to band.name, admin_band_path(band.id) %><br>
         <% end %>
       <% else %>
         <% user.bands.each do |band| %>

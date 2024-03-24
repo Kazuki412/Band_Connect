@@ -28,8 +28,8 @@ class User < ApplicationRecord
     find_or_create_by!(email: "guest@guest") do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "guest"
-      user.musical_instrument = MusicalInstrument.find_by(name: "Vocal")
-      user.motivation = Motivation.find_by(name: "Professional")
+      user.musical_instrument = MusicalInstrument.find(name: "Vocal")
+      user.motivation = Motivation.find(name: "Professional")
       user.introduction = "ゲストです"
     end 
   end

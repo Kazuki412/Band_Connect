@@ -2,16 +2,16 @@
 <div style="text-align: center;">
   <%= form_with model: @band, url: public_bands_path, method: :post do |f| %>
     <div class="form-group">
-      <i class="fa-solid fa-paperclip"></i> <%= f.label :band_image, "バンド画像" %> <i class="fa-solid fa-paperclip"></i>
-      <%= f.file_field :band_image, class: "form-control" %>
+      <i class="fa-solid fa-paperclip"></i> <%= f.label :band_image, "バンド画像" %> <i class="fa-solid fa-paperclip"></i><br>
+      <%= f.file_field :band_image, accept: "image/*" %>
     </div>
     <div class="form-group">
       <i class="fa-solid fa-users"></i> <%= f.label :name, "バンド名" %> <i class="fa-solid fa-users"></i>
       <%= f.text_field :name, class: "form-control" %>
     </div>
     <div class="form-group">
-      <i class="fa-solid fa-music"></i> <%= f.label :genre, "バンドジャンル" %> <i class="fa-solid fa-music"></i><br>
-      <%= f.collection_select :genre, Genre.all, :id, :name, include_blank: "--選択してください--" %>
+      <i class="fa-solid fa-music"></i> <%= f.label :genre_id, "バンドジャンル" %> <i class="fa-solid fa-music"></i><br>
+      <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択してください--" %>
     </div>
     <div class="form-group">
       <i class="fa-solid fa-circle-info"></i> <%= f.label :introduction, "バンド紹介" %> <i class="fa-solid fa-circle-info"></i>
