@@ -38,7 +38,7 @@
     </div>
     <%= form_with model: [@post, @post_comment], url: public_post_post_comments_path(@post), method: :post do |f| %>
       <div>
-        <%= f.text_field :comment, class: "form-group w-75" %>
+        <%= f.text_field :comment, class: "form-group w-75", placeholder: "コメント" %>
         <%= f.button :submit, class: "btn btn-primary" do %>
           <i class="fa-solid fa-paper-plane"></i>
         <% end %>

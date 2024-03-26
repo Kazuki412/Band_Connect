@@ -11,22 +11,22 @@
 
     <div class="form-group">
       <i class="fa-solid fa-user"></i> <%= f.label :name, "アカウント名" %> <i class="fa-solid fa-user"></i><br />
-      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control", placeholder: "アカウント名" %>
     </div>
 
     <div class="form-group">
       <i class="fa-solid fa-envelope"></i> <%= f.label :email, "メールアドレス" %> <i class="fa-solid fa-envelope"></i><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "メールアドレス" %>
     </div>
 
     <div class="form-group">
       <i class="fa-solid fa-key"></i> <%= f.label :password, "パスワード（６文字以上）" %> <i class="fa-solid fa-key"></i><br>
-      <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "パスワード(６文字以上)" %>
     </div>
 
     <div class="form-group">
       <i class="fa-solid fa-key"></i> <%= f.label :password_confirmation %> <i class="fa-solid fa-key"></i><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "パスワード確認用" %>
     </div>
 
     <div class="form-group">
@@ -41,7 +41,7 @@
 
     <div class="form-group">
       <i class="fa-solid fa-circle-info"></i> <%= f.label :introduction, "自己紹介" %> <i class="fa-solid fa-circle-info"></i><br />
-      <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", class: "form-control" %>
+      <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", class: "form-control", placeholder: "自己紹介" %>
     </div>
 
     <div class="form-group">

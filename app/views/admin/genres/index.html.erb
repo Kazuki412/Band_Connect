@@ -2,8 +2,8 @@
   <h3 class="my-3">ジャンル一覧・追加</h3>
   <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
     <h6>ジャンル名</h6>
-    <%= f.text_field :name %>
-    <%= f.submit "Create New", class: "btn btn-primary" %>
+    <%= f.text_field :name, placeholder: "ジャンル" %>
+    <%= f.submit "新規作成", class: "btn btn-primary" %>
   <% end %>
   <table class="table my-3">
     <thead style="background-color: #474343; color: white;">
@@ -16,7 +16,7 @@
       <% @genres.each do |genre| %>
       <tr class="list">
         <td><%= genre.name %></td>
-        <td style="text-align: right;"><%= link_to "To Edit", edit_admin_genre_path(genre.id), class: "btn btn-success" %></td>
+        <td style="text-align: right;"><%= link_to "編集", edit_admin_genre_path(genre.id), class: "btn btn-success" %></td>
       </tr>
       <% end %>
     </tbody>

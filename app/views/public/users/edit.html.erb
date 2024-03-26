@@ -9,7 +9,7 @@
   <!--名前-->
     <div class="form-group">
       <i class="fa-solid fa-user"></i> <%= f.label :name, "アカウント名" %> <i class="fa-solid fa-user"></i>
-      <%= f.text_field :name, class: "form-control name" %>
+      <%= f.text_field :name, class: "form-control name", placeholder: "アカウント名" %>
     </div>
   <!--担当楽器-->
     <div class="form-group">
@@ -24,7 +24,7 @@
   <!--自己紹介-->
     <div class="form-group">
       <i class="fa-solid fa-circle-info"></i> <%= f.label :introduction, "自己紹介" %> <i class="fa-solid fa-circle-info"></i>
-      <%= f.text_area :introduction, class: "form-control introduction" %>
+      <%= f.text_area :introduction, class: "form-control introduction", placeholder: "自己紹介" %>
     </div>
 
     <div class="form-group">

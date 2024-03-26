@@ -17,7 +17,7 @@
   </div>
   <div class="fixed-bottom" style="text-align: center; margin-bottom: 60px">
   <%= form_with model: @message, url: public_messages_path, method: :post, local: false do |f| %>
-    <%= f.text_field :content, id: "message_field", class: "form-group w-75" %>
+    <%= f.text_field :content, id: "message_field", required: true, class: "form-group w-75", placeholder: "メッセージ" %>
     <%= f.hidden_field :dm_room_id, value: @dm_room.id %>
     <%= f.button :submit, class: "btn btn-primary" do %>
       <i class="fa-solid fa-paper-plane"></i>

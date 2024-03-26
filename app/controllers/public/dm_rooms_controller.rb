@@ -6,7 +6,7 @@ class Public::DmRoomsController < ApplicationController
     @dm_room = DmRoom.create
     @current_entry = Entry.create(dm_room_id: @dm_room.id, user_id: current_user.id)
     @another_entry = Entry.create(params.require(:entry).permit(:user_id, :dm_room_id).merge(dm_room_id: @dm_room.id))
-    redirect_to public_dm_room_path(@dm_room)
+    redirect_to public_dm_room_path(@dm_room.id)
   end
 
   def new

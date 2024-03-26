@@ -37,7 +37,7 @@ class Public::UsersController < ApplicationController
     if @user.update(user_params)
       flash[:notice] = "変更を保存しました"
       redirect_to public_user_path(@user)
-    else 
+    else
       flash[:alert] = "変更の保存に失敗しました"
       redirect_to request.referer
     end
@@ -57,7 +57,7 @@ class Public::UsersController < ApplicationController
 
   def ensure_guest_user
     if current_user.email == "guest@guest"
-      redirect_to root_path, alert: "ゲストユーザーの更新・退会はロックしています"
+      redirect_to root_path, alert: "ゲストユーザーの編集・更新はロックしています"
     end
   end
 

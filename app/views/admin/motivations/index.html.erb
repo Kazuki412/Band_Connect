@@ -2,8 +2,8 @@
   <h3 class="my-3">活動頻度一覧・追加</h3>
   <%= form_with model: @motivation, url: admin_motivations_path, method: :post do |f| %>
     <h6>活動頻度</h6>
-    <%= f.text_field :name %>
-    <%= f.submit "Create New", class: "btn btn-primary" %>
+    <%= f.text_field :name, placeholder: "活動頻度" %>
+    <%= f.submit "新規作成", class: "btn btn-primary" %>
   <% end %>
   <table class="table my-3">
     <thead style="background-color: #474343; color: white;">
@@ -16,7 +16,7 @@
       <% @motivations.each do |motivation| %>
       <tr class="list">
         <td><%= motivation.name %></td>
-        <td style="text-align: right;"><%= link_to "To Edit", edit_admin_motivation_path(motivation.id), class: "btn btn-success" %></td>
+        <td style="text-align: right;"><%= link_to "編集", edit_admin_motivation_path(motivation.id), class: "btn btn-success" %></td>
       </tr>
       <% end %>
     </tbody>

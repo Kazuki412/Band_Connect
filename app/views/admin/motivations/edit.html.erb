@@ -1,6 +1,6 @@
-<h3 class="my-3">モチベーション編集</h3>
+<h3 class="my-3">活動頻度編集</h3>
 <%= form_with model: @motivation, url: admin_motivation_path(@motivation), method: :patch do |f| %>
-  <h5>モチベーション</h5>
-  <%= f.text_field :name %>
+  <h5>活動頻度</h5>
+  <%= f.text_field :name, placeholder: "活動頻度" %>
   <%= f.submit "Save", class: "btn btn-success" %>
 <% end %>
