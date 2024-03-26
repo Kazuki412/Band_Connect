@@ -2,23 +2,23 @@
 <table class="table">
   <tr><%= image_tag band.get_band_image, size: "100x100", style: "display: block; margin: 15px auto;" %></tr>
   <tr>
-    <th>name</th>
+    <th>Name</th>
     <th><%= band.name %></th>
   </tr>
   <tr>
-    <th>genre</th>
+    <th>Genre</th>
     <th><%= band.genre.name %></th>
   </tr>
   <tr>
-    <th>member</th>
+    <th>Member</th>
     <th><%= band.users.count %></th>
   </tr>
   <tr>
-    <th>introduction</th>
+    <th>Introduction</th>
     <th><%= band.introduction %></th>
   </tr>
   <tr>
-    <th>status</th>
+    <th>Status</th>
   <% if band.band_status == true %>
     <th>募集中</th>
   <% else %>

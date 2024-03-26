@@ -22,8 +22,8 @@
         <tbody>
         <% @posts.each do |post| %>
           <tr class="list">
-            <td><%= post.user.name %></td>
             <td><%= post.body %></td>
+            <td style="text-align: right;"><%= link_to "削除", admin_post_path(post.id), method: :delete, data: {confirm: "ポストを削除します"}, class: "btn btn-danger" %></td>
           </tr>
         <% end %>
         </tbody>

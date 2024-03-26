@@ -36,9 +36,13 @@ class Public::DmRoomsController < ApplicationController
 
   def update
     @dm_room = DmRoom.find(params[:id])
-    @dm_room.update(dm_room_params)
-    flash[:notice] = "ルーム名を設定しました"
-    redirect_to public_dm_room_path(@dm_room.id)
+    if @dm_room.update(dm_room_params)
+      flash[:notice] = "ルーム名を更新しました"
+      redirect_to public_dm_room_path(@dm_room.id)
+    else
+      flash[:alert] = "ルーム名の更新に失敗しました"
+      redirect_to request.referer
+    end
   end
 
   def destroy
@@ -51,6 +55,7 @@ class Public::DmRoomsController < ApplicationController
   def room_add_user
     entry = Entry.new(entry_params)
     if entry.save
+      flash[:notice] = "トークメンバーを追加しました"
       redirect_to public_dm_room_path(entry.dm_room_id)
     else
       redirect_to public_new_dm_room_path(entry.dm_room_id)

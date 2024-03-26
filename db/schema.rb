@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2024_03_11_033210) do
 
   create_table "bands", force: :cascade do |t|
     t.string "name", default: "", null: false
-    t.text "introduction", default: "", null: false
+    t.text "introduction"
     t.boolean "band_status", default: true, null: false
     t.boolean "band_status2", default: true, null: false
     t.integer "owner_id", null: false

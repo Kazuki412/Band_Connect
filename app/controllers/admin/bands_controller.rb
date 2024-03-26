@@ -2,7 +2,7 @@ class Admin::BandsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @bands = Band.all
+    @bands = Band.order("id DESC").page(params[:page]).per(7)
   end
 
   def show

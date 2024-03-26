@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: %i[edit update destroy]
 
   def index
-    @users = User.includes(:musical_instrument).page(params[:page]).per(5)
+    @users = User.includes(:musical_instrument).order("id DESC").page(params[:page]).per(5)
   end
 
   def show

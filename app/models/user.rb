@@ -17,23 +17,23 @@ class User < ApplicationRecord
   has_many :dm_rooms, through: :entries
 
   has_one_attached :profile_image
-  
+
   validates :name, presence: true
 
   def get_profile_image
     (profile_image.attached?) ? profile_image: "no_image.jpg"
   end
-  
+
   def self.guest
     find_or_create_by!(email: "guest@guest") do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "guest"
-      user.musical_instrument = MusicalInstrument.find(name: "Vocal")
-      user.motivation = Motivation.find(name: "Professional")
+      user.musical_instrument_id = 1
+      user.motivation_id = 1
       user.introduction = "ゲストです"
-    end 
+    end
   end
-  
+
   def self.looks(search, word)
     if search == "partial_match"
       @user = User.where("name LIKE?", "%#{word}%")
@@ -41,7 +41,7 @@ class User < ApplicationRecord
       @user = User.all
     end
   end
-  
+
   paginates_per 10
 
 end

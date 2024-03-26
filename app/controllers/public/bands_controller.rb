@@ -11,9 +11,9 @@ class Public::BandsController < ApplicationController
     @band.owner_id = current_user.id
     @band.users << current_user
     if @band.save
-      flash[:notice] = "新しくバンドを作りました"
+      flash[:notice] = "新しくバンドを作成しました"
       redirect_to public_band_path(@band.id)
-    else 
+    else
       flash.now[:alert] = "バンドの作成に失敗しました"
       render "new"
     end
@@ -36,7 +36,7 @@ class Public::BandsController < ApplicationController
     if @band.update(band_params)
       flash[:notice] = "バンドの情報を更新しました"
       redirect_to public_band_path(@band.id)
-    else 
+    else
       flash.now[:alert] = "更新に失敗しました"
       render "edit"
     end

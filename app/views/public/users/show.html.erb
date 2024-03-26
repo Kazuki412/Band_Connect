@@ -45,7 +45,6 @@
         <tbody>
         <% @posts.each do |post| %>
           <tr class="list">
-            <td><%= post.user.name %></td>
             <td><%= post.body %></td>
             <td>
               <%= link_to public_post_path(post) do %>

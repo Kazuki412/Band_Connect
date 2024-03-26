@@ -12,7 +12,7 @@ class Public::BandPermitsController < ApplicationController
     @band = Band.find(params[:band_id])
     band_permit = BandPermit.find_by(band_id: params[:band_id])
     band_permit.destroy
-    redirect_to request.referer, alert: "バンドへの参加申請を取り消しました"
+    redirect_to request.referer, alert: "バンドへの参加申請を消去しました"
   end
 
 end

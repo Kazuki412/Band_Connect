@@ -2,7 +2,7 @@ class Admin::PostCommentsController < ApplicationController
   before_action :authenticate_admin!
   
   def index
-    @post_comments = PostComment.page(params[:page]).per(7)
+    @post_comments = PostComment.order("id DESC").page(params[:page]).per(7)
   end
   
   def destroy #不適切なコメントがあれば削除するため

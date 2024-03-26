@@ -2,7 +2,7 @@ class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @posts = Post.page(params[:page]).per(7)
+    @posts = Post.order("id DESC").page(params[:page]).per(7)
   end
 
   def destroy #不適切な投稿があれば削除するため
