@@ -20,7 +20,7 @@ class Public::BandsController < ApplicationController
   end
 
   def index
-    @bands = Band.page(params[:page]).per(5)
+    @bands = Band.order("id DESC").page(params[:page]).per(5)
   end
 
   def show

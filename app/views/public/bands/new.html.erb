@@ -7,7 +7,7 @@
     </div>
     <div class="form-group">
       <i class="fa-solid fa-users"></i> <%= f.label :name, "バンド名" %> <i class="fa-solid fa-users"></i>
-      <%= f.text_field :name, class: "form-control" %>
+      <%= f.text_field :name, class: "form-control", placeholder: "バンド名" %>
     </div>
     <div class="form-group">
       <i class="fa-solid fa-music"></i> <%= f.label :genre_id, "バンドジャンル" %> <i class="fa-solid fa-music"></i><br>
@@ -15,7 +15,7 @@
     </div>
     <div class="form-group">
       <i class="fa-solid fa-circle-info"></i> <%= f.label :introduction, "バンド紹介" %> <i class="fa-solid fa-circle-info"></i>
-      <%= f.text_area :introduction, class: "form-control" %>
+      <%= f.text_area :introduction, class: "form-control", placeholder: "バンド紹介" %>
     </div>
     <div class="form-group">
       <%= f.submit "Create Band", class: "btn btn-primary btn-block" %>

@@ -1,8 +1,13 @@
 <h3 class="my-3"><i class="fa-solid fa-pen"></i> 投稿内容編集</h3>
 
 <%= form_with model: @post, url: public_post_path(@post), method: :patch do |f| %>
-  <div>
-    <%= f.text_field :body, class: "form-group w-75" %>
+  <div class="form-group">
+    <%= f.label :tag, "タグ" %><br>
+    <%= f.select :category, [["バンドメンバー募集！", "バンドメンバー募集！"],["おすすめアーティスト", "おすすめアーティスト"],["イベント情報","イベント情報"]], include_blank: "選択してください。", class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :body, "ポスト内容" %><br>
+    <%= f.text_field :body, class: "w-50", placeholder: "ポスト内容" %>
     <%= f.button :submit, class: "btn btn-success" do %>
       <i class="fa-solid fa-pen-to-square"></i>
     <% end %>
