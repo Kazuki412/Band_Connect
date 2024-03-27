@@ -1,31 +1,36 @@
 <h3 class="p-3" style="background-color: #474343; color: white;"><i class="fa-solid fa-comments"></i> トーク一覧</h3>
-<% @my_dm_rooms.each do |dm_room| %>
-  <div class="card" style="background-color: #F7F1E1;">
-    <div class="card-body list">
-      <div style="display: flex; justify-content: space-between;">
-        <div class="chat-band">
-          <div class="mx-5">
-          <% if dm_room.name.blank? %>
-            <%= link_to "未設定", public_dm_room_path(dm_room.id) %>
-          <% else %>
-            <%= link_to dm_room.name, public_dm_room_path(dm_room.id) %>
-          <% end %>
+<% if @my_dm_rooms == nil? %>
+  <p>トークはまだありません</p>
+<% else %>
+  <% @my_dm_rooms.each do |dm_room| %>
+    <div class="card" style="background-color: #F7F1E1;">
+      <div class="card-body list">
+        <div style="display: flex; justify-content: space-between;">
+          <div class="chat-band">
+            <div class="mx-5">
+            <% if dm_room.name.blank? %>
+              <%= link_to "未設定", public_dm_room_path(dm_room.id) %>
+            <% else %>
+              <%= link_to dm_room.name, public_dm_room_path(dm_room.id) %>
+            <% end %>
+            </div>
           </div>
-        </div>
-        <div class="chat-text">
-          <%= link_to public_dm_room_path(dm_room.id) do %>
-            <%= Message.find_by(id: dm_room.message_ids.last)&.user&.name %><br>
-            <%= Message.find_by(id: dm_room.message_ids.last)&.content %>
-          <% end %>
-        </div>
-        <div class="mr-3">
-          <%= Message.find_by(id: dm_room.message_ids.last)&.created_at&.strftime("%m/%d %H:%M") %><br>
-          <%= link_to "トークを削除", public_dm_room_path(dm_room.id), method: :delete, data: {confirm: "トークを削除します" }, class: "btn btn-danger" %>
+          <div class="chat-text">
+            <%= link_to public_dm_room_path(dm_room.id) do %>
+              <%= Message.find_by(id: dm_room.message_ids.last)&.user&.name %><br>
+              <%= Message.find_by(id: dm_room.message_ids.last)&.content %>
+            <% end %>
+          </div>
+          <div class="mr-3">
+            <%= Message.find_by(id: dm_room.message_ids.last)&.created_at&.strftime("%m/%d %H:%M") %><br>
+            <%= link_to "トークを削除", public_dm_room_path(dm_room.id), method: :delete, data: {confirm: "トークを削除します" }, class: "btn btn-danger" %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
+<%= link_to "前ページへ", public_user_path(current_user.id) %>
 <style>
   .list:hover {
     background-color: #FFEFC9;

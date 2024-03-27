@@ -1,34 +1,39 @@
 <h3 class="my-3"><i class="fa-solid fa-comments"></i> 未参加ユーザー一覧</h3>
-<table class="table">
-  <thead style="background-color: #474343; color: white;">
-    <tr>
-      <th>画像</th>
-      <th>名前</th>
-      <th>参加バンド</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-    <tr class="list">
-      <% if @current_dm_room.entries.pluck(:user_id).exclude?(user.id) %>
-        <% if current_user.bands.pluck(:band_id).any? {|band_id| user.bands.pluck(:band_id).include?(band_id)} %>
-          <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
-          <td><%= user.name %></td>
-          <td><%= user.bands.pluck(:name).join("　") %></td>
-          <td style="text-align: right;">
-            <%= form_for(@entry, :url => {:controller => :dm_rooms, :action => :room_add_user}) do |f| %>
-              <%= f.hidden_field :user_id, :value => user.id %>
-              <%= f.hidden_field :dm_room_id, :value => @current_dm_room.id %>
-              <%= f.submit "追加する", class: "btn btn-primary" %>
-            <% end %>
-          </td>
+<% if @users == nil? %>
+  <p>未参加のユーザーはいません</p>
+<% else %>
+  <table class="table">
+    <thead style="background-color: #474343; color: white;">
+      <tr>
+        <th>画像</th>
+        <th>名前</th>
+        <th>参加バンド</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr class="list">
+        <% if @current_dm_room.entries.pluck(:user_id).exclude?(user.id) %>
+          <% if current_user.bands.pluck(:band_id).any? {|band_id| user.bands.pluck(:band_id).include?(band_id)} %>
+            <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
+            <td><%= user.name %></td>
+            <td><%= user.bands.pluck(:name).join("　") %></td>
+            <td style="text-align: right;">
+              <%= form_for(@entry, :url => {:controller => :dm_rooms, :action => :room_add_user}) do |f| %>
+                <%= f.hidden_field :user_id, :value => user.id %>
+                <%= f.hidden_field :dm_room_id, :value => @current_dm_room.id %>
+                <%= f.submit "追加する", class: "btn btn-primary" %>
+              <% end %>
+            </td>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
-    </tr>
-  </tbody>
-</table>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+<%= link_to "前ページへ", public_dm_room_path(@current_dm_room.id) %>
 <style>
   .list:hover {
     background-color: #FFEFC9;
