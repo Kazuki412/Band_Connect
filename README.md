@@ -19,8 +19,8 @@
 - メンバーが活動できなくなり、バンドの活動ができなくなった時
 
 ## 設計書
-- 実装機能リストhttps://docs.google.com/spreadsheets/d/1y0ugaPFd30ZdmAnnkyIAH0eErjYohwGyzKinE5O1BRc/edit#gid=885378170
-- 後ほど作成予定です
+- 実装機能リスト https://docs.google.com/spreadsheets/d/1y0ugaPFd30ZdmAnnkyIAH0eErjYohwGyzKinE5O1BRc/edit#gid=885378170
+- 設計一覧 https://docs.google.com/spreadsheets/d/1y7lz-yMjRE-ltnLUcHD-PQ_PVlv2PcfDwE_EyOcqt2U/edit#gid=361671693
 ​
 ## 開発環境
 - OS：Linux(CentOS)
@@ -32,4 +32,4 @@
 ## 使用素材
 - フリー画像素材として以下を使用します。
 - フリー素材ぱくたそ・https://www.pakutaso.com
-- pixabay・https://pixabay.com/ja/
+- 自身のバンドメンバーより許可をいただいた画像を掲載します。
