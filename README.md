@@ -20,7 +20,7 @@
 
 ## 設計書
 - 実装機能リスト https://docs.google.com/spreadsheets/d/1y0ugaPFd30ZdmAnnkyIAH0eErjYohwGyzKinE5O1BRc/edit#gid=885378170
-- 設計一覧 https://docs.google.com/spreadsheets/d/1y7lz-yMjRE-ltnLUcHD-PQ_PVlv2PcfDwE_EyOcqt2U/edit#gid=361671693
+- 設計一覧<br>https://docs.google.com/spreadsheets/d/1y7lz-yMjRE-ltnLUcHD-PQ_PVlv2PcfDwE_EyOcqt2U/edit#gid=361671693
 ​
 ## 開発環境
 - OS：Linux(CentOS)
