@@ -5,6 +5,7 @@ class Public::PostCommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     comment = current_user.post_comments.new(post_comment_params)
     comment.post_id = @post.id
+    comment.score = Language.get_data(post_comment_params[:comment])
     if comment.save
       flash[:notice] = "コメントを送信しました"
       redirect_to request.referer
