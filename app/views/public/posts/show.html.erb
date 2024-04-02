@@ -6,7 +6,7 @@
     <h3 class="my-3 p-2" style="background-color: #474343; color: white;">Post Detail</h3>
     <table class="table">
       <tr>
-        <td><%= @post.body %><br>感情分析スコア <span class="score <%= @post.score.present? && @post.score >= 0 ? 'positive' : '' %>"><%= @post.score %></span></td>
+        <td><%= @post.body %><br>感情分析スコア <span class="score <%= @post.score.present? && @post.score >= 0 ? 'positive' : '' %>"><%= (@post.score * 10).floor %></span></td>
         <td id="favorite_btn_<%= @post.id %>">
           <%= render "public/favorites/favorite_btn", post: @post %>
         </td>
@@ -24,7 +24,7 @@
       <% @post_comments.each do |post_comment| %>
       <tr class="list">
         <td><%= image_tag post_comment.user.get_profile_image, size: "50x50" %><br><%= link_to post_comment.user.name, public_user_path(post_comment.user.id) %></td>
-        <td><%= post_comment.comment %><br>感情分析スコア <span class="score <%= post_comment.score.present? && post_comment.score >= 0 ? 'positive' : '' %>"><%= post_comment.score %></span></td>
+        <td><%= post_comment.comment %><br>感情分析スコア <span class="score <%= post_comment.score.present? && post_comment.score >= 0 ? 'positive' : '' %>"><%= (post_comment.score * 10).floor %></span></td>
       <% if post_comment.user == current_user %>
         <td><%= link_to "削除", public_post_post_comment_path(post_comment.post, post_comment), method: :delete, data: { confirm: "コメントを削除します" }, class: "btn btn-danger" %><br><%= post_comment.created_at.strftime("%m/%d %H:%M") %></td>
       <% else %>

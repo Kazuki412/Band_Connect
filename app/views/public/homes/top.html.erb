@@ -1,16 +1,26 @@
 <style>
   .text-overlay {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 35px;
-  color: white;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 35px;
+    color: white;
 }
-.overlay {
-  position: relative;
-  margin: 0 auto;
-  display: inline-block;
+  .overlay {
+    position: relative;
+    margin: 0 auto;
+    display: inline-block;
 }
+  .list:hover {
+    background-color: #FFEFC9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+  .score {
+    color: red;
+  }
+  .score.positive {
+    color: blue;
+  }
 </style>
 <div class="row">
   <button class="my-3">
@@ -37,7 +47,7 @@
       <tr class="list">
         <td><%= image_tag post.user.get_profile_image, size: "50x50" %></td>
         <td><%= post.user.name %></td>
-        <td><%= post.body %></td>
+        <td><%= post.body %><br>感情分析スコア <span class="score <%= post.score.present? && post.score >= 0 ? 'positive' : '' %>"><%= (post.score * 10).floor %></span></td>
       <% if user_signed_in? %>
         <td>
           <%= link_to public_post_path(post) do %>
@@ -50,9 +60,3 @@
     </tbody>
   </table>
 </div>
-<style>
-  .list:hover {
-  background-color: #FFEFC9;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-  }
-</style>

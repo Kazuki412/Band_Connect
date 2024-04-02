@@ -12,7 +12,7 @@
     <% posts.each do |post| %>
     <tr class="list">
       <td><%= image_tag post.user.get_profile_image, size: "50x50" %><br><%= link_to post.user.name, public_user_path(post.user.id) %></td>
-      <td><%= post.body %><br>感情分析スコア <span class="score <%= post.score.present? && post.score >= 0 ? 'positive' : '' %>"><%= post.score %></span></td>
+      <td><%= post.body %><br>感情分析スコア <span class="score <%= post.score.present? && post.score >= 0 ? 'positive' : '' %>"><%= (post.score * 10).floor %></span></td>
     <% if user_signed_in? %>
       <td id="favorite_btn_<%= post.id %>">
         <%= render "public/favorites/favorite_btn", post: post %>

@@ -45,7 +45,7 @@
         <tbody>
         <% @posts.each do |post| %>
           <tr class="list">
-            <td><%= post.body %><br>感情分析スコア <span class="score <%= post.score.present? && post.score >= 0 ? 'positive' : '' %>"><%= post.score %></span></td>
+            <td><%= post.body %><br>感情分析スコア <span class="score <%= post.score.present? && post.score >= 0 ? 'positive' : '' %>"><%= (post.score * 10).floor %></span></td>
             <td>
               <%= link_to public_post_path(post) do %>
                 <i class="fa-regular fa-comment-dots"></i>：<%= post.post_comments.count %>

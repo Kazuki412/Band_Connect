@@ -13,7 +13,7 @@
     <tr class="list">
       <td><%= image_tag post_comment.user.get_profile_image, size: "50x50" %></td>
       <td><%= link_to post_comment.user.name, admin_user_path(post_comment.user.id) %></td>
-      <td><%= post_comment.comment %><br>感情分析スコア <span class="score <%= post_comment.score.present? && post_comment.score >= 0 ? 'positive' : '' %>"><%= post_comment.score %></span></td>
+      <td><%= post_comment.comment %><br>感情分析スコア <span class="score <%= post_comment.score.present? && post_comment.score >= 0 ? 'positive' : '' %>"><%= (post_comment.score * 10).floor %></span></td>
       <td style="text-align: right;"><%= link_to "削除", admin_post_comment_path(post_comment), method: :delete, data: {confirm: "コメントを削除します"}, class: "btn btn-danger" %></td>
     </tr>
     <% end %>
