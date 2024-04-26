@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_04_02_064353) do
+ActiveRecord::Schema.define(version: 2024_04_26_121940) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 2024_04_02_064353) do
   end
 
   create_table "motivations", force: :cascade do |t|
-    t.string "name", default: "0", null: false
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -150,8 +150,8 @@ ActiveRecord::Schema.define(version: 2024_04_02_064353) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "category"
     t.decimal "score", precision: 5, scale: 3
+    t.string "category"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -166,8 +166,8 @@ ActiveRecord::Schema.define(version: 2024_04_02_064353) do
     t.string "name"
     t.text "introduction"
     t.boolean "is_active", default: true, null: false
-    t.integer "motivation_id"
     t.integer "musical_instrument_id"
+    t.integer "motivation_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["motivation_id"], name: "index_users_on_motivation_id"
     t.index ["musical_instrument_id"], name: "index_users_on_musical_instrument_id"

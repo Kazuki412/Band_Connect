@@ -1,8 +1,8 @@
 class CreateMotivations < ActiveRecord::Migration[6.1]
   def change
     create_table :motivations do |t|
-      t.integer :name, default: 0, null: false
-
+      t.string :name
+      
       t.timestamps
     end
   end

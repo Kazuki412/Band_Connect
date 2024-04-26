@@ -13,7 +13,10 @@
     <tr class="list">
       <td><%= image_tag post.user.get_profile_image, size: "50x50" %></td>
       <td><%= link_to post.user.name, admin_user_path(post.user.id) %></td>
-      <td><%= post.body %><br>感情分析スコア <span class="score <%= post.score.present? && post.score >= 0 ? 'positive' : '' %>"><%= (post.score * 10).floor %></span></td>
+      <td><%= post.body %><br>
+    <% if post.score.present? %>
+      感情分析スコア <span class="score <%= post.score >= 0 ? 'positive' : '' %>"><%= (post.score * 10).floor %></span></td>
+    <% end %>
       <td style="text-align: right;"><%= link_to "削除", admin_post_path(post.id), method: :delete, data: {confirm: "ポストを削除します"}, class: "btn btn-danger" %></td>
     </tr>
     <% end %>

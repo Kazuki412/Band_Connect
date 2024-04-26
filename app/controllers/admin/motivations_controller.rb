@@ -8,6 +8,7 @@ class Admin::MotivationsController < ApplicationController
   end
 
   def index
+    @motivation = Motivation.new
     @motivations = Motivation.all
   end
 
