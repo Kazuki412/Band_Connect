@@ -14,8 +14,8 @@ class Public::PostsController < ApplicationController
       flash[:notice] = "投稿を送信しました"
       redirect_to public_posts_path
     else
-      flash[:alert] = "投稿に失敗しました"
-      redirect_to request.referer
+      flash.now[:alert] = "投稿に失敗しました"
+      render :new
     end
   end
 

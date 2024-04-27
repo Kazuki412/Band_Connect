@@ -1,6 +1,7 @@
 <h3 class="my-3"><i class="fa-solid fa-music"></i> 新規バンド作成</h3>
 <div style="text-align: center;">
   <%= form_with model: @band, url: public_bands_path, method: :post do |f| %>
+  <%= render "public/shared/error_messages", resource: @band %>
     <div class="form-group">
       <i class="fa-solid fa-paperclip"></i> <%= f.label :band_image, "バンド画像" %> <i class="fa-solid fa-paperclip"></i><br>
       <%= f.file_field :band_image, accept: "image/*" %>

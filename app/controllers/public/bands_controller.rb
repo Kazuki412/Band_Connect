@@ -14,8 +14,8 @@ class Public::BandsController < ApplicationController
       flash[:notice] = "新しくバンドを作成しました"
       redirect_to public_band_path(@band.id)
     else
-      flash[:alert] = "バンドの作成に失敗しました"
-      redirect_to request.referer
+      flash.now[:alert] = "バンドの作成に失敗しました"
+      render :new
     end
   end
 
