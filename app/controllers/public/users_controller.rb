@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: %i[edit update destroy]
+  before_action :ensure_login_user, only: [:edit, :update]
 
   def index
     @users = User.includes(:musical_instrument).order("id DESC").page(params[:page]).per(5)
@@ -60,5 +61,12 @@ class Public::UsersController < ApplicationController
       redirect_to root_path, alert: "ゲストユーザーの編集・更新はロックしています"
     end
   end
-
+  
+  def ensure_login_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to public_users_path, alert: '他ユーザーの編集はできません'
+    end 
+  end
+    
 end

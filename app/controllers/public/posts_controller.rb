@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+  before_action :ensure_login_user, only: [:edit, :update]
 
   def new
     @post = Post.new
@@ -56,6 +57,13 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:body, :category)
+  end
+
+  def ensure_login_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to public_posts_path, alert: '他ユーザーの投稿は編集はできません'
+    end
   end
 
 end

@@ -1,5 +1,6 @@
 <h3 class="my-3"><i class="fa-solid fa-pen"></i> 新規投稿</h3>
 <%= form_with model: @post, url: public_posts_path, method: :post do |f| %>
+<%= render "public/shared/error_messages", resource: @post %>
   <div class="form-group">
     <%= f.label :tag, "タグ" %><br>
     <%= f.select :category, [["バンドメンバー募集！", "バンドメンバー募集！"],["おすすめアーティスト", "おすすめアーティスト"],["イベント情報","イベント情報"]], include_blank: "選択してください。", class: "form-control" %>
