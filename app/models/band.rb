@@ -7,7 +7,7 @@ class Band < ApplicationRecord
   has_many :users, through: :band_members
 
   has_one_attached :band_image
-  
+
   validates :name, presence: true
 
   def is_owned_by?(user)
@@ -29,7 +29,7 @@ class Band < ApplicationRecord
       Band.all
     end
   end
-  
+
   paginates_per 10
 
 end

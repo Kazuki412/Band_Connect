@@ -2,6 +2,7 @@
 <%= render "public/shared/links" %>
 <div style="text-align: center;">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= render "public/shared/error_messages", resource: resource %>
     <div class="form-group">
       <i class="fa-solid fa-envelope"></i> <%= f.label :email %> <i class="fa-solid fa-envelope"></i><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "メールアドレス" %>
