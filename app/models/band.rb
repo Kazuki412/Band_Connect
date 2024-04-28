@@ -1,5 +1,7 @@
 class Band < ApplicationRecord
 
+  validates :name, presence: true
+
   belongs_to :owner, class_name: "User"
   belongs_to :genre
   has_many :band_members, dependent: :destroy
@@ -8,7 +10,6 @@ class Band < ApplicationRecord
 
   has_one_attached :band_image
 
-  validates :name, presence: true
 
   def is_owned_by?(user)
     owner.id == user.id

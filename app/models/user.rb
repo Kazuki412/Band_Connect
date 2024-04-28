@@ -2,10 +2,14 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-
-  belongs_to :motivation
+         :recoverable, :rememberable
+  
+  validates :name, presence: true
+  validates :email, presence: true
+  validates :password, presence: true
+  
   belongs_to :musical_instrument
+  belongs_to :motivation
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -18,7 +22,6 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
-  validates :name, presence: true
 
   def get_profile_image
     (profile_image.attached?) ? profile_image: "no_image.jpg"
