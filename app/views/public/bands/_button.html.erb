@@ -1,18 +1,18 @@
 <div class="m-3">
   <div class="d-flex align-items-center justify-content-between">
   <% if band.owner_id == current_user.id %>
-    <%= link_to public_band_band_permits_path(band), class: "btn btn-primary" do %>
+    <%= link_to band_band_permits_path(band), class: "btn btn-primary" do %>
       <i class="fa-solid fa-handshake"></i> 参加申請者一覧 <i class="fa-solid fa-handshake"></i>
     <% end %>
-    <%= link_to public_band_path(band.id), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを解散します" } do %>
+    <%= link_to band_path(band.id), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを解散します" } do %>
       <i class="fa-solid fa-users-slash"></i> バンド解散 <i class="fa-solid fa-users-slash"></i>
     <% end %>
   <% elsif band.band_members.exists?(user_id: current_user.id) %>
-    <%= link_to "バンド脱退", public_band_band_members_path(band), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを脱退します" } %>
+    <%= link_to "バンド脱退", band_band_members_path(band), method: :delete, class: "btn btn-danger", data: { confirm: "バンドを脱退します" } %>
   <% elsif band.band_permits.exists?(user_id: current_user.id) %>
-    <%= link_to "申請取消", public_band_band_permits_path(band), method: :delete, class: "btn btn-danger", data: { confirm: "申請を取り消します" } %>
+    <%= link_to "申請取消", band_band_permits_path(band), method: :delete, class: "btn btn-danger", data: { confirm: "申請を取り消します" } %>
   <% elsif band.band_status == true %>
-    <%= link_to "加入申請", public_band_band_permits_path(band), method: :post, class: "btn btn-primary" %>
+    <%= link_to "加入申請", band_band_permits_path(band), method: :post, class: "btn btn-primary" %>
   <% else %>
   <% end %>
   <% if band.band_status2 == false %>

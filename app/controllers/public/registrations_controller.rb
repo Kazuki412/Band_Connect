@@ -10,7 +10,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    public_user_path(current_user.id)
+    user_path(current_user.id)
   end
 
   # before_action :configure_account_update_params, only: [:update]

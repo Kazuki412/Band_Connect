@@ -1,6 +1,6 @@
 <div class="col-4">
   <h3 class="my-3"><i class="fa-solid fa-comments"></i> ルーム名設定</h3>
-  <%= form_with model: @dm_room, url: public_dm_room_path(@dm_room.id), method: :patch do |f| %>
+  <%= form_with model: @dm_room, url: dm_room_path(@dm_room.id), method: :patch do |f| %>
   <h5 class="p-2" style="background-color: #474343; color: white;">ルーム名</h5>
     <%= f.text_field :name %>
     <%= f.submit "Save", class: "btn btn-success" %>
@@ -11,7 +11,7 @@
       <% @dm_room.entries.each do |entry| %>
       <tr>
         <td><%= image_tag entry.user.get_profile_image, size: "50x50" %></td>
-        <td><%= link_to entry.user.name, public_user_path(entry.user.id) %></td>
+        <td><%= link_to entry.user.name, user_path(entry.user.id) %></td>
       </tr>
       <% end %>
     </tbody>

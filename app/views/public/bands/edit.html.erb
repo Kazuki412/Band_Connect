@@ -1,6 +1,6 @@
 <h3 class="my-3"><i class="fa-solid fa-music"></i> バンド情報編集</h3>
 <div style="text-align: center;">
-  <%= form_with model: @band, url: public_band_path(@band), method: :patch do |f| %>
+  <%= form_with model: @band, url: band_path(@band), method: :patch do |f| %>
     <div class="form-group">
       <i class="fa-solid fa-paperclip"></i> <%= f.label :band_image, "バンド画像" %> <i class="fa-solid fa-paperclip"></i><br>
       <%= f.file_field :band_image, accept: "image/*" %>

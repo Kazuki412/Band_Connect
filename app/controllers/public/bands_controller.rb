@@ -12,7 +12,7 @@ class Public::BandsController < ApplicationController
     @band.users << current_user
     if @band.save
       flash[:notice] = "新しくバンドを作成しました"
-      redirect_to public_band_path(@band.id)
+      redirect_to band_path(@band.id)
     else
       flash.now[:alert] = "バンドの作成に失敗しました"
       render :new
@@ -35,7 +35,7 @@ class Public::BandsController < ApplicationController
     @band = Band.find(params[:id])
     if @band.update(band_params)
       flash[:notice] = "バンドの情報を更新しました"
-      redirect_to public_band_path(@band.id)
+      redirect_to band_path(@band.id)
     else
       flash[:alert] = "更新に失敗しました"
       redirect_to request.referer
@@ -46,7 +46,7 @@ class Public::BandsController < ApplicationController
     @band = Band.find(params[:id])
     @band.destroy
     flash[:alert] = "バンドを解散しました"
-    redirect_to public_bands_path
+    redirect_to bands_path
   end
 
   def band_permits
@@ -63,7 +63,7 @@ class Public::BandsController < ApplicationController
   def ensure_correct_user
     @band = Band.find(params[:id])
     unless @band.owner_id == current_user.id
-      redirect_to public_bands_path, alert: "グループオーナーのみ編集が可能です"
+      redirect_to bands_path, alert: "グループオーナーのみ編集が可能です"
     end
   end
 

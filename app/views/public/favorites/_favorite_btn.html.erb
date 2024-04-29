@@ -1,9 +1,9 @@
 <% if post.favorited_by?(current_user) %>
-  <%= link_to public_post_favorite_path(post), method: :delete, remote: true do %>
+  <%= link_to post_favorite_path(post), method: :delete, remote: true do %>
     <i class="fa-solid fa-bookmark"></i>：<%= post.favorites.count %></div>
   <% end %>
 <% else %>
-  <%= link_to public_post_favorite_path(post), method: :post, remote: true do %>
+  <%= link_to post_favorite_path(post), method: :post, remote: true do %>
     <i class="fa-regular fa-bookmark"></i>：<%= post.favorites.count %></div>
   <% end %>
 <% end %>

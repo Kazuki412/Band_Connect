@@ -1,6 +1,6 @@
 <h3 class="my-3"><i class="fa-solid fa-pen"></i> 投稿内容編集</h3>
 
-<%= form_with model: @post, url: public_post_path(@post), method: :patch do |f| %>
+<%= form_with model: @post, url: post_path(@post), method: :patch do |f| %>
   <div class="form-group">
     <%= f.label :tag, "タグ" %><br>
     <%= f.select :category, [["バンドメンバー募集！", "バンドメンバー募集！"],["おすすめアーティスト", "おすすめアーティスト"],["イベント情報","イベント情報"]], include_blank: "選択してください。", class: "form-control" %>

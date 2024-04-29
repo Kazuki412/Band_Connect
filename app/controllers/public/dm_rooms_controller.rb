@@ -6,7 +6,7 @@ class Public::DmRoomsController < ApplicationController
     @dm_room = DmRoom.create
     @current_entry = Entry.create(dm_room_id: @dm_room.id, user_id: current_user.id)
     @another_entry = Entry.create(params.require(:entry).permit(:user_id, :dm_room_id).merge(dm_room_id: @dm_room.id))
-    redirect_to public_dm_room_path(@dm_room.id)
+    redirect_to dm_room_path(@dm_room.id)
   end
 
   def new
@@ -38,7 +38,7 @@ class Public::DmRoomsController < ApplicationController
     @dm_room = DmRoom.find(params[:id])
     if @dm_room.update(dm_room_params)
       flash[:notice] = "ルーム名を更新しました"
-      redirect_to public_dm_room_path(@dm_room.id)
+      redirect_to dm_room_path(@dm_room.id)
     else
       flash[:alert] = "ルーム名の更新に失敗しました"
       redirect_to request.referer
@@ -56,9 +56,9 @@ class Public::DmRoomsController < ApplicationController
     entry = Entry.new(entry_params)
     if entry.save
       flash[:notice] = "トークメンバーを追加しました"
-      redirect_to public_dm_room_path(entry.dm_room_id)
+      redirect_to dm_room_path(entry.dm_room_id)
     else
-      redirect_to public_new_dm_room_path(entry.dm_room_id)
+      redirect_to new_dm_room_path(entry.dm_room_id)
     end
   end
 
@@ -81,7 +81,7 @@ class Public::DmRoomsController < ApplicationController
     end
     if current_user.bands.exists?
       unless results.all?{|result| result == true}
-        redirect_to public_dm_rooms_path, alert: "バンドメンバーでなければDMできません"
+        redirect_to dm_rooms_path, alert: "バンドメンバーでなければDMできません"
       end
     else
       redirect_to request.referer, alert: "バンドに参加していなければDMできません"

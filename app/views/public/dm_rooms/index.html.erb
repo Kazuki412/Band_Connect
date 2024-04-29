@@ -9,28 +9,28 @@
           <div class="chat-band">
             <div class="mx-5">
             <% if dm_room.name.blank? %>
-              <%= link_to "未設定", public_dm_room_path(dm_room.id) %>
+              <%= link_to "未設定", dm_room_path(dm_room.id) %>
             <% else %>
-              <%= link_to dm_room.name, public_dm_room_path(dm_room.id) %>
+              <%= link_to dm_room.name, dm_room_path(dm_room.id) %>
             <% end %>
             </div>
           </div>
           <div class="chat-text">
-            <%= link_to public_dm_room_path(dm_room.id) do %>
+            <%= link_to dm_room_path(dm_room.id) do %>
               <%= Message.find_by(id: dm_room.message_ids.last)&.user&.name %><br>
               <%= Message.find_by(id: dm_room.message_ids.last)&.content %>
             <% end %>
           </div>
           <div class="mr-3">
             <%= Message.find_by(id: dm_room.message_ids.last)&.created_at&.strftime("%m/%d %H:%M") %><br>
-            <%= link_to "トークを削除", public_dm_room_path(dm_room.id), method: :delete, data: {confirm: "トークを削除します" }, class: "btn btn-danger" %>
+            <%= link_to "トークを削除", dm_room_path(dm_room.id), method: :delete, data: {confirm: "トークを削除します" }, class: "btn btn-danger" %>
           </div>
         </div>
       </div>
     </div>
   <% end %>
 <% end %>
-<%= link_to "前ページへ", public_user_path(current_user.id) %>
+<%= link_to "前ページへ", user_path(current_user.id) %>
 <style>
   .list:hover {
     background-color: #FFEFC9;

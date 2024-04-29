@@ -12,22 +12,22 @@
             Welcome！<%= current_user.name %>！
           </div>
           <li class="nav-item">
-          <%= link_to public_user_path(current_user.id), class: 'nav-link' do %>
+          <%= link_to user_path(current_user.id), class: 'nav-link' do %>
             <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-user"></i> My Page</button>
           <% end %>
           </li>
           <li class="nav-item">
-          <%= link_to public_posts_path, class: 'nav-link' do %>
+          <%= link_to posts_path, class: 'nav-link' do %>
             <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-pen"></i> Posts</button>
           <% end %>
           </li>
           <li class="nav-item">
-          <%= link_to public_users_path, class: 'nav-link' do %>
+          <%= link_to users_path, class: 'nav-link' do %>
             <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-users"></i> Users</button>
           <% end %>
           </li>
           <li class="nav-item">
-          <%= link_to public_bands_path, class: 'nav-link' do %>
+          <%= link_to bands_path, class: 'nav-link' do %>
             <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-music"></i> Bands</button>
           <% end %>
           </li>
@@ -38,12 +38,12 @@
           </li>
         <% else %>
           <li class="nav-item">
-          <%= link_to public_posts_path, class: 'nav-link' do %>
+          <%= link_to posts_path, class: 'nav-link' do %>
             <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-pen"></i> Posts</button>
           <% end %>
           </li>
           <li class="nav-item">
-          <%= link_to public_bands_path, class: 'nav-link' do %>
+          <%= link_to bands_path, class: 'nav-link' do %>
             <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-music"></i> Bands</button>
           <% end %>
           </li>

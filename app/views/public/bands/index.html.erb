@@ -1,5 +1,5 @@
 <div class="row">
   <h3 class="col-6 my-3">バンド一覧 <i class="fa-solid fa-music"></i></h3>
-  <div class="col-6 d-flex justify-content-end p-3"><%= link_to "Create Band", new_public_band_path, class: "btn btn-primary" %></div>
+  <div class="col-6 d-flex justify-content-end p-3"><%= link_to "Create Band", new_band_path, class: "btn btn-primary" %></div>
 </div>
 <%= render "list", bands: @bands %>

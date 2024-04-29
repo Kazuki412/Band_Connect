@@ -10,7 +10,7 @@
   <tbody>
     <% bands.each do |band| %>
     <tr class="list">
-      <td><%= image_tag band.get_band_image, size: "50x50" %><br><%= link_to band.name, public_band_path(band) %></td>
+      <td><%= image_tag band.get_band_image, size: "50x50" %><br><%= link_to band.name, band_path(band) %></td>
       <td><%= band.introduction %></td>
       <td><%= band.genre.name %></td>
     <% if band.band_status == true %>

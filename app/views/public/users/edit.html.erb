@@ -1,6 +1,6 @@
 <h3 class="my-3"><i class="fa-regular fa-face-smile"></i> 登録内容編集 <i class="fa-regular fa-face-smile"></i></h3>
 <div style="text-align: center;">
-  <%= form_with model: @user, url: public_user_path(@user), method: :patch do |f| %>
+  <%= form_with model: @user, url: user_path(@user), method: :patch do |f| %>
   <!--画像-->
     <div class="form-group">
       <i class="fa-solid fa-paperclip"></i> <%= f.label :profile_image, "アカウント画像" %> <i class="fa-solid fa-paperclip"></i><br>

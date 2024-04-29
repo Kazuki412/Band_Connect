@@ -11,9 +11,9 @@
   <% @users.each do |user| %>
     <% if user.is_active == true %>
       <tr class="list">
-        <td><%= image_tag user.get_profile_image, size: "50x50" %><br><%= link_to user.name, public_user_path(user) %></td>
-        <td><%= user.musical_instrument&.name %></td>
-        <td><%= user.motivation&.name %></td>
+        <td><%= image_tag user.get_profile_image, size: "50x50" %><br><%= link_to user.name, user_path(user) %></td>
+        <td><%= user.musical_instrument.name %></td>
+        <td><%= user.motivation.name %></td>
         <td><%= user.introduction %></td>
       </tr>
     <% end %>

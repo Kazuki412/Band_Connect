@@ -25,7 +25,7 @@
       </div>
     <% else %>
       <div id="chat-fukidashi" class="mb-3" style="text-align: left;">
-        <%= link_to public_user_path(message.user.id) do %>
+        <%= link_to user_path(message.user.id) do %>
           <%= image_tag message.user.get_profile_image, size: "50x50" %>
         <% end %>
         <div class="another-bg-color">

@@ -12,7 +12,7 @@ class Public::PostsController < ApplicationController
     @post.score = Language.get_data(post_params[:body])
     if @post.save
       flash[:notice] = "投稿を送信しました"
-      redirect_to public_posts_path
+      redirect_to posts_path
     else
       flash.now[:alert] = "投稿に失敗しました"
       render :new
@@ -39,7 +39,7 @@ class Public::PostsController < ApplicationController
     @post.score = Language.get_data(post_params[:body])
     if @post.update(post_params)
       flash[:notice] = "投稿内容を更新しました"
-      redirect_to public_post_path(@post.id)
+      redirect_to post_path(@post.id)
     else
       flash[:alert] = "投稿内容の更新に失敗しました"
       redirect_to request.referer
@@ -50,7 +50,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     flash[:alert] = "投稿を削除しました"
-    redirect_to public_posts_path
+    redirect_to posts_path
   end
 
   private
@@ -62,7 +62,7 @@ class Public::PostsController < ApplicationController
   def ensure_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id
-      redirect_to public_posts_path, alert: '他ユーザーの投稿は編集はできません'
+      redirect_to posts_path, alert: '他ユーザーの投稿は編集はできません'
     end
   end
 

@@ -15,8 +15,8 @@
         </td>
         <td><i class="fa-regular fa-comment-dots"></i>：<%= @post.post_comments.count %></td>
       <% if @user == current_user %>
-        <td><%= link_to "編集", edit_public_post_path(@post), class: "btn btn-success" %></td>
-        <td><%= link_to "削除", public_post_path(@post), method: :delete, data: { confirm: "投稿を削除します" }, class: "btn btn-danger" %><br><%= @post.created_at.strftime("%m/%d %H:%M") %></td>
+        <td><%= link_to "編集", edit_post_path(@post), class: "btn btn-success" %></td>
+        <td><%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "投稿を削除します" }, class: "btn btn-danger" %><br><%= @post.created_at.strftime("%m/%d %H:%M") %></td>
       <% else %>
         <td><%= @post.created_at.strftime("%m/%d %H:%M") %></td>
       <% end %>
@@ -26,13 +26,13 @@
     <table class="table">
       <% @post_comments.each do |post_comment| %>
       <tr class="list">
-        <td><%= image_tag post_comment.user.get_profile_image, size: "50x50" %><br><%= link_to post_comment.user.name, public_user_path(post_comment.user.id) %></td>
+        <td><%= image_tag post_comment.user.get_profile_image, size: "50x50" %><br><%= link_to post_comment.user.name, user_path(post_comment.user.id) %></td>
         <td><%= post_comment.comment %><br>
       <% if post_comment.score.present? %>
         感情分析スコア <span class="score <%= post_comment.score >= 0 ? 'positive' : '' %>"><%= (post_comment.score * 10).floor %></span></td>
       <% end %>
       <% if post_comment.user == current_user %>
-        <td><%= link_to "削除", public_post_post_comment_path(post_comment.post, post_comment), method: :delete, data: { confirm: "コメントを削除します" }, class: "btn btn-danger" %><br><%= post_comment.created_at.strftime("%m/%d %H:%M") %></td>
+        <td><%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, data: { confirm: "コメントを削除します" }, class: "btn btn-danger" %><br><%= post_comment.created_at.strftime("%m/%d %H:%M") %></td>
       <% else %>
         <td><%= post_comment.created_at.strftime("%m/%d %H:%M") %></td>
       <% end %>
@@ -42,7 +42,7 @@
     <div class="item_paginate">
       <%= paginate @post_comments %>
     </div>
-    <%= form_with model: [@post, @post_comment], url: public_post_post_comments_path(@post), method: :post do |f| %>
+    <%= form_with model: [@post, @post_comment], url: post_post_comments_path(@post), method: :post do |f| %>
       <div>
         <%= f.text_field :comment, class: "form-group w-75", placeholder: "コメント" %>
         <%= f.button :submit, class: "btn btn-primary" do %>

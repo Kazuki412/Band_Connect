@@ -3,7 +3,7 @@
     <%= render "info", band: @band %>
     <% if current_user.id == @band.owner_id %>
     <div>
-      <%= link_to edit_public_band_path(@band), class: "btn btn-success btn-block" do %>
+      <%= link_to edit_band_path(@band), class: "btn btn-success btn-block" do %>
         <i class="fa-solid fa-gears"></i> 編集 <i class="fa-solid fa-gears"></i>
       <% end %>
     </div>
@@ -25,7 +25,7 @@
         <% @band.users.each do |user| %>
         <tr class="list">
           <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
-          <td><%= link_to user.name, public_user_path(user.id) %></td>
+          <td><%= link_to user.name, user_path(user.id) %></td>
           <td><%= user.musical_instrument.name %></td>
         <% if @band.owner_id == user.id %>
           <td><i class="fa-solid fa-people-group"></i> Leader <i class="fa-solid fa-people-group"></i></td>

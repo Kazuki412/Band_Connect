@@ -2,15 +2,15 @@
   <div class="col-md-3">
     <%= render "info", user: @user %>
     <% if @user == current_user %>
-      <%= link_to edit_public_user_path(@user), class: "btn btn-success btn-block" do %>
+      <%= link_to edit_user_path(@user), class: "btn btn-success btn-block" do %>
         <i class="fa-solid fa-user-gear"></i>
       <% end %>
-      <%= link_to public_dm_rooms_path, class: "btn btn-secondary btn-block my-3" do %>
+      <%= link_to dm_rooms_path, class: "btn btn-secondary btn-block my-3" do %>
         <i class="fa-solid fa-envelope"></i> 一覧
       <% end %>
     <% else %>
       <% if @is_room == true %>
-        <%= link_to public_dm_room_path(@dm_room_id), class: "btn btn-secondary btn-block my-3" do %>
+        <%= link_to dm_room_path(@dm_room_id), class: "btn btn-secondary btn-block my-3" do %>
           <i class="fa-solid fa-envelope"></i>
         <% end %>
       <% else %>
@@ -30,10 +30,10 @@
   <div class="col-md-8 offset-1">
     <div class="row d-flex justify-content-between">
       <% if current_user.id == @user.id %>
-        <div class="m-3"><%= link_to "New Post", new_public_post_path, class: "btn btn-primary" %></div>
-        <div class="m-3"><%= link_to "Create Band", new_public_band_path, class: "btn btn-primary" %></div>
+        <div class="m-3"><%= link_to "New Post", new_post_path, class: "btn btn-primary" %></div>
+        <div class="m-3"><%= link_to "Create Band", new_band_path, class: "btn btn-primary" %></div>
       <% end %>
-      <div class="m-3"><%= link_to "Bookmark Posts", bookmarks_public_user_path(@user),  class: "btn btn-primary" %></div>
+      <div class="m-3"><%= link_to "Bookmark Posts", bookmarks_user_path(@user),  class: "btn btn-primary" %></div>
     </div>
     <div class="row">
       <table class="table">
@@ -50,7 +50,7 @@
             感情分析スコア <span class="score <%= post.score >= 0 ? 'positive' : '' %>"><%= (post.score * 10).floor %></span></td>
           <% end %>
             <td>
-              <%= link_to public_post_path(post) do %>
+              <%= link_to post_path(post) do %>
                 <i class="fa-regular fa-comment-dots"></i>：<%= post.post_comments.count %>
               <% end %>
             </td>

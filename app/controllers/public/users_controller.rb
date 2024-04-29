@@ -37,7 +37,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "変更を保存しました"
-      redirect_to public_user_path(@user)
+      redirect_to user_path(@user)
     else
       flash[:alert] = "変更の保存に失敗しました"
       redirect_to request.referer
@@ -65,7 +65,7 @@ class Public::UsersController < ApplicationController
   def ensure_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id
-      redirect_to public_users_path, alert: '他ユーザーの編集はできません'
+      redirect_to users_path, alert: '他ユーザーの編集はできません'
     end 
   end
     

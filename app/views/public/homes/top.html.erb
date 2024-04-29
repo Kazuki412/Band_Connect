@@ -53,7 +53,7 @@
       <% end %>
       <% if user_signed_in? %>
         <td>
-          <%= link_to public_post_path(post) do %>
+          <%= link_to post_path(post) do %>
             <i class="fa-regular fa-comment-dots"></i>：<%= post.post_comments.count %>
           <% end %>
         </td>

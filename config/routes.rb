@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
-  namespace :public do
+  scope module: :public do
     resources :bands, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resource :band_permits, only: [:create, :destroy]
       resource :band_members, only: [:create, :destroy]
