@@ -15,7 +15,7 @@
         <% end %>
       <% else %>
         <% if @is_same_band_member %>
-          <%= form_for [:public, @dm_room] do |f| %>
+          <%= form_for @dm_room do |f| %>
             <%= fields_for @entry do |e| %>
               <%= e.hidden_field :user_id, value: @user.id %>
             <% end %>

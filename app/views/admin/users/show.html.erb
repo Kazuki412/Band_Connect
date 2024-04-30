@@ -6,7 +6,7 @@
     <div class="row my-3">
       <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f| %>
         <div class="form-group p-2" style="background-color: #474343; color: white;">
-          <%= f.label :status, "会員ステータス" %>
+          <%= f.label :status, "会員ステータス" %>　
           <%= f.radio_button :is_active, "true" %><%= f.label :is_active, '有効', value: true %>　
           <%= f.radio_button :is_active, "false" %><%= f.label :is_active, 'ブロックする', value: false %>
           <%= f.submit "Save", data: {confirm: "ステータスを更新します"}, class: "btn btn-success" %>
